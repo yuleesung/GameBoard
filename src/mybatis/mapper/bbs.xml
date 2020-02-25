@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
+	
+	<!-- 회원 로그인 -->
+	<select id="login" resultType="mybatis.vo.BoardMemberVO" parameterType="java.util.Map">
+		select m_idx, id, name, email, phone, reg_date from board_member_t where id = #{id} and pw = #{pw}
+	</select>
 
 	<!-- 회원 가입 -->
 	<insert id="join" parameterType="mybatis.vo.BoardMemberVO">

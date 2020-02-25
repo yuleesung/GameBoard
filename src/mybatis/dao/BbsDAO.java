@@ -13,6 +13,19 @@ import mybatis.vo.BoardVO;
 
 public class BbsDAO {
 	
+	// 회원 로그인
+	public static BoardMemberVO login(String id, String pw) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pw", pw);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		BoardMemberVO vo = ss.selectOne("bbs.login", map);
+		ss.close();
+		
+		return vo;
+	}
+	
 	// 회원 가입
 	public static boolean join(BoardMemberVO vo) {
 		boolean chk = false;
@@ -200,3 +213,4 @@ public class BbsDAO {
 	}
 
 }
+
