@@ -65,71 +65,24 @@ public class BbsDAO {
 	}
 	
 	// 뉴스 게시물 수
-	public static int getNewsCount() {
+	public static int getCount(String category) {
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getNewsCount");
+		int total = ss.selectOne("bbs.getCount", category);
 		ss.close();
 		return total;
 	}
 	
-	// 게임정보 게시물 수
-	public static int getDBCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getDBCount");
-		ss.close();
-		return total;
-	}
-	
-	// 자유게시판 게시물 수
-	public static int getFreeCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getFreeCount");
-		ss.close();
-		return total;
-	}
-	
-	// Q&A 게시물 수
-	public static int getQACount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getQACount");
-		ss.close();
-		return total;
-	}
-	
-	// PC게임정보 게시물 수
-	public static int getPCCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getPCCount");
-		ss.close();
-		return total;
-	}
-	
-	// PS게임정보 게시물 수
-	public static int getPSCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getPSCount");
-		ss.close();
-		return total;
-	}
-	
-	// Nintendo게임정보 게시물 수
-	public static int getNSCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getNSCount");
-		ss.close();
-		return total;
-	}
-	
-	// 뉴스전체보기
-	public static BoardVO[] getNewsList(int begin, int end) {
+	// 전체보기
+	public static BoardVO[] getList(String begin, String end, String category) {
 		BoardVO[] ar = null;
 		
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", begin);
 		map.put("end", end);
+		map.put("category", category);
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getNewsList", map);
+		List<BoardVO> list = ss.selectList("bbs.getList", map);
 		if(list != null && !list.isEmpty()) {
 			ar = new BoardVO[list.size()];
 			list.toArray(ar);
@@ -138,121 +91,6 @@ public class BbsDAO {
 		
 		return ar;
 	}
-	
-	// 게임정보전체보기
-	public static BoardVO[] getGameDBList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getGameDBList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	// 자유게시판전체보기
-	public static BoardVO[] getFreeList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getFreeList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	// Q&A전체보기
-	public static BoardVO[] getQAList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getQAList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	// PC게임전체보기
-	public static BoardVO[] getPCList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getPCList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	// PS게임전체보기
-	public static BoardVO[] getPSList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getPSList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
-	// 닌텐도게임전체보기
-	public static BoardVO[] getNSList(int begin, int end) {
-		BoardVO[] ar = null;
-		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BoardVO> list = ss.selectList("bbs.getNSList", map);
-		if(list != null && !list.isEmpty()) {
-			ar = new BoardVO[list.size()];
-			list.toArray(ar);
-		}
-		ss.close();
-		
-		return ar;
-	}
-	
 	
 	// 게시물 보기
 	public static BoardVO viewPost(String b_idx) {

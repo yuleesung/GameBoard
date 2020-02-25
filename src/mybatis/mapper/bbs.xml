@@ -22,40 +22,11 @@
 		values(board_comment_t_seq.nextval, #{writer}, #{content}, sysdate, #{ip}, #{b_idx}, 0)
 	</insert>
 	
-	<!-- 뉴스 게시물 수 -->
-	<select id="getNewsCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = news
+	<!-- 게시물 수 -->
+	<select id="getCount" resultType="int" parameterType="String">
+		select count(*) from board_t where status = 0 and category = #{category}
 	</select>
 	
-	<!-- 게임정보 게시물 수 -->
-	<select id="getDBCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = db
-	</select>
-	
-	<!-- 자유게시판 게시물 수 -->
-	<select id="getFreeCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = free
-	</select>
-	
-	<!-- Q&A 게시물 수 -->
-	<select id="getQACount" resultType="int">
-		select count(*) from board_t where status = 0 and category = qa
-	</select>
-	
-	<!-- PC게임정보 게시물 수 -->
-	<select id="getPCCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = pc
-	</select>
-	
-	<!-- PS게임정보 게시물 수 -->
-	<select id="getPSCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = ps
-	</select>
-	
-	<!-- Nintendo게임정보 게시물 수 -->
-	<select id="getNSCount" resultType="int">
-		select count(*) from board_t where status = 0 and category = ns
-	</select>
 	
 	<resultMap type="mybatis.vo.BoardVO" id="map1">
 		<id column="b_idx" property="b_idx"/>
@@ -73,62 +44,13 @@
 		select * from board_comment_t where b_idx = #{b_idx}
 	</select>
 	
-	<!-- 뉴스전체보기 -->
-	<select id="getNewsList" resultMap="map1" parameterType="java.util.Map">
+	<!-- 전체보기 -->
+	<select id="getList" resultMap="map1" parameterType="java.util.Map">
 		select * from(	
 			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = news order by b_idx desc) a
+				(select * from board_t where status = 0 and category = #{category} order by b_idx desc) a
 		)where r_num between #{begin} and #{end}
 	</select>
-	
-	<!-- 게임정보전체보기 -->
-	<select id="getGameDBList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = db order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
-	<!-- 자유게시판전체보기 -->
-	<select id="getFreeList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = free order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
-	<!-- Q&A전체보기 -->
-	<select id="getQAList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = qa order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
-	<!-- PC게임전체보기 -->
-	<select id="getPCList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = pc order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
-	<!-- PS게임전체보기 -->
-	<select id="getPSList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = ps order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
-	<!-- 닌텐도게임전체보기 -->
-	<select id="getNSList" resultMap="map1" parameterType="java.util.Map">
-		select * from(	
-			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = ns order by b_idx desc) a
-		)where r_num between #{begin} and #{end}
-	</select>
-	
 	
 	<!-- 게시물 보기 -->
 	<select id="viewPost" parameterType="String" resultMap="map1">
