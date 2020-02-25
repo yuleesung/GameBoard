@@ -2,8 +2,16 @@ package mybatis.vo;
 
 public class BoardMemberVO {
 	
-	private String m_idx, id, pw, name, email, phone, reg_date;
+	private String m_idx, id, pw, name, email, phone, reg_date, status;
 	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getM_idx() {
 		return m_idx;
