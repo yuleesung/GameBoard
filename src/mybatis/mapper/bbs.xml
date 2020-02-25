@@ -3,43 +3,141 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
+
+	<!-- 회원 가입 -->
+	<insert id="join" parameterType="mybatis.vo.BoardMemberVO">
+		insert into board_member_t(m_idx, id, pw, name, email, phone, reg_date, status)
+		values(board_member_t_seq, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0)
+	</insert>
 	
-	<resultMap type="mybatis.vo.BbsVO" id="map1">
-		<id column="b_idx" property="b_idx"/>
-		<collection property="c_list" ofType="mybatis.vo.CommentVO" select="commList" column="b_idx"/>
-	</resultMap>
+	<!-- 게시물 쓰기 -->
+	<insert id="writePost" parameterType="mybatis.vo.BoardVO">
+		insert into board_t(b_idx, subject, writer, content, file_name, ori_name, write_date, ip, hit, status, category, m_idx)
+		values(board_t_seq.nextval, #{subject}, #{writer}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, 0, #{category}, #{m_idx})
+	</insert>
 	
-	<select id="commList" resultType="mybatis.vo.CommentVO" parameterType="String">
-		select c_idx, writer, content, write_date, ip, b_idx from comment_t where b_idx = #{b_idx}
+	<!-- 댓글 쓰기 -->
+	<insert id="writeComment" parameterType="mybatis.vo.BoardCommentVO">
+		insert into board_comment_t(c_idx, writer, content, write_date, ip, b_idx, status) 
+		values(board_comment_t_seq.nextval, #{writer}, #{content}, sysdate, #{ip}, #{b_idx}, 0)
+	</insert>
+	
+	<!-- 뉴스 게시물 수 -->
+	<select id="getNewsCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = news
 	</select>
 	
-	<!-- 전체보기 -->
-	<select id="getList" resultMap="map1" parameterType="java.util.Map">
+	<!-- 게임정보 게시물 수 -->
+	<select id="getDBCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = db
+	</select>
+	
+	<!-- 자유게시판 게시물 수 -->
+	<select id="getFreeCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = free
+	</select>
+	
+	<!-- Q&A 게시물 수 -->
+	<select id="getQACount" resultType="int">
+		select count(*) from board_t where status = 0 and category = qa
+	</select>
+	
+	<!-- PC게임정보 게시물 수 -->
+	<select id="getPCCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = pc
+	</select>
+	
+	<!-- PS게임정보 게시물 수 -->
+	<select id="getPSCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = ps
+	</select>
+	
+	<!-- Nintendo게임정보 게시물 수 -->
+	<select id="getNSCount" resultType="int">
+		select count(*) from board_t where status = 0 and category = ns
+	</select>
+	
+	<resultMap type="mybatis.vo.BoardVO" id="map1">
+		<id column="b_idx" property="b_idx"/>
+		<association property="bmvo" javaType="mybatis.vo.BoardMemberVO" select="getMember" column="m_idx"/>
+		<collection property="bc_list" ofType="mybatis.vo.BoardCommentVO" select="commList" column="b_idx"/>
+	</resultMap>
+	
+	<!-- 게시물을 작성한 회원정보 -->
+	<select id="getMember" resultType="mybatis.vo.BoardMemberVO" parameterType="String">
+		select m_idx, id, name, email, phone, reg_date from board_member_t where m_idx = #{m_idx} 
+	</select>
+	
+	<!-- 하나의 게시물에 대한 댓글 모음 -->
+	<select id="commList" resultType="mybatis.vo.CommentVO" parameterType="String">
+		select * from board_comment_t where b_idx = #{b_idx}
+	</select>
+	
+	<!-- 뉴스전체보기 -->
+	<select id="getNewsList" resultMap="map1" parameterType="java.util.Map">
 		select * from(	
 			select rownum r_num, a.* from
-				(select b_idx, subject, writer, content, file_name, ori_name, write_date, ip, hit, status from bbs_t where status = 0 order by b_idx desc) a
+				(select * from board_t where status = 0 and category = news order by b_idx desc) a
 		)where r_num between #{begin} and #{end}
 	</select>
 	
-	<!-- 전체 게시물 수 -->
-	<select id="getCount" resultType="int">
-		select count(*) from bbs_t where status = 0
+	<!-- 게임정보전체보기 -->
+	<select id="getGameDBList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = db order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
 	</select>
 	
-	<!-- 게시물 추가 -->
-	<insert id="addPost" parameterType="mybatis.vo.BbsVO">
-		insert into bbs_t(b_idx, subject, writer, content, file_name, ori_name, pwd, write_date, ip, hit, status)
-		values(bbs_t_seq.nextval, #{subject}, #{writer}, #{content}, #{file_name}, #{ori_name}, #{pwd}, sysdate, #{ip}, #{hit}, #{status})
-	</insert>
+	<!-- 자유게시판전체보기 -->
+	<select id="getFreeList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = free order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
+	</select>
+	
+	<!-- Q&A전체보기 -->
+	<select id="getQAList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = qa order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
+	</select>
+	
+	<!-- PC게임전체보기 -->
+	<select id="getPCList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = pc order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
+	</select>
+	
+	<!-- PS게임전체보기 -->
+	<select id="getPSList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = ps order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
+	</select>
+	
+	<!-- 닌텐도게임전체보기 -->
+	<select id="getNSList" resultMap="map1" parameterType="java.util.Map">
+		select * from(	
+			select rownum r_num, a.* from
+				(select * from board_t where status = 0 and category = ns order by b_idx desc) a
+		)where r_num between #{begin} and #{end}
+	</select>
+	
 	
 	<!-- 게시물 보기 -->
 	<select id="viewPost" parameterType="String" resultMap="map1">
-		select b_idx, subject, writer, content, file_name, ori_name, write_date, ip, hit, status from bbs_t where b_idx = #{b_idx}
+		select * from board_t where b_idx = #{b_idx}
 	</select>
 	
 	<!-- 게시물 수정 -->
-	<update id="editPost" parameterType="java.util.Map">
-		update bbs_t
+	<update id="editPost" parameterType="mybatis.vo.BoardVO">
+		update board_t
 		<set>
 			write_date = sysdate,
 			<trim suffixOverrides=",">
@@ -53,29 +151,43 @@
 					ori_name = #{ori_name},
 				</if>
 				<if test="content != null">
-					content = #{content}
+					content = #{content},
 				</if>
 				<if test="ip != null">
-					ip = #{ip}
+					ip = #{ip},
+				</if>
+				<if test="category != null">
+					category = #{category},
 				</if>
 			</trim>
 		</set>
-		where b_idx = #{b_idx} and pwd = #{pwd}
+		where b_idx = #{b_idx}
+	</update>
+	
+	<!-- 회원 가입시 아이디 일치 -->
+	<select id="matchMember" resultType="String" parameterType="String">
+		select id from board_member_t where id = #{id}
+	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="delMember" parameterType="java.util.Map">
+		update board_member_t set status = 1 where m_idx = #{m_idx} and pw = #{pw}
 	</update>
 	
 	<!-- 게시물 삭제 -->
-	<update id="delPost" parameterType="java.util.Map">
-		update bbs_t set status = 1 where b_idx = #{b_idx} and pwd = #{pwd}
+	<update id="delPost" parameterType="String">
+		update board_t set status = 1 where b_idx = #{b_idx}
 	</update>
 	
-	<!-- 댓글 저장 -->
-	<insert id="addComm" parameterType="java.util.Map">
-		insert into comment_t values(comment_t_seq.nextval, #{writer}, #{content}, #{pwd}, sysdate, #{ip}, #{b_idx})
-	</insert>
+	<!-- 댓글 삭제 -->
+	<update id="delComment" parameterType="String">
+		update board_comment_t set status = 1 where c_idx = #{c_idx}
+	</update>
+	
 	
 	<!-- 조회수를 올려주는 기능 -->
 	<update id="hit" parameterType="String">
-		update bbs_t set hit = hit+1 where b_idx = #{b_idx}
+		update board_t set hit = hit+1 where b_idx = #{b_idx}
 	</update>
 
 </mapper>

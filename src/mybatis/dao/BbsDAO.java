@@ -7,23 +7,131 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import mybatis.service.FactoryService;
-import mybatis.vo.BbsVO;
-import mybatis.vo.CommentVO;
+import mybatis.vo.BoardCommentVO;
+import mybatis.vo.BoardMemberVO;
+import mybatis.vo.BoardVO;
 
 public class BbsDAO {
 	
-	// 전체보기
-	public static BbsVO[] getList(int begin, int end) {
-		BbsVO[] ar = null;
+	// 회원 가입
+	public static boolean join(BoardMemberVO vo) {
+		boolean chk = false;
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.insert("bbs.join", vo);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.commit();
+		
+		return chk;
+	}
+	
+	// 게시물 쓰기
+	public static boolean writePost(BoardVO vo) {
+		boolean chk = false;
+			
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.insert("bbs.writePost", vo);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.close();
+			
+		return chk;
+	}
+	
+	// 댓글 쓰기
+	public static boolean writeComment(BoardCommentVO vo) {
+		boolean chk = false;
+			
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.insert("bbs.writeComment", vo);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.close();
+			
+		return chk;
+	}
+	
+	// 뉴스 게시물 수
+	public static int getNewsCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getNewsCount");
+		ss.close();
+		return total;
+	}
+	
+	// 게임정보 게시물 수
+	public static int getDBCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getDBCount");
+		ss.close();
+		return total;
+	}
+	
+	// 자유게시판 게시물 수
+	public static int getFreeCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getFreeCount");
+		ss.close();
+		return total;
+	}
+	
+	// Q&A 게시물 수
+	public static int getQACount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getQACount");
+		ss.close();
+		return total;
+	}
+	
+	// PC게임정보 게시물 수
+	public static int getPCCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getPCCount");
+		ss.close();
+		return total;
+	}
+	
+	// PS게임정보 게시물 수
+	public static int getPSCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getPSCount");
+		ss.close();
+		return total;
+	}
+	
+	// Nintendo게임정보 게시물 수
+	public static int getNSCount() {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getNSCount");
+		ss.close();
+		return total;
+	}
+	
+	// 뉴스전체보기
+	public static BoardVO[] getNewsList(int begin, int end) {
+		BoardVO[] ar = null;
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("begin", begin);
 		map.put("end", end);
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		List<BbsVO> list = ss.selectList("bbs.getList", map);
+		List<BoardVO> list = ss.selectList("bbs.getNewsList", map);
 		if(list != null && !list.isEmpty()) {
-			ar = new BbsVO[list.size()];
+			ar = new BoardVO[list.size()];
 			list.toArray(ar);
 		}
 		ss.close();
@@ -31,54 +139,135 @@ public class BbsDAO {
 		return ar;
 	}
 	
-	// 전체 게시물 수
-	public static int getCount() {
-		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getCount");
-		ss.close();
-		return total;
-	}
-	
-	// 게시물 추가
-	public static boolean addPost(BbsVO vo) {
-		boolean chk = false;
+	// 게임정보전체보기
+	public static BoardVO[] getGameDBList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int cnt = ss.insert("bbs.addPost", vo);
-		if(cnt > 0) {
-			ss.commit();
-			chk = true;
-		}else {
-			ss.rollback();
+		List<BoardVO> list = ss.selectList("bbs.getGameDBList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
 		}
 		ss.close();
 		
-		return chk;
+		return ar;
 	}
 	
-	// 게시물 보기
-	public static BbsVO viewPost(String b_idx) {
+	// 자유게시판전체보기
+	public static BoardVO[] getFreeList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		BbsVO vo = ss.selectOne("bbs.viewPost", b_idx);
+		List<BoardVO> list = ss.selectList("bbs.getFreeList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	// Q&A전체보기
+	public static BoardVO[] getQAList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.getQAList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	// PC게임전체보기
+	public static BoardVO[] getPCList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.getPCList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	// PS게임전체보기
+	public static BoardVO[] getPSList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.getPSList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	// 닌텐도게임전체보기
+	public static BoardVO[] getNSList(int begin, int end) {
+		BoardVO[] ar = null;
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.getNSList", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	
+	// 게시물 보기
+	public static BoardVO viewPost(String b_idx) {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		BoardVO vo = ss.selectOne("bbs.viewPost", b_idx);
 		ss.close();
 		return vo;
 	}
 	
 	// 게시물 수정
-	public static boolean editPost(String b_idx, String pwd, String subject, String file_name, String ori_name, String content, String ip) {
+	public static boolean editPost(BoardVO vo) {
 		boolean chk = false;
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("b_idx", b_idx);
-		map.put("pwd", pwd);
-		map.put("subject", subject);
-		map.put("file_name", file_name);
-		map.put("ori_name", ori_name);
-		map.put("content", content);
-		map.put("ip", ip);
-		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int cnt = ss.update("bbs.editPost", map);
+		int cnt = ss.update("bbs.editPost", vo);
 		if(cnt > 0) {
 			ss.commit();
 			chk = true;
@@ -86,20 +275,45 @@ public class BbsDAO {
 			ss.rollback();
 		}
 		ss.close();
+		
+		return chk;
+	}
+	
+	// 회원가입시 아이디 일치 검사
+	public static String matchMember(String id) {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		String vo_id = ss.selectOne("bbs.matchMember", id);
+		ss.close();
+		return vo_id;
+	}
+	
+	// 회원 탈퇴
+	public static boolean delMember(String m_idx, String pw) {
+		boolean chk = false;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("m_idx", m_idx);
+		map.put("pw", pw);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.update("bbs.delMember", map);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.commit();
 		
 		return chk;
 	}
 	
 	// 게시물 삭제
-	public static boolean delPost(String b_idx, String pwd) {
+	public static boolean delPost(String b_idx) {
 		boolean chk = false;
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("b_idx", b_idx);
-		map.put("pwd", pwd);
-		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int cnt = ss.update("bbs.delPost", map);
+		int cnt = ss.update("bbs.delPost", b_idx);
 		if(cnt > 0) {
 			ss.commit();
 			chk = true;
@@ -111,19 +325,12 @@ public class BbsDAO {
 		return chk;
 	}
 	
-	// 댓글 추가
-	public static boolean addComm(String b_idx, String writer, String content, String pwd, String ip) {
+	// 댓글 삭제
+	public static boolean delComment(String c_idx) {
 		boolean chk = false;
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("b_idx", b_idx);
-		map.put("writer", writer);
-		map.put("content", content);
-		map.put("pwd", pwd);
-		map.put("ip", ip);
-		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int cnt = ss.insert("bbs.addComm", map);
+		int cnt = ss.update("bbs.delComment", c_idx);
 		if(cnt > 0) {
 			ss.commit();
 			chk = true;
@@ -134,6 +341,8 @@ public class BbsDAO {
 		
 		return chk;
 	}
+	
+	
 	
 	// 조회 수 올리는 기능 - 인자로 받은 b_idx의 게시물 hit를 증가하는 기능
 	public static boolean hit(String b_idx) {
