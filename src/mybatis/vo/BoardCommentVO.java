@@ -2,7 +2,16 @@ package mybatis.vo;
 
 public class BoardCommentVO {
 	
-	private String c_idx, writer, content, write_date, ip;
+	private String c_idx, writer, content, write_date, ip, status;
+	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getC_idx() {
 		return c_idx;
