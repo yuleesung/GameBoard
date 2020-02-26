@@ -92,11 +92,83 @@
 			</tbody>
 		</table>	
 	</div>
+	
 	<script src = "js/jquery-3.4.1.min.js"></script>
 	<script src="js/summernote-lite.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
 	
+	//썸머 노트
+	$(function(){
+		
+		$("#content").summernote({
+			height: 300,
+			width: 450,
+			lang: "ko-KR",
+			callbacks:{
+				onImageUpload: function(files, editor){
+					for(var i=0; i<files.length; i++){
+						sendFile(files[i], editor);
+					}
+				},
+			}
+		});
+		
+			$("#content").summernote("lineHeight", 1.0);
+	});
+	
+	
+	//이미지 서버 업로드
+	function sendFile(file, editor){
+		
+		var frm = new FormData();
+		
+		
+		frm.append("upload", file);
+		frm.append("str", "Michael");
+		
+		
+		$.ajax({
+			url: "control?type=saveImage",
+			type: "post",
+			dataType: "json",
+			contentType: false,
+			processData: false,
+			
+			data: frm
+			
+		}).done(function(data){
+			
+			$("#content").summernote(
+				"editor.insertImage", data.url);
+			
+			
+		}).fail(function(err){
+			console.log(err);
+		});
+	}
+	
+	
+	//보내기 버튼 
+	function sendData(){
+		for(var i=0 ; i<document.forms[0].elements.length ; i++){
+		
+			if(i > 1)
+				break;
+			
+			if(document.forms[0].elements[i].value == ""){
+				alert(document.forms[0].elements[i].name+
+						"를 입력하세요");
+				document.forms[0].elements[i].focus();
+				return;
+			}
+		}
+		var str = $("#content").val();
+		
+		$("#str").val(str);
+ 
+		document.forms[0].submit();
+	}
 	
 	
 	

@@ -182,7 +182,7 @@
 								
 								
 							</td>
-							<td><%=vo.getWriter() %></td>
+							<td><%=   %></td> <%-- 로그인 아이디 --%>
 							<td>
 							<%
 								if(vo.getWrite_date() != null)

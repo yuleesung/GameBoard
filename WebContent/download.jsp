@@ -19,7 +19,7 @@
 	
 	if(f.exists()){
 		
-		byte[] buf = new byte[2048]; //바구니
+		byte[] buf = new byte[2048]; 
 		int len = -1;
 		
 		

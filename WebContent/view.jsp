@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<th>Writer : </th>
-					<td><%= %></td> <%--로그인 아이디 들어가야함 --%>
+					<td><%= %></td> <%--로그인 되어있는 아이디 들어가야함 --%>
 					<th>Hit : </th>
 					<td><%=vo.getHit() %></td>
 				</tr>
@@ -98,7 +98,7 @@
 				</tr>
 				<tr>
 					<th> 내용 : </th>
-					<td colspan="3"><pre><%=vo.getContent() %></pre></td>	
+					<td colspan="3"><pre><%=vo.getB_content() %></pre></td>	
 				</tr>
 				<tr>
 					<td colspan="4">
@@ -117,7 +117,7 @@
 
 	<%-- 댓글 쓰기 영역 --%>
 	<form method="post" action="ans_write.jsp">
-		이름:<input type="text" name="writer"/><br/>
+		이름:<input type="text" value="<%=   %>" readonly/><br/> <%-- 로그인 되어있는 아이디 --%>
 		내용:<textarea rows="4" cols="55" name="content"></textarea><br/>
 		비밀번호:<input type="password" name="pwd"/><br/>
 		
@@ -138,9 +138,9 @@
 %>	
 		<hr/><hr/>
 		<div>
-			이름: <%=cvo.getWriter() %> &nbsp;&nbsp;
+			이름: <%=   %> &nbsp;&nbsp; <%-- 댓글 쓴 아이디 --%>
 			날짜: <%=cvo.getWrite_date() %><br/>
-			내용: <%=cvo.getContent() %>
+			내용: <%=cvo.getC_content() %>
 		</div>
 		<hr/><hr/>
 	
