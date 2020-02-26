@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@page import="mybatis.vo.BoardVO"%>
 <%@page import="bbs.util.Paging"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -41,16 +42,20 @@
 	
 	/* paging */
 	
-	table tfoot ol.paging {
+	table tfoot ol {
+		
+		padding-left: 200px;
 	    list-style:none;
 	}
 	
-	table tfoot ol.paging li {
+	table tfoot ol li {
 	    float:left;
+	    
+	    border: 1px solid red;
 	    margin-right:8px;
 	}
 	
-	table tfoot ol.paging li a {
+	table tfoot ol li a {
 	    display:block;
 	    padding:3px 7px;
 	    border:1px solid #00B3DC;
@@ -58,7 +63,7 @@
 	    font-weight:bold;
 	}
 	
-	table tfoot ol.paging li a:hover {
+	table tfoot ol li a:hover {
 	    background:#00B3DC;
 	    color:white;
 	    font-weight:bold;
@@ -89,7 +94,10 @@
 		
 	<div id="bbs">
 		<table>
-			<caption>게시판 제목</caption>
+			<%
+				String category = (String)request.getAttribute("category");
+			%>
+			<caption><%=category %> 게시판 제목</caption>
 			<thead>
 				<tr class="title">
 					<th class = "no">No.</th>	
@@ -97,7 +105,7 @@
 					<%
 						
 					%>
-					<th class = "writer">writer</th> <%-- 글쓴이는 로그인 했던 ID가 와야함 --%>
+					<th class = "writer">writer</th>
 					<th class = "reg">date</th>
 					<th class = "hit">hit</th>
 				</tr>
@@ -148,8 +156,27 @@
 						</ol>
 					</td>
 					<td>
-						<input type = "button" value = "글쓰기"
-								onclick="">					
+						
+						<%	//로그인 확인
+						BoardMemberVO bvo = (BoardMemberVO)session.getAttribute("mvo"); 	
+						
+						
+						String cPage = (String)request.getAttribute("cPage");
+						
+						
+						if(bvo != null){
+						%>
+							<input type = "button" value = "글쓰기" id="write_bt"
+							onclick = "javascript:location.href=
+							'Controller?type=write&category=<%=category%>&c_type=<%=cPage%>'"/>				
+						<%
+						}else{
+						%>
+							<input type = "button" value = "글쓰기" id="write_bt"
+							onclick = "javascript:location.href='Controller?type=login'"/>	
+						<%	
+						}
+						%>	
 					</td>
 				</tr>	
 			</tfoot>	
@@ -157,7 +184,7 @@
 				<%-- 리스트 뿌려줄 곳. --%>
 				<%
 					BoardVO[] ar = null;
-					Object ar_obj = request.getAttribute("");
+					Object ar_obj = request.getAttribute("ar");
 					
 					if(ar_obj != null){ 
 						ar = (BoardVO[])ar_obj;
@@ -182,7 +209,7 @@
 								
 								
 							</td>
-							<td><%=   %></td> <%-- 로그인 아이디 --%>
+							<td><%=vo.getBmvo().getM_id() %></td> <%-- 게시물 작성자 아이디 --%>
 							<td>
 							<%
 								if(vo.getWrite_date() != null)
@@ -202,16 +229,13 @@
 								등록된 게시물이 없습니다.
 							</td>
 						</tr>
-				<%		
+				<%	
 					}
+				
 				%>
 							</tbody>
-			
-			
-			
-		
 		</table>
 	</div>
-
+	
 </body>
 </html>

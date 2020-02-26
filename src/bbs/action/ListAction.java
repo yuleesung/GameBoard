@@ -14,11 +14,11 @@ public class ListAction implements MidAction {
 		
 	
 				//카테고리 받아야함
-				String b_category = request.getParameter("b_category");
+				String category = request.getParameter("category");
 		
 				Paging page = new Paging();
 				
-				page.setTotalRecord(BbsDAO.getCount(b_category));
+				page.setTotalRecord(BbsDAO.getCount(category));
 				
 				String cPage = request.getParameter("cPage");
 				
@@ -30,10 +30,13 @@ public class ListAction implements MidAction {
 					page.setNowPage(page.getNowPage());
 				
 				BoardVO[] ar = BbsDAO.getList(
-					String.valueOf(page.getBegin()), String.valueOf(page.getEnd()), b_category);
+					String.valueOf(page.getBegin()), String.valueOf(page.getEnd()), category);
+				System.out.println(ar);
 				
 				
+				request.setAttribute("category", category);
 				request.setAttribute("ar", ar);
+				request.setAttribute("cPage", cPage);
 				request.setAttribute("page", page);
 				
 				return "/list.jsp";
