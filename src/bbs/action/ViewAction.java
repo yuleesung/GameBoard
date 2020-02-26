@@ -17,7 +17,7 @@ public class ViewAction implements	MidAction {
 		
 
 			
-		
+		String category = request.getParameter("category");
 		String cPage = request.getParameter("cPage");
 		String b_idx = request.getParameter("b_idx");
 
@@ -60,6 +60,7 @@ public class ViewAction implements	MidAction {
 				
 				list.add(vo);
 			}
+			request.setAttribute("category", category);
 			request.setAttribute("vo", vo);
 			request.setAttribute("cPage", cPage);
 		}

@@ -59,6 +59,7 @@
 	<%
 		BoardMemberVO bvo = (BoardMemberVO)session.getAttribute("mvo");
 		String cPage = request.getParameter("cPage");
+		String category = (String)request.getAttribute("category");
 	%>
 
 
@@ -84,7 +85,7 @@
 				</tr>
 				<tr>
 					<th>Writer : </th>
-					<td><%=vo.getBmvo().getM_id() %></td> 
+					<td><%=vo.getBmvo().getM_name() %></td> 
 					<th>Hit : </th>
 					<td><%=vo.getHit() %></td>
 				</tr>
@@ -114,7 +115,7 @@
 						if(bvo != null){ //로그인했을 때
 						%>
 						<input type="button" value="수정"
-						onclick="javascript:location.href='Controller?type=edit&b_idx=<%=vo.getB_idx()%>&cPage=<%=cPage%>'"/>
+						onclick="javascript:location.href='Controller?type=edit&b_idx=<%=vo.getB_idx()%>&cPage=<%=cPage%>&category=<%=category%>'"/>
 						<%
 						}else{
 						%>	
@@ -182,7 +183,7 @@
 	
 %>
 	</div>
-	<form action="control" name="frm" method="post">		
+	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
 		<input type="hidden" name="f_name"/>
 		<input type="hidden" name="b_idx" value="${param.b_idx }">
