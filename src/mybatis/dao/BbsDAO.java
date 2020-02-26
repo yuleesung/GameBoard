@@ -211,6 +211,68 @@ public class BbsDAO {
 			
 		return chk;
 	}
+	
+	// 전체게시판 검색한 후 총 게시물 수
+	public static int getSearchAllCount(String subject) {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.searchAllCount", subject);
+		ss.close();
+		return total;
+	}
+	
+	// 전체 게시판 검색기능
+	public static BoardVO[] searchAll(String begin, String end, String subject) {
+		BoardVO[] ar = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("subject", subject);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.searchAll", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
+	
+	// 카테고리별 게시판 검색한 총 게시물 수
+	public static int getSearchBoardCount(String subject, String b_category) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("subject", subject);
+		map.put("b_category", b_category);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int total = ss.selectOne("bbs.getSearchBoardCount", map);
+		ss.close();
+		return total;
+	}
+	
+	// 카테고리별 게시판 검색기능
+	public static BoardVO[] searchBoard(String begin, String end, String subject, String b_category) {
+		BoardVO[] ar = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("begin", begin);
+		map.put("end", end);
+		map.put("subject", subject);
+		map.put("b_category", b_category);
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardVO> list = ss.selectList("bbs.searchBoard", map);
+		if(list != null && !list.isEmpty()) {
+			ar = new BoardVO[list.size()];
+			list.toArray(ar);
+		}
+		ss.close();
+		
+		return ar;
+	}
 
 }
+
 
