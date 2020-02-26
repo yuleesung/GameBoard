@@ -6,22 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#update{
+display: none;
+}
+</style>
 </head>
 <body>
 <%
-BoardMemberVO mvo = (BoardMemberVO)session.getAttribute("mvo");
+Object obje = session.getAttribute("mvo");
+if(obje != null){
+BoardMemberVO mvo = (BoardMemberVO)obje;
 %>
-<div> <!-- 회원수정 영역 -->
-	<form name="update_form" id="update_form" method="post">
+<div id="update"> <!-- 회원수정 영역 -->
+	<form name="update_form" id="update_form" action="Controller" method="post">
 		<table>
 			<caption>회원수정 테이블</caption>
 			<tbody>
 				<tr>
 					<th>
-						<label for="id">ID(변경불가):</label>
+						<label for="id">ID:</label>
 					</th>
 					<td>
-						<label id="id">아이디</label>
+						<label id="id"><%=mvo.getM_id() %></label>
 					</td>
 				</tr>
 				<tr>
@@ -37,7 +44,7 @@ BoardMemberVO mvo = (BoardMemberVO)session.getAttribute("mvo");
 						<label for="name">이름:</label>
 					</th>
 					<td>
-						<input type="text" id="name" name="name" value="이름"/>
+						<input type="text" id="name" name="name"/>
 					</td>
 				</tr>
 				
@@ -71,33 +78,77 @@ BoardMemberVO mvo = (BoardMemberVO)session.getAttribute("mvo");
 			<tfoot>
 				<tr>
 					<td colspan="2">
-						<input type="button" id="submit_btn" value="수정완료"/>
-						<input type="button" id="close_btn" value="이전으로"/>
+						<input type="button" value="수정완료" onclick="sendData(this.form)"/>
 					</td>
 				</tr>
 			</tfoot>
 		</table>
+		<input type="hidden" name="type" value="memberEdit"/>
 	</form>
 </div>
+
+<div id="check_pw"><!-- 패스워드 체크 영역 -->
+	<form name="pw_form" id="pw_form" action="Controller" method="post">
+		<table>
+			<caption>회원수정 테이블(비밀번호 확인)</caption>
+			<tbody>
+				<tr>
+					<th>
+						<label for="pw">비밀번호:</label>
+					</th>
+					<td>
+						<input type="password" id="pwd"/>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="확인" onclick="checkPw('<%=mvo.getPw()%>')"/>
+				</td>
+			</tr>
+		</tfoot>
+		</table>
+	</form>
+</div>
+<%
+}
+%>
+
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("#submit_btn").click(function(){ /* 수정완료 버튼 */
-		var pw = $("#pw").val();
+	$("#update").css("display", "none");
+});
+
+function checkPw(pw){
+	var pwd = document.getElementById("pwd");
 	
-		if(pw.trim().length<1){
-			alert("비밀번호를 입력하세요");
+	if(pwd.value.trim().length<1){
+		alert("비밀번호를 입력하세요");
+		return;
+	}
+	
+	if(pw == pwd.value){
+		$("#check_pw").css("display", "none");
+		$("#update").css("display", "block");
+	}else{
+		alert("비밀번호가 맞지 않습니다!");
+	}
+}
+
+function sendData(frm){
+	var input = $("#update_form input");
+	for(i=0; i<input.length; i++){
+		if(input[i].value.trim().length < 1){
+			alert("빈칸을 입력해주세요");
+			input[i].focus();
 			return;
 		}
-		
-		// 업데이트 액션주기
-		
-	});
-	
-	$("#close_btn").click(function(){ /* 이전으로 버튼 */
-		location.href="Controller?type=mypage"; // 마이페이지 이동
-	});
-});
+	}
+	frm.submit();
+}
+
 </script>
 </body>
 </html>
