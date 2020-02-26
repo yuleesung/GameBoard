@@ -127,7 +127,7 @@
 <%		
 								}else{
 %>
-							<li><a href="control?type=list&cPage=<%=pvo.getNowPage()-pvo.getPagePerBlock()%>">&lt;</a></li>
+							<li><a href="Controller?type=list&cPage=<%=pvo.getNowPage()-pvo.getPagePerBlock()%>">&lt;</a></li>
 <%		
 							}	
 							for(int i=pvo.getStartPage(); i<=pvo.getEndPage(); i++){							
@@ -137,14 +137,14 @@
 <%			
 								}else{
 %>
-							<li><a href="control?type=list&cPage=<%=i%>"><%=i %></a></li>
+							<li><a href="Controller?type=list&cPage=<%=i%>"><%=i %></a></li>
 <%		
 								}
 						}
 		
 						if(pvo.getEndPage() < pvo.getTotalPage()){
 %>
-							<li><a href="control?type=list&cPage=<%=pvo.getNowPage()+pvo.getPagePerBlock()%>">&gt;</a></li>	
+							<li><a href="Controller?type=list&cPage=<%=pvo.getNowPage()+pvo.getPagePerBlock()%>">&gt;</a></li>	
 <%		
 						}else{
 %>
@@ -168,7 +168,7 @@
 						%>
 							<input type = "button" value = "글쓰기" id="write_bt"
 							onclick = "javascript:location.href=
-							'Controller?type=write&category=<%=category%>&c_type=<%=cPage%>'"/>				
+							'Controller?type=write&category=<%=category%>&cPage=<%=cPage%>'"/>				
 						<%
 						}else{
 						%>
@@ -196,7 +196,7 @@
 						<tr>
 							<td><%=num %></td>
 							<td style="text-align: left">
-								<a href="control?type=view&cPage=<%=pvo.getNowPage()%>&b_idx=<%=vo.getB_idx()%>">
+								<a href="Controller?type=view&cPage=<%=pvo.getNowPage()%>&b_idx=<%=vo.getB_idx()%>">
 									<%=vo.getSubject() %>
 									<%
 										if(vo.getBc_list().size() > 0){
