@@ -22,19 +22,19 @@
 	<div id="wrap">
 		<table class="t1">
 			<tr>
-				<th colspan="2">ㅇㅇㅇ님의 정보</th>
+				<th colspan="2"><%=mvo.getM_name() %>님의 정보</th>
 			</tr>
 			<tr>
 				<th>E Mail</th>
-				<td></td>
+				<td><%=mvo.getEmail() %></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td></td>
+				<td><%=mvo.getPhone() %></td>
 			</tr>
 			<tr>
 				<th>가입일자</th>
-				<td></td>
+				<td><%=mvo.getReg_date() %></td>
 			</tr>
 		</table>
 	</div>

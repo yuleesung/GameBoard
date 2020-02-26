@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@page import="mybatis.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,6 +16,8 @@
 	BoardVO[] ar_pc = null;
 	BoardVO[] ar_ps = null;
 	BoardVO[] ar_ns = null;
+	
+	Object obj = session.getAttribute("mvo");
 %>
 <body>
 	<div id="wrap">
@@ -27,6 +30,20 @@
 		<!-- 메인 로고 끝 -->
 		
 		<!-- 상위 이미지, 로그인 메뉴 시작 -->
+		<%
+		if(obj != null){
+			BoardMemberVO mvo = (BoardMemberVO)obj;
+		%>
+		<div class="center">
+			<div class="main_bar">
+				<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
+				<input type="text" id="search_value"/>
+				<input type="button" value="검색" onclick="search()"/>
+			</div>
+		</div>
+		<%
+		}else{
+		%>
 		<div class="center">
 			<div class="main_bar">
 				<a href="javascript:location.href='Controller?type=login&path=main'">LOGIN</a>
@@ -34,6 +51,11 @@
 				<input type="text" id="search_value"/>
 				<input type="button" value="검색" onclick="search()"/>
 			</div>
+		</div>
+		<%
+		}
+		%>
+		<div class="center">
 			<div class="main_img_box">
 				<span id="main_img"><img alt="메인이미지슬라이드" src=""/></span>
 				<span id="left_arrow" onclick="slideImg(0)"><img alt="left_arrow" src="css/images/left_arrow.png" width="50px"/></span>
