@@ -6,7 +6,7 @@
 	
 	<!-- 회원 로그인 -->
 	<select id="login" resultType="mybatis.vo.BoardMemberVO" parameterType="java.util.Map">
-		select m_idx, m_id, m_name, email, phone, reg_date from board_member_t where m_id = #{m_id} and pw = #{pw}
+		select * from board_member_t where m_id = #{m_id} and pw = #{pw}
 	</select>
 
 	<!-- 회원 가입 -->
@@ -108,6 +108,28 @@
 	<select id="matchMember" resultType="String" parameterType="String">
 		select m_id from board_member_t where m_id = #{m_id}
 	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="mybatis.vo.BoardMemberVO">
+		update board_member_t
+		<set>
+			<trim suffixOverrides=",">
+				<if test="pw != null">
+					pw = #{pw}
+				</if>
+				<if test="m_name != null">
+					m_name = #{m_name}
+				</if>
+				<if test="email != null">
+					email = #{email}
+				</if>
+				<if test="phone != null">
+					phone = #{phone}
+				</if>
+			</trim>
+		</set>
+		where m_idx = #{m_idx}
+	</update>
 	
 	<!-- 회원 탈퇴 -->
 	<update id="delMember" parameterType="java.util.Map">
