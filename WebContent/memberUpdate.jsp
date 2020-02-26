@@ -84,6 +84,7 @@ BoardMemberVO mvo = (BoardMemberVO)obje;
 			</tfoot>
 		</table>
 		<input type="hidden" name="m_idx" value="<%=mvo.getM_idx()%>"/>
+		<input type="hidden" name="m_id" value="<%=mvo.getM_id()%>"/>
 		<input type="hidden" name="type" value="memberEdit"/>
 	</form>
 </div>
