@@ -28,7 +28,7 @@ public class ListAction implements MidAction {
 					
 				}else 
 					page.setNowPage(page.getNowPage());
-				
+				//
 				BoardVO[] ar = BbsDAO.getList(
 					String.valueOf(page.getBegin()), String.valueOf(page.getEnd()), category);
 				
