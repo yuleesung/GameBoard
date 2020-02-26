@@ -17,6 +17,20 @@
 	border: 1px solid blue;
 }
 
+.nav_menu{
+	height: 50px;
+	border: 1px solid green;
+}
+
+.nav_menu li{
+	border: 1px solid red;
+	width: 120px;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	margin: 0 13px 0 13px;
+}
+
 .preview_contents{
 	width:673px;
 	height:200px;

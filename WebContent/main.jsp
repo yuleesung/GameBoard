@@ -34,14 +34,7 @@
 		<!-- 상위 메뉴 끝 -->
 		
 		<!-- include할 메뉴영역 시작 -->
-		<div class="header center">
-			<ul class="gnb">
-				<li><a href=""><span class="menu m01">뉴스</span></a></li>
-				<li><a href=""><span class="menu m02">게임정보</span></a></li>
-				<li><a href=""><span class="menu m03">자유게시판</span></a></li>
-				<li><a href=""><span class="menu m04">Q&A</span></a></li>
-			</ul>
-		</div>
+		<div id="menu_bar"></div>
 		<!-- include할 메뉴영역 끝 -->
 		
 		<!-- 중간 콘텐츠 시작 -->
@@ -132,7 +125,7 @@
 				<table class="board">
 					<thead>
 						<th>PC</th>
-						<th><a href="javascript:location.href='control?type=list&category=pc'">더보기</a></th>
+						<td><a href="javascript:location.href='control?type=list&category=pc'">더보기</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -151,7 +144,7 @@
 				<table class="board">
 					<thead>
 						<th>PlayStation</th>
-						<th><a href="javascript:location.href='control?type=list&category=ps'">더보기</a></th>
+						<td><a href="javascript:location.href='control?type=list&category=ps'">더보기</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -170,7 +163,7 @@
 				<table class="board">
 					<thead>
 						<th>NintendoSwitch</th>
-						<th><a href="javascript:location.href='control?type=list&category=ns'">더보기</a></th>
+						<td><a href="javascript:location.href='control?type=list&category=ns'">더보기</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -213,7 +206,12 @@
 		</div>
 		<!-- 하단영역 끝 -->
 	</div>
+	<script src="js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+	        $("#menu_bar").load("menu.jsp");
+	     });
+		
 		function search(){
 			var search_value = document.getElementById("search_value").value;
 			alert("확인용메세지, 값 : " + search_value);
