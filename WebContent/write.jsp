@@ -59,15 +59,15 @@
 			<tbody>
 				<tr>
 					<th>제목:</th>
-					<td><input type="text" name="subject" size="40"/></td>
+					<td><input type="text" name="subject" id="subject" size="40"/></td>
 				</tr>
 				<tr>
 					<th>이름:</th>
-					<td><input type="text" name="writer" size="12" value="${sessionScope.mvo.m_name }" readonly/></td> <%-- 로그인 아이디 받기 --%>
+					<td><input type="text" name="writer" name="writer" size="12" value="${sessionScope.mvo.m_name }" readonly/></td> <%-- 로그인 아이디 받기 --%>
 				</tr>
 				<tr>
 					<th>첨부파일:</th>
-					<td><input type="file" name="file"/></td>
+					<td><input type="file" name="file" id="file"/></td>
 				</tr>	
 			</tbody>
 		</table>
@@ -133,6 +133,7 @@
 			processData: false,
 			data: frm
 		}).done(function(data){
+			// console.log(data.url);
 			$("#content").summernote("editor.insertImage", data.url);
 		}).fail(function(err){
 			console.log(err);
@@ -143,19 +144,19 @@
 	//보내기 버튼 
 	function writeData(){
 		
-		var subject = $("#subject").val().trim();
-		var content = $("#content").val().trim();
+		var subject = document.getElementById("subject");
+		var content = document.getElementById("content");
 		
 		// 유효성 검사
-		if(subject.length < 1){
+		if(subject.value.trim().length < 1){
 			alert("제목을 입력하세요!");
-			$("#subject").focus();
+			subject.focus();
 			return;
 		}
 		
-		if(content.length < 1){
+		if(content.value.trim().length < 1){
 			alert("내용을 입력하세요!");
-			$("#content").focus();
+			content.focus();
 			return;
 		}
 		

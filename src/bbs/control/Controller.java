@@ -111,6 +111,8 @@ public class Controller extends HttpServlet {
 		if(viewPath != null) {
 			if(viewPath.equals("comment")) {
 				response.sendRedirect("Controller?type=view&cPage="+request.getAttribute("cPage")+"&b_idx="+request.getAttribute("b_idx"));
+			}else if(viewPath.equals("write")) {
+				response.sendRedirect("Controller?type=list&cPage="+request.getAttribute("cPage")+"&category="+request.getAttribute("category"));
 			}else if(viewPath.trim().length() == 0){
 				
 			}else {

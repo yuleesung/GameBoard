@@ -115,16 +115,16 @@
 		<set>
 			<trim suffixOverrides=",">
 				<if test="pw != null">
-					pw = #{pw}
+					pw = #{pw},
 				</if>
 				<if test="m_name != null">
-					m_name = #{m_name}
+					m_name = #{m_name},
 				</if>
 				<if test="email != null">
-					email = #{email}
+					email = #{email},
 				</if>
 				<if test="phone != null">
-					phone = #{phone}
+					phone = #{phone},
 				</if>
 			</trim>
 		</set>
@@ -160,7 +160,7 @@
 	<select id="searchAll" resultMap="map1" parameterType="java.util.Map">
 		select * from(	
 			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and subject = #{subject} order by b_idx desc) a
+				(select * from board_t where status = 0 and lower(subject) like lower('%'||#{subject}||'%') order by b_idx desc) a
 		)where r_num between #{begin} and #{end}
 	</select>
 	

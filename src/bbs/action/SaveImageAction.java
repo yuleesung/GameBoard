@@ -16,6 +16,7 @@ public class SaveImageAction implements MidAction{
 		
 		ServletContext application = request.getServletContext();
 		String path = application.getRealPath("/editor_img");
+		// System.out.println(path);
 		MultipartRequest mr = null;
 		try {
 			mr = new MultipartRequest(request, path, 1024*1024*10, "utf-8", new DefaultFileRenamePolicy());
@@ -27,8 +28,10 @@ public class SaveImageAction implements MidAction{
 		if(f != null) {
 			fname = f.getName();
 		}
+		//System.out.println(fname);
 		
-		request.setAttribute("file", fname);
+		request.setAttribute("cPath", request.getContextPath());
+		request.setAttribute("fname", fname);
 		
 		return "/saveImage.jsp";
 	}
