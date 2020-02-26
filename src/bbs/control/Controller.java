@@ -98,7 +98,7 @@ public class Controller extends HttpServlet {
 		
 		String type = request.getParameter("type");
 		if(type == null)
-			type = "list";
+			type = "main";
 		
 		//System.out.println(type);
 		
