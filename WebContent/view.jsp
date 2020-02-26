@@ -138,8 +138,19 @@
 
 
 	<%-- 댓글 쓰기 영역 --%>
-	<form method="post" action="ans_write.jsp">
-		이름:<input type="text" readonly/><br/> <%-- 로그인 되어있는 다른 아이디 --%>
+	<form method="post" action="">
+		<%
+		//로그인했을 땐 로그인 아이디+readonly
+		if(bvo != null ){
+		%>
+			이름:<input type="text" readonly value=<%=bvo.getM_id() %>><br/> 
+		<%
+		}else{//로그아웃일 땐 로그인 화면으로
+		%>
+			이름:<input type="text" readonly onclick="javascript:location.href='Controller?type=login'"><br/>
+		<%
+		}
+		%>
 		내용:<textarea rows="4" cols="55" name="content"></textarea><br/>
 		비밀번호:<input type="password" name="pwd"/><br/>
 		

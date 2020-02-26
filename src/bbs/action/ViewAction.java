@@ -20,8 +20,7 @@ public class ViewAction implements	MidAction {
 		
 		String cPage = request.getParameter("cPage");
 		String b_idx = request.getParameter("b_idx");
-		System.out.println(cPage);
-		System.out.println(b_idx);
+
 		
 		BoardVO vo = BbsDAO.viewPost(b_idx);
 		
