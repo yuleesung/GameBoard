@@ -160,7 +160,7 @@
 	<select id="searchAll" resultMap="map1" parameterType="java.util.Map">
 		select * from(	
 			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and lower(subject) like '%'||#{subject}||'%' order by b_idx desc) a
+				(select * from board_t where status = 0 and lower(subject) like lower('%'||#{subject}||'%') order by b_idx desc) a
 		)where r_num between #{begin} and #{end}
 	</select>
 	
