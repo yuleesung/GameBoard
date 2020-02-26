@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +13,12 @@
 </style>
 </head>
 <body>
+<%
+	Object obj = session.getAttribute("mvo");
+	BoardMemberVO mvo = null;
+	if(obj != null)
+		mvo = (BoardMemberVO)obj;
+%>
 	<div id="wrap">
 		<table class="t1">
 			<tr>
