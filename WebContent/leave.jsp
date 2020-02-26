@@ -4,12 +4,13 @@
 boolean chk = (boolean)request.getAttribute("leave");
 
 if(chk){
+	session.removeAttribute("mvo");
 %>
-	{"res":"탈퇴 성공"}
+	{"res":"ok"}
 <%	
 }else{
 %>
-	{"res":"다시 입력"}
+	{"res":"no"}
 <%	
 }
 %>

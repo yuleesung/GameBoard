@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,16 +9,16 @@
 </head>
 <body>
 <div> <!-- 회원탈퇴 영역 -->
-	<form name="leave_form" id="leave_form" method="post">
+	<form name="leave_form" id="leave_form" action="Controller" method="post">
 		<table>
 			<caption>회원탈퇴 테이블</caption>
 			<tbody>
 				<tr>
 					<th>
-						<label for="wd_pw">비밀번호:</label>
+						<label for="pw">비밀번호:</label>
 					</th>
 					<td>
-						<input type="text" id="wd_pw" name="wd_pw"/>
+						<input type="text" id="pw" name="pw"/>
 						<div id="box"></div>
 					</td>
 				</tr>
@@ -31,6 +32,7 @@
 				</tr>
 			</tfoot>
 		</table>
+		<input type="hidden" name="type" value="main"/>
 	</form>
 </div>
 
@@ -38,23 +40,28 @@
 <script type="text/javascript">
 $(function(){
 	$("#wd_submit_btn").click(function(){ /* 회원탈퇴 신청버튼 */
-		var pw = $("#wd_pw").val().trim();
+		var pw = $("#pw").val();
 		
-		if(pw.length < 1){
+		if(pw.trim().length < 1){
 			alert("비밀번호를 입력하세요");
-			$("#wd_pw").focus();
+			$("#pw").focus();
 			return;
 		}
 		
-		var param = "type=leave?pw="+pw;
-		
+		var param = "type=leave&pw="+pw;
+
 		$.ajax({
 			url: "Controller",
 			type: "POST",
 			data: param,
 			dataType: "json"
 		}).done(function(data){
-			alert(data.res);
+			if(data.res == "ok"){
+				alert("탈퇴가 완료되었습니다");
+				document.leave_form.submit();
+			}else{
+				alert("비밀번호가 틀렸습니다");
+			}
 		}).fail(function(err){
 			console.log(err);
 		});
