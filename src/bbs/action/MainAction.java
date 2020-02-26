@@ -18,5 +18,5 @@ public class MainAction implements MidAction {
 		request.setAttribute("ar_ns", ar_ns);
 		
 		return "/main.jsp";
-	}
+	}//fds
 }
