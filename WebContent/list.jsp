@@ -168,7 +168,7 @@
 						%>
 							<input type = "button" value = "글쓰기" id="write_bt"
 							onclick = "javascript:location.href=
-							'Controller?type=write&category=<%=category%>&cPage=<%=cPage%>'"/>				
+							'Controller?type=write&category=<%=category%>&cPage=<%=pvo.getNowPage()%>'"/>				
 						<%
 						}else{
 						%>
