@@ -6,30 +6,30 @@
 	
 	<!-- 회원 로그인 -->
 	<select id="login" resultType="mybatis.vo.BoardMemberVO" parameterType="java.util.Map">
-		select m_idx, id, name, email, phone, reg_date from board_member_t where id = #{id} and pw = #{pw}
+		select m_idx, m_id, m_name, email, phone, reg_date from board_member_t where m_id = #{m_id} and pw = #{pw}
 	</select>
 
 	<!-- 회원 가입 -->
 	<insert id="join" parameterType="mybatis.vo.BoardMemberVO">
-		insert into board_member_t(m_idx, id, pw, name, email, phone, reg_date, status)
-		values(board_member_t_seq, #{id}, #{pw}, #{name}, #{email}, #{phone}, sysdate, 0)
+		insert into board_member_t(m_idx, m_id, pw, m_name, email, phone, reg_date, status)
+		values(board_member_t_seq.nextval, #{m_id}, #{pw}, #{m_name}, #{email}, #{phone}, sysdate, 0)
 	</insert>
 	
 	<!-- 게시물 쓰기 -->
 	<insert id="writePost" parameterType="mybatis.vo.BoardVO">
-		insert into board_t(b_idx, subject, writer, content, file_name, ori_name, write_date, ip, hit, status, category, m_idx)
-		values(board_t_seq.nextval, #{subject}, #{writer}, #{content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, 0, #{category}, #{m_idx})
+		insert into board_t(b_idx, subject, b_content, file_name, ori_name, write_date, ip, hit, status, b_category, m_idx)
+		values(board_t_seq.nextval, #{subject}, #{b_content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, 0, #{b_category}, #{m_idx})
 	</insert>
 	
 	<!-- 댓글 쓰기 -->
 	<insert id="writeComment" parameterType="mybatis.vo.BoardCommentVO">
-		insert into board_comment_t(c_idx, writer, content, write_date, ip, b_idx, status) 
-		values(board_comment_t_seq.nextval, #{writer}, #{content}, sysdate, #{ip}, #{b_idx}, 0)
+		insert into board_comment_t(c_idx, c_content, write_date, ip, status, b_idx, m_idx) 
+		values(board_comment_t_seq.nextval, #{content}, sysdate, #{ip}, 0, #{b_idx}, #{m_idx})
 	</insert>
 	
 	<!-- 게시물 수 -->
 	<select id="getCount" resultType="int" parameterType="String">
-		select count(*) from board_t where status = 0 and category = #{category}
+		select count(*) from board_t where status = 0 and b_category = #{b_category}
 	</select>
 	
 	
@@ -39,13 +39,26 @@
 		<collection property="bc_list" ofType="mybatis.vo.BoardCommentVO" select="commList" column="b_idx"/>
 	</resultMap>
 	
-	<!-- 게시물을 작성한 회원정보 -->
-	<select id="getMember" resultType="mybatis.vo.BoardMemberVO" parameterType="String">
-		select m_idx, id, name, email, phone, reg_date from board_member_t where m_idx = #{m_idx} 
+	<resultMap type="mybatis.vo.BoardMemberVO" id="map3">
+		<collection property="b_list" ofType="mybatis.vo.BoardVO" select="boardList" column="m_idx"/>
+	</resultMap>
+	
+	<!-- 회원이 작성한 게시물들에 대한 정보 -->
+	<select id="boardList" resultType="mybatis.vo.BoardVO" parameterType="String">
+		select * from board_t where m_idx = #{m_idx}
 	</select>
 	
+	<!-- 게시물을 작성한 회원정보 -->
+	<select id="getMember" resultMap="map3" parameterType="String">
+		select m_idx, m_id, m_name, email, phone, reg_date from board_member_t where m_idx = #{m_idx} 
+	</select>
+	
+	<resultMap type="mybatis.vo.BoardCommentVO" id="map2">
+		<association property="bmvo" javaType="mybatis.vo.BoardMemberVO" select="getMember" column="m_idx"/>
+	</resultMap>
+	
 	<!-- 하나의 게시물에 대한 댓글 모음 -->
-	<select id="commList" resultType="mybatis.vo.CommentVO" parameterType="String">
+	<select id="commList" resultMap="map2" parameterType="String">
 		select * from board_comment_t where b_idx = #{b_idx}
 	</select>
 	
@@ -53,7 +66,7 @@
 	<select id="getList" resultMap="map1" parameterType="java.util.Map">
 		select * from(	
 			select rownum r_num, a.* from
-				(select * from board_t where status = 0 and category = #{category} order by b_idx desc) a
+				(select * from board_t where status = 0 and b_category = #{b_category} order by b_idx desc) a
 		)where r_num between #{begin} and #{end}
 	</select>
 	
@@ -78,13 +91,13 @@
 					ori_name = #{ori_name},
 				</if>
 				<if test="content != null">
-					content = #{content},
+					b_content = #{b_content},
 				</if>
 				<if test="ip != null">
 					ip = #{ip},
 				</if>
 				<if test="category != null">
-					category = #{category},
+					b_category = #{b_category},
 				</if>
 			</trim>
 		</set>
@@ -93,7 +106,7 @@
 	
 	<!-- 회원 가입시 아이디 일치 -->
 	<select id="matchMember" resultType="String" parameterType="String">
-		select id from board_member_t where id = #{id}
+		select m_id from board_member_t where m_id = #{m_id}
 	</select>
 	
 	<!-- 회원 탈퇴 -->

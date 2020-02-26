@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BoardVO {
 
-	private String b_idx, subject, writer, content, file_name, ori_name, write_date, ip, hit, status, category;
+	private String b_idx, subject, b_content, file_name, ori_name, write_date, ip, hit, status, b_category, m_idx;
 	
 	private List<BoardCommentVO> bc_list;
 	
@@ -26,20 +26,12 @@ public class BoardVO {
 		this.subject = subject;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getB_content() {
+		return b_content;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setB_content(String b_content) {
+		this.b_content = b_content;
 	}
 
 	public String getFile_name() {
@@ -90,12 +82,20 @@ public class BoardVO {
 		this.status = status;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getB_category() {
+		return b_category;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setB_category(String b_category) {
+		this.b_category = b_category;
+	}
+
+	public String getM_idx() {
+		return m_idx;
+	}
+
+	public void setM_idx(String m_idx) {
+		this.m_idx = m_idx;
 	}
 
 	public List<BoardCommentVO> getBc_list() {
@@ -113,5 +113,5 @@ public class BoardVO {
 	public void setBmvo(BoardMemberVO bmvo) {
 		this.bmvo = bmvo;
 	}
-	
+
 }
