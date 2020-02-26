@@ -138,6 +138,22 @@ public class BbsDAO {
 		return vo_id;
 	}
 	
+	// 회원 정보 수정
+	public static boolean updateMember(BoardMemberVO vo) {
+		boolean chk = false;
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.update("bbs.updateMember", vo);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.close();
+		
+		return chk;
+	}
+	
 	// 회원 탈퇴
 	public static boolean delMember(String m_idx, String pw) {
 		boolean chk = false;
