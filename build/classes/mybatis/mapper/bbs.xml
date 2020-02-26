@@ -6,7 +6,7 @@
 	
 	<!-- 회원 로그인 -->
 	<select id="login" resultType="mybatis.vo.BoardMemberVO" parameterType="java.util.Map">
-		select m_idx, m_id, m_name, email, phone, reg_date from board_member_t where m_id = #{m_id} and pw = #{pw}
+		select * from board_member_t where m_id = #{m_id} and pw = #{pw}
 	</select>
 
 	<!-- 회원 가입 -->
