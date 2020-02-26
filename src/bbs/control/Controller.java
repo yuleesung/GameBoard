@@ -99,7 +99,7 @@ public class Controller extends HttpServlet {
 		String type = request.getParameter("type");
 		if(type == null)
 			type = "main";
-		
+		//fjfjf
 		//System.out.println(type);
 		
 		MidAction action = map.get(type);
