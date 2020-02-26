@@ -14,9 +14,9 @@ import mybatis.vo.BoardVO;
 public class BbsDAO {
 	
 	// 회원 로그인
-	public static BoardMemberVO login(String id, String pw) {
+	public static BoardMemberVO login(String m_id, String pw) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
+		map.put("m_id", m_id);
 		map.put("pw", pw);
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
@@ -78,21 +78,21 @@ public class BbsDAO {
 	}
 	
 	// 뉴스 게시물 수
-	public static int getCount(String category) {
+	public static int getCount(String b_category) {
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.getCount", category);
+		int total = ss.selectOne("bbs.getCount", b_category);
 		ss.close();
 		return total;
 	}
 	
 	// 전체보기
-	public static BoardVO[] getList(String begin, String end, String category) {
+	public static BoardVO[] getList(String begin, String end, String b_category) {
 		BoardVO[] ar = null;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("begin", begin);
 		map.put("end", end);
-		map.put("category", category);
+		map.put("b_category", b_category);
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
 		List<BoardVO> list = ss.selectList("bbs.getList", map);
@@ -131,9 +131,9 @@ public class BbsDAO {
 	}
 	
 	// 회원가입시 아이디 일치 검사
-	public static String matchMember(String id) {
+	public static String matchMember(String m_id) {
 		SqlSession ss = FactoryService.getFactory().openSession();
-		String vo_id = ss.selectOne("bbs.matchMember", id);
+		String vo_id = ss.selectOne("bbs.matchMember", m_id);
 		ss.close();
 		return vo_id;
 	}
