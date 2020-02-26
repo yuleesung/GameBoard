@@ -63,7 +63,7 @@
 				</tr>
 				<tr>
 					<th>이름:</th>
-					<td><input type="text" name="writer" size="12" value="" readonly/></td> <%-- 로그인 아이디 받기 --%>
+					<td><input type="text" name="writer" size="12" value="${sessionScope.mvo.m_name }" readonly/></td> <%-- 로그인 아이디 받기 --%>
 				</tr>
 				<tr>
 					<th>첨부파일:</th>
