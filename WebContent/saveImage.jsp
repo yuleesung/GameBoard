@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
+<%
+	String cPath = (String) request.getAttribute("cPath");
+	String fname = (String) request.getAttribute("fname");
+%>
 
 {
-	"url":"${c_path}/editor_img/${fname}"
+	"url":"<%=cPath %>/editor_img/<%=fname %>"
 
 }

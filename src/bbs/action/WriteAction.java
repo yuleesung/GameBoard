@@ -73,7 +73,7 @@ public class WriteAction implements MidAction {
 				
 				boolean chk = BbsDAO.writePost(vo);
 				
-				viewPath = null;
+				viewPath = "write";
 				
 				request.setAttribute("chk", chk);
 				request.setAttribute("category", mr_category);
