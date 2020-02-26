@@ -32,8 +32,6 @@ public class ListAction implements MidAction {
 				BoardVO[] ar = BbsDAO.getList(
 					String.valueOf(page.getBegin()), String.valueOf(page.getEnd()), category);
 				
-				
-				
 				request.setAttribute("category", category);
 				request.setAttribute("ar", ar);
 				request.setAttribute("cPage", cPage);
