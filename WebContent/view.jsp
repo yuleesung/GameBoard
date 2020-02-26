@@ -58,10 +58,7 @@
 <body>
 	<%
 		BoardMemberVO bvo = (BoardMemberVO)session.getAttribute("mvo");
-	
-	
-			
-	
+		String cPage = request.getParameter("cPage");
 	%>
 
 
@@ -116,19 +113,19 @@
 						<%
 						if(bvo != null){ //로그인했을 때
 						%>
-						<input type="button" value="Edit"
-							onclick="javascript:location.href='Controller?type=edit'"/>
+						<input type="button" value="수정"
+						onclick="javascript:location.href='Controller?type=edit&b_idx=<%=vo.getB_idx()%>&cPage=<%=cPage%>'"/>
 						<%
 						}else{
 						%>	
-						<input type="button" value="Edit"
+						<input type="button" value="수정"
 							onclick="javascript:location.href='Controller?type=login'"/>
 						<%
 						}
 						%>	
-						<input type="button" value="Delete" 
+						<input type="button" value="삭제" 
 							id="del_btn"/>
-						<input type="button" value="List"
+						<input type="button" value="목록"
 							onclick="goList()"/>
 					</td>
 				</tr>
