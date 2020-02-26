@@ -11,6 +11,7 @@ public class MemberEditAction implements MidAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
+		String m_idx = request.getParameter("m_idx");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String phone = null;
@@ -23,6 +24,7 @@ public class MemberEditAction implements MidAction {
 		
 		BoardMemberVO vo = new BoardMemberVO();
 		
+		vo.setM_idx(m_idx);
 		vo.setPw(pw);
 		vo.setM_name(name);
 		vo.setPhone(phone);
