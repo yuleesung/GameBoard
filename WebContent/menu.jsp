@@ -13,6 +13,7 @@
 		<li><a href=""><span class="menu">게임정보</span></a></li>
 		<li><a href=""><span class="menu">자유게시판</span></a></li>
 		<li><a href=""><span class="menu">Q&A</span></a></li>
+		<li><a href=""><span class="menu">마이페이지</span></a></li>
 	</ul>
 </div>
 </body>
