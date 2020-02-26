@@ -90,13 +90,13 @@
 				<if test="ori_name != null">
 					ori_name = #{ori_name},
 				</if>
-				<if test="content != null">
+				<if test="b_content != null">
 					b_content = #{b_content},
 				</if>
 				<if test="ip != null">
 					ip = #{ip},
 				</if>
-				<if test="category != null">
+				<if test="b_category != null">
 					b_category = #{b_category},
 				</if>
 			</trim>

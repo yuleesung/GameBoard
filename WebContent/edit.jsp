@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@page import="mybatis.dao.BbsDAO"%>
 <%@page import="mybatis.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -47,40 +48,42 @@
 	
 		
 </style>
-<link rel="stylesheet" href="css/summernote-lite.css"/>
+<link rel="stylesheet" href="css/summernote-lite.min.css"/>
 </head>
 <body>
 <%
+	BoardMemberVO mvo = (BoardMemberVO) session.getAttribute("mvo");
 	Object obj = request.getAttribute("vo");
 
 	if(obj != null){
 		BoardVO vo = (BoardVO)obj;
 %>
 	<div id="bbs">
-	<form action="control?type=edit" method="post" 
+	<form action="Controller?type=edit" method="post" 
 	encType="multipart/form-data">
 	
 		<input type="hidden" name="b_idx" value="${param.b_idx }"/>
 		<input type="hidden" name="cPage" value="${param.cPage }"/>
+		<input type="hidden" name="category" value="${requestScope.category }"/>
 	
 		<table summary="게시판 글쓰기">
 			<caption>게시판 수정</caption>
 			<tbody>
 				<tr>
 					<th>제목:</th>
-					<td><input type="text" name="title" 
+					<td><input type="text" name="subject" 
 						size="45" value="<%=vo.getSubject()%>"/></td>
 				</tr>
 				<tr>
 					<th>이름:</th>
 					<td><input type="text" name="writer"
-					 size="12" value="<%= %>" readonly/></td> <%-- 로그인 아이디 --%>
+					 size="12" value="<%=mvo.getM_name() %>" readonly/></td> <%-- 접속자 이름 --%>
 				</tr>
 			
 				<tr>
 					<th>첨부파일:</th>
 					<td>
-						<input type="file" name="file"/>
+						<input type="file" name="file" id="file"/>
 					<%
 						if(vo.getFile_name() != null &&
 							vo.getFile_name().trim().length()>4){
@@ -91,14 +94,7 @@
 					%>	
 						
 					</td>
-				</tr>
-
-				<tr>
-					<th>비밀번호:</th>
-					<td><input type="password" name="pwd" size="12"/></td>
-				</tr>
-
-	
+				</tr>	
 			</tbody>
 		</table>
 		
@@ -116,11 +112,10 @@
 			
 				<tr>
 					<td colspan="2">
-						<input type="button" value="보내기"
-						onclick="sendData()"/>
-						<input type="button" value="다시"/>
-						<input type="button" value="목록"
-							onclick="goList('${param.cPage}')"/>
+						<input type="button" value="수정"
+						onclick="editData()"/>
+						<input type="button" value="취소"
+							onclick="goView('${param.cPage}', '${param.b_idx }', '${requestScope.category }')"/>
 					</td>
 				</tr>
 			</tbody>
@@ -132,7 +127,7 @@
 %>	
 	
 	<script src="js/jquery-3.4.1.min.js"></script>
-	<script src="js/summernote-lite.js"></script>
+	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
 	
@@ -161,7 +156,7 @@
 			frm.append("upload", file);
 			
 			$.ajax({
-				url: "control?type=saveImage",
+				url: "Controller?type=saveImage",
 				type: "post",
 				dataType: "json",
 				contentType: false,
@@ -179,35 +174,21 @@
 		}
 		
 		
-		function sendData(){
+		function editData(){
 			
-			if(document.forms[0].title.value == ""){
-				alert("제목을 입력하세요");
-				document.forms[0].title.focus();
-				return;
-			}
-			
-			if(document.forms[0].writer.value == ""){
-				alert("이름을 입력하세요");
-				document.forms[0].writer.focus();
-				return;
-			}
-			
-			if(document.forms[0].pwd.value == ""){
-				alert("비밀번호를 입력하세요");
-				document.forms[0].pwd.focus();
-				return;
-			}
+			var msg = confirm("수정하시겠습니까?");
 			
 			var str = $("#content").val();
 			$("#str").val(str);
 
-
-			document.forms[0].submit();
+			if(msg){
+				document.forms[0].submit();
+			}
+ 
 		}
 		
-		function goList(cPage){
-			location.href="control?type=list&cPage="+cPage;
+		function goView(cPage, b_idx, category){
+			location.href="Controller?type=view&cPage="+cPage+"&b_idx="+b_idx+"&category="+category;
 		}
 	</script>
 </body>
