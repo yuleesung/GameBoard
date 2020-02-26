@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="css/summernote-lite.css"/>
+<link rel="stylesheet" href="css/summernote-lite.min.css"/>
 
 <style type="text/css">
 	#bbs table {
@@ -51,17 +51,19 @@
 </head>
 <body>
 	<div id="bbs">
-	<form action="control?type=write" method="post" encType="multipart/form-data">
+	<form action="Controller?type=write" method="post" encType="multipart/form-data">
+		<input type="hidden" name="category" value="${requestScope.category }"/>
+		<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
 		<table>
 			<caption> 글 쓰기 </caption>
 			<tbody>
 				<tr>
-					<th>제목 : </th>
-					<td><input type = "text" name="title" size="40"/></td>
+					<th>제목:</th>
+					<td><input type="text" name="subject" size="40"/></td>
 				</tr>
 				<tr>
 					<th>이름:</th>
-					<td><input type="text" name="writer" size="12" value="<%= %>" readonly/></td> <%-- 로그인 아이디 받기 --%>
+					<td><input type="text" name="writer" size="12" value="" readonly/></td> <%-- 로그인 아이디 받기 --%>
 				</tr>
 				<tr>
 					<th>첨부파일:</th>
@@ -83,18 +85,16 @@
 			
 				<tr>
 					<td colspan="2">
-						<input type="button" value="보내기"
-						onclick="sendData()"/>
-						<input type="button" value="다시"/>
-						<input type="button" value="목록"/>
+						<input type="button" value="저장" onclick="writeData()"/>
+						<input type="button" value="취소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
 					</td>
 				</tr>
 			</tbody>
 		</table>	
 	</div>
 	
-	<script src = "js/jquery-3.4.1.min.js"></script>
-	<script src="js/summernote-lite.js"></script>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
 	
@@ -123,26 +123,17 @@
 		
 		var frm = new FormData();
 		
-		
 		frm.append("upload", file);
-		frm.append("str", "Michael");
-		
 		
 		$.ajax({
-			url: "control?type=saveImage",
+			url: "Controller?type=saveImage",
 			type: "post",
 			dataType: "json",
 			contentType: false,
 			processData: false,
-			
 			data: frm
-			
 		}).done(function(data){
-			
-			$("#content").summernote(
-				"editor.insertImage", data.url);
-			
-			
+			$("#content").summernote("editor.insertImage", data.url);
 		}).fail(function(err){
 			console.log(err);
 		});
@@ -150,24 +141,34 @@
 	
 	
 	//보내기 버튼 
-	function sendData(){
-		for(var i=0 ; i<document.forms[0].elements.length ; i++){
+	function writeData(){
 		
-			if(i > 1)
-				break;
-			
-			if(document.forms[0].elements[i].value == ""){
-				alert(document.forms[0].elements[i].name+
-						"를 입력하세요");
-				document.forms[0].elements[i].focus();
-				return;
-			}
+		var subject = $("#subject").val().trim();
+		var content = $("#content").val().trim();
+		
+		// 유효성 검사
+		if(subject.length < 1){
+			alert("제목을 입력하세요!");
+			$("#subject").focus();
+			return;
 		}
+		
+		if(content.length < 1){
+			alert("내용을 입력하세요!");
+			$("#content").focus();
+			return;
+		}
+		
 		var str = $("#content").val();
 		
 		$("#str").val(str);
  
 		document.forms[0].submit();
+	}
+	
+	// 취소 버튼
+	function cancelWrite(category, cPage) {
+		location.href = "Controller?type=list&category="+category+"&cPage="+cPage;
 	}
 	
 	
