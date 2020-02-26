@@ -54,7 +54,7 @@
 							 src=""/>
 						</a>
 					</span><br>
-					<span class="writer"><%=ar_pc[0].getWriter() %></span>
+					<span class="writer"><%=ar_pc[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
 						<a href="javascript:location.href='control?type=view&b_idx=<%=ar_pc[0].getB_idx()%>'">자세히보기</a>
 					</span>
@@ -80,7 +80,7 @@
 							 src=""/>
 						</a>
 					</span><br>
-					<span class="writer"><%=ar_ps[0].getWriter() %></span>
+					<span class="writer"><%=ar_ps[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
 						<a href="javascript:location.href='control?type=view&b_idx=<%=ar_ps[0].getB_idx()%>'">자세히보기</a>
 					</span>
@@ -106,7 +106,7 @@
 							 src=""/>
 						</a>
 					</span><br>
-					<span class="writer"><%=ar_ns[0].getWriter() %></span>
+					<span class="writer"><%=ar_ns[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
 						<a href="javascript:location.href='control?type=view&b_idx=<%=ar_ns[0].getB_idx()%>'">자세히보기</a>
 					</span>
