@@ -16,9 +16,13 @@ public class ViewAction implements	MidAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 
+			
+		
 		String cPage = request.getParameter("cPage");
 		String b_idx = request.getParameter("b_idx");
-
+		System.out.println(cPage);
+		System.out.println(b_idx);
+		
 		BoardVO vo = BbsDAO.viewPost(b_idx);
 		
 		HttpSession session = request.getSession();
@@ -41,7 +45,6 @@ public class ViewAction implements	MidAction {
 						chk = true;
 						break;
 					}
-						
 				}
 			}
 			

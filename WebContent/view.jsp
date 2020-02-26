@@ -1,3 +1,4 @@
+<%@page import="mybatis.vo.BoardMemberVO"%>
 <%@page import="java.util.List"%>
 <%@page import="mybatis.vo.BoardCommentVO"%>
 <%@page import="com.sun.xml.internal.ws.server.sei.EndpointResponseMessageBuilder.Bare"%>
@@ -55,6 +56,16 @@
 </style>
 </head>
 <body>
+	<%
+		BoardMemberVO bvo = (BoardMemberVO)session.getAttribute("mvo");
+	
+	
+			
+	
+	%>
+
+
+
 	<%-- 본문  보기 영역--%>
 	<div id = "bbs">
 	<form method = "post">
@@ -76,7 +87,7 @@
 				</tr>
 				<tr>
 					<th>Writer : </th>
-					<td><%= %></td> <%--로그인 되어있는 아이디 들어가야함 --%>
+					<td><%=vo.getBmvo().getM_id() %></td> 
 					<th>Hit : </th>
 					<td><%=vo.getHit() %></td>
 				</tr>
@@ -102,8 +113,19 @@
 				</tr>
 				<tr>
 					<td colspan="4">
+						<%
+						if(bvo != null){ //로그인했을 때
+						%>
 						<input type="button" value="Edit"
-							onclick="edit()"/>
+							onclick="javascript:location.href='Controller?type=edit'"/>
+						<%
+						}else{
+						%>	
+						<input type="button" value="Edit"
+							onclick="javascript:location.href='Controller?type=login'"/>
+						<%
+						}
+						%>	
 						<input type="button" value="Delete" 
 							id="del_btn"/>
 						<input type="button" value="List"
@@ -117,7 +139,7 @@
 
 	<%-- 댓글 쓰기 영역 --%>
 	<form method="post" action="ans_write.jsp">
-		이름:<input type="text" value="<%=   %>" readonly/><br/> <%-- 로그인 되어있는 아이디 --%>
+		이름:<input type="text" readonly/><br/> <%-- 로그인 되어있는 다른 아이디 --%>
 		내용:<textarea rows="4" cols="55" name="content"></textarea><br/>
 		비밀번호:<input type="password" name="pwd"/><br/>
 		
@@ -138,7 +160,7 @@
 %>	
 		<hr/><hr/>
 		<div>
-			이름: <%=   %> &nbsp;&nbsp; <%-- 댓글 쓴 아이디 --%>
+			이름:  &nbsp;&nbsp; <%-- 댓글 쓴 아이디 --%>
 			날짜: <%=cvo.getWrite_date() %><br/>
 			내용: <%=cvo.getC_content() %>
 		</div>
