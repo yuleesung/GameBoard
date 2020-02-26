@@ -32,7 +32,7 @@ public class ViewAction implements	MidAction {
 		if(vo != null){
 			boolean chk = false;
 			List<BoardVO> list = null;
-			
+			 
 			if(obj == null){
 				list = new ArrayList<BoardVO>();
 				session.setAttribute("read_bbs", list);

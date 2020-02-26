@@ -149,7 +149,7 @@
 		%>
 			이름:<input type="text" readonly onclick="javascript:location.href='Controller?type=login'"><br/>
 		<%
-		}
+		} 
 		%>
 		내용:<textarea rows="4" cols="55" name="content"></textarea><br/>
 		비밀번호:<input type="password" name="pwd"/><br/>
