@@ -10,7 +10,7 @@ public class LogoutAction implements MidAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("mvo");
-		return "/main.jsp";
+		return "/Controller?type=main";
 	}
 
 }
