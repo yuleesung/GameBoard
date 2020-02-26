@@ -48,7 +48,7 @@ String path = (String)request.getAttribute("path");
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" name="type" value="<%=path %>"/>
+			<input type="hidden" id="type" name="type" value="main"/> <!-- path로 변경해야 함 -->
 		</form>
 	</div>
 
@@ -72,6 +72,7 @@ String path = (String)request.getAttribute("path");
 				}
 				
 				var param = "type=login&id="+id+"&pw="+pw;
+				var type = $("#type").val();
 				
 				$.ajax({
 					url: "Controller",
@@ -80,10 +81,11 @@ String path = (String)request.getAttribute("path");
 					dataType: "json"
 				}).done(function(data){
 					if(data.res=="ok"){
-						alert("로그인 성공");
+						document.login_form.submit();
 					}else{
 						alert("로그인에 실패했습니다");
 					}
+
 				}).fail(function(err){
 					console.log(err);
 				});

@@ -15,46 +15,51 @@ public class RegistryAction implements MidAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// 회원가입 액션
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String[] s_email = request.getParameterValues("email");
-		String[] s_phone = request.getParameterValues("phone");
+		String c_type = request.getContentType(); 
+		// get방식일 땐, null
+		// post방식일 땐, application or encType..
+		String viewPath = "/registryPage.jsp";
 		
-		String email = makeString(s_email, "@");
-		String phone = makeString(s_phone, "-");
-		
-		
-		/*
-		 * System.out.println(id); System.out.println(pw); System.out.println(name);
-		 * System.out.println(email); System.out.println(phone);
-		 */
-		 
-		
-		BoardMemberVO mvo = new BoardMemberVO();
-		
-		mvo.setM_id(id);; mvo.setPw(pw); mvo.setM_name(name);;
-		mvo.setEmail(email); mvo.setPhone(phone);
-		
-		boolean chk = BbsDAO.join(mvo);
-		
-		if(chk) { // 회원 등록이 되었다면, 개인폴더를 생성(이미지 업로드용)
-			try {
-				ServletContext application = request.getServletContext();
-				String path = application.getRealPath("/upload/"+id);
-				File f = new File(path);
-				
-				if(!f.exists())
-					f.mkdirs();
-				
-				System.out.println("생성완료");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
+		if(c_type == null) {
+			
+		}else{
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			String name = request.getParameter("name");
+			String[] s_email = request.getParameterValues("email");
+			String[] s_phone = request.getParameterValues("phone");
+			
+			String email = makeString(s_email, "@");
+			String phone = makeString(s_phone, "-");
+			
+			
+			BoardMemberVO mvo = new BoardMemberVO();
+			
+			mvo.setM_id(id);; mvo.setPw(pw); mvo.setM_name(name);;
+			mvo.setEmail(email); mvo.setPhone(phone);
+			
+			boolean chk = BbsDAO.join(mvo);
+			
+			if(chk) { // 회원 등록이 되었다면, 개인폴더를 생성(이미지 업로드용)
+				try {
+					ServletContext application = request.getServletContext();
+					String path = application.getRealPath("/upload/"+id);
+					File f = new File(path);
+					
+					if(!f.exists())
+						f.mkdirs();
+					
+					System.out.println("생성완료");
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+			
+			viewPath = "Controller?type=main";
 		}
 		
-		return "Controller?type=main";
+		return viewPath;
 	}
 
 	

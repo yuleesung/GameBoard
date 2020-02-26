@@ -18,14 +18,13 @@ public class LeaveAction implements MidAction {
 		BoardMemberVO mvo = (BoardMemberVO) session.getAttribute("mvo"); 
 		
 		String pw = request.getParameter("pw");
-		String m_idx = mvo.getM_idx();
+		String mvo_idx = mvo.getM_idx();
 		String mvo_pw = mvo.getPw();
-		
+
 		
 		if(pw.equals(mvo_pw)) {
-			chk = BbsDAO.delMember(m_idx, mvo_pw);
-		}
-		
+			chk = BbsDAO.delMember(mvo_idx, mvo_pw);
+		}	
 		request.setAttribute("leave", chk);
 		
 		return "/leave.jsp";

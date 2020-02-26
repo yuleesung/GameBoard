@@ -134,7 +134,7 @@ $(function(){
 			return;
 		}
 		
-		document.reg_form.submit();		
+		document.reg_form.submit();
 		//alert("회원가입 완료");
 	});
 });
