@@ -37,6 +37,7 @@
 		<div class="center">
 			<div class="main_bar">
 				<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
+				<a href="javascript:location.href='Controller?type=logout'">LOGOUT</a>
 				<input type="text" id="search_value"/>
 				<input type="button" value="검색" onclick="search()"/>
 			</div>
