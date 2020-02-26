@@ -12,18 +12,27 @@ public class LoginAction implements MidAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		// 로그인 액션
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String c_type = request.getContentType(); 
+		// get방식일 땐, null
+		// post방식일 땐, application or encType..
+		String viewPath = "/loginPage.jsp";
 		
-		BoardMemberVO mvo = BbsDAO.login(id, pw);
-		
-		/*
-		 * if(mvo!=null) { // 접속성공 시, 멤버정보 세션에 저장 후 메인화면으로 이동 HttpSession session =
-		 * request.getSession(); session.setAttribute("mvo", mvo); }
-		 */
-		
-		return "/login.jsp";
+		if(c_type == null) { // get방식 요청
+
+		}else if(c_type.startsWith("application")) { // post방식 요청
+			// 로그인 액션
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			
+			BoardMemberVO mvo = BbsDAO.login(id, pw);
+			
+			HttpSession session = request.getSession();
+			request.getSession(); session.setAttribute("mvo", mvo);
+			 
+			viewPath = "login.jsp";
+		}
+
+		return viewPath;
 	}
 
 }

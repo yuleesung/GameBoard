@@ -5,7 +5,6 @@
 BoardMemberVO mvo = (BoardMemberVO)session.getAttribute("mvo");
 
 if(mvo!=null){
-
 %>
 	{"res":"ok"}
 <%

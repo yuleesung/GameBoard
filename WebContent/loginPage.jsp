@@ -80,7 +80,7 @@ String path = (String)request.getAttribute("path");
 					dataType: "json"
 				}).done(function(data){
 					if(data.res=="ok"){
-						document.login_form.submit();
+						alert("로그인 성공");
 					}else{
 						alert("로그인에 실패했습니다");
 					}
