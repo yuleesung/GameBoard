@@ -26,7 +26,7 @@
 		values(board_t_seq.nextval, #{subject}, #{b_content}, #{file_name}, #{ori_name}, sysdate, #{ip}, 0, 0, #{b_category}, #{m_idx})
 	</insert>
 	
-	<!-- 댓글 쓰기 -->
+	<!-- 댓글 쓰기  -->
 	<insert id="writeComment" parameterType="mybatis.vo.BoardCommentVO">
 		insert into board_comment_t(c_idx, c_content, write_date, ip, status, b_idx, m_idx) 
 		values(board_comment_t_seq.nextval, #{c_content}, sysdate, #{ip}, 0, #{b_idx}, #{m_idx})
