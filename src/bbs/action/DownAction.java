@@ -21,24 +21,21 @@ public class DownAction implements MidAction {
 
 		
 		String m_idx = request.getParameter("m_idx");
+		
 		String fname = request.getParameter("f_name");
 		
-		String id = BbsDAO.getID(m_idx);
+		String id = BbsDAO.getID(m_idx); 
 		
 		ServletContext application = request.getServletContext();
 		
 		
 		String path = application.getRealPath(
 			"/upload/"+id+"/"+fname);
-		System.out.println(path);
 		
 		File f = new File(path);
-		System.out.println(f);
-		
-		
+
 		if(f.exists()){
-			
-			System.out.println("으아아앙");
+
 			
 			byte[] buf = new byte[2048];
 			int len = -1;
