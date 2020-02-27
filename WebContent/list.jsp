@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/list.css">	
+<link type="text/css" rel="stylesheet" href="css/main.css">
+<link type="text/css" rel="stylesheet" href="css/menu.css">
+
 <style type="text/css">
 
 
@@ -18,8 +21,8 @@
 </head>
 <body>
 			
-	<%-- 메뉴들 와야함 --%>
-		
+	
+	<div id="menu_bar" class="center"></div>	
 	<div id="bbs">
 		<table>
 			<%
@@ -167,7 +170,11 @@
 							</tbody>
 		</table>
 	</div>
+	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
+	$(document).ready(function(){
+        $("#menu_bar").load("menu.jsp");
+     });
 	
 	
 	</script>

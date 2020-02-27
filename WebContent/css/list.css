@@ -4,9 +4,9 @@
 	@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,700);
 
 	#bbs table {
-	    width:580px;
+	    width:660px;
 	   	margin: auto;
-	    
+	    margin-top: 40px;
 	    border-collapse:collapse;
 	    font-size:14px;
 	}
@@ -18,7 +18,7 @@
 	
 	#bbs table caption {
 		margin: auto;
-		width:580px;
+		width:660px;
 	    font-size:20px;
 	    font-weight:bold;
 	    margin-bottom:10px;
@@ -73,7 +73,7 @@
 		font-family: ‘Roboto’, ‘Spoqa Han Sans’, ‘Spoqa Han Sans JP’, ‘Sans-serif’; 
 		font-size: 18px;
 		font-weight: 700;
-		background-color: #7f9eb2;
+		background-color: #d9e1e8;
 		
 	}
 		
