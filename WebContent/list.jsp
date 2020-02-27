@@ -36,7 +36,7 @@
 					<th class = "no">No.</th>	
 					<th class = "title">title</th>
 					<%
-						 
+						  
 					%>
 					<th class = "writer">writer</th>
 					<th class = "reg">date</th>
