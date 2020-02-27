@@ -40,12 +40,13 @@
 	
 	<resultMap type="mybatis.vo.BoardVO" id="map1">
 		<id column="b_idx" property="b_idx"/>
-		<id column="m_idx" property="m_idx"/>
+		<result column="m_idx" property="m_idx"/>
 		<association property="bmvo" javaType="mybatis.vo.BoardMemberVO" select="getMember" column="m_idx"/>
 		<collection property="bc_list" ofType="mybatis.vo.BoardCommentVO" select="commList" column="b_idx"/>
 	</resultMap>
 	
 	<resultMap type="mybatis.vo.BoardMemberVO" id="map3">
+		<id column="m_idx" property="m_idx"/>
 		<collection property="b_list" ofType="mybatis.vo.BoardVO" select="boardList" column="m_idx"/>
 	</resultMap>
 	
@@ -60,6 +61,7 @@
 	</select>
 	
 	<resultMap type="mybatis.vo.BoardCommentVO" id="map2">
+		<result column="m_idx" property="m_idx"/>
 		<association property="bmvo" javaType="mybatis.vo.BoardMemberVO" select="getMember" column="m_idx"/>
 	</resultMap>
 	
