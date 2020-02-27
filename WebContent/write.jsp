@@ -7,86 +7,51 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="css/summernote-lite.min.css"/>
-
-<style type="text/css">
-	#bbs table {
-	    width:580px;
-	    margin-left:10px;
-	    border:1px solid black;
-	    border-collapse:collapse; 
-	    font-size:14px;
-	    
-	}
-	
-	#bbs table caption {
-	    font-size:20px;
-	    font-weight:bold;
-	    margin-bottom:10px;
-	}
-	
-	#bbs table th {
-	    text-align:center;
-	    border:1px solid black;
-	    padding:4px 10px;
-	}
-	
-	#bbs table td {
-	    text-align:left;
-	    border:1px solid black;
-	    padding:4px 10px;
-	}
-	
-	.no {width:15%}
-	.subject {width:30%}
-	.writer {width:20%}
-	.reg {width:20%}
-	.hit {width:15%}
-	.title{background:lightsteelblue}
-	
-	.odd {background:silver}
-	
-		
-</style>
+<link rel="stylesheet" href="css/menu.css"/>
+<link rel="stylesheet" href="css/main.css"/>
+<link rel="stylesheet" href="css/write.css"/>
 
 </head>
 <body>
+	<div id="menu_bar" class="center"></div>
 	<div id="bbs">
-	<form action="Controller?type=write" method="post" encType="multipart/form-data">
-		<input type="hidden" name="category" value="${requestScope.category }"/>
-		<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
-		<table>
-			<caption> 글 쓰기 </caption>
+		<header>
+			<h1>게시글 쓰기</h1>
+		</header>
+		<form action="Controller?type=write" method="post" encType="multipart/form-data">
+			<input type="hidden" name="category" value="${requestScope.category }"/>
+			<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
+			<table id="t1">
+				<caption> 글 쓰기 </caption>
+				<tbody>
+					<tr>
+						<th>제목:</th>
+						<td><input type="text" name="subject" id="subject" size="40"/></td>
+					</tr>
+					<tr>
+						<th>첨부파일:</th>
+						<td><input type="file" name="file" id="file"/></td>
+					</tr>	
+				</tbody>
+			</table>
+			<input type="hidden" name="content" id="str"/>
+		</form>
+	
+		<table id="t2">
 			<tbody>
 				<tr>
-					<th>제목:</th>
-					<td><input type="text" name="subject" id="subject" size="40"/></td>
+					<th colspan="2">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 				</tr>
 				<tr>
-					<th>이름:</th>
-					<td><input type="text" name="writer" name="writer" size="12" value="${sessionScope.mvo.m_name }" readonly/></td> <%-- 로그인 아이디 받기 --%>
-				</tr>
-				<tr>
-					<th>첨부파일:</th>
-					<td><input type="file" name="file" id="file"/></td>
-				</tr>	
-			</tbody>
-		</table>
-		<input type="hidden" name="content" id="str"/>
-	</form>
-
-		<table>
-			<tbody>
-				<tr>
-					<th style="width:83px;">내용:</th>
-					<td><textarea name="content" cols="50" 
+					<td colspan="2"><textarea name="content" cols="50" 
 							rows="8" id="content"></textarea>
 					</td>
 				</tr>
 			
 				<tr>
 					<td colspan="2">
-						<input type="button" value="저장" onclick="writeData()"/>
-						<input type="button" value="취소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
+						<input type="button" value="저  장" onclick="writeData()"/>
+						<input type="button" value="취  소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
 					</td>
 				</tr>
 			</tbody>
@@ -97,13 +62,15 @@
 	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
-	
+	$(document).ready(function(){
+        $("#menu_bar").load("menu.jsp");
+     });
 	//썸머 노트
 	$(function(){
 		
 		$("#content").summernote({
 			height: 300,
-			width: 450,
+			width: 620,
 			lang: "ko-KR",
 			callbacks:{
 				onImageUpload: function(files, editor){

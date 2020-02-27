@@ -1,0 +1,79 @@
+@charset "UTF-8";
+body{
+	background-color: #C6E5F3;
+}
+
+#bbs{
+	margin: auto;
+	width: 674px;
+}
+
+#bbs header h1{
+	color: #282c37;
+	padding-left: 30px;
+}
+
+#bbs table {
+    width: 655px;
+    margin-left:10px;
+    border-collapse: collapse; 
+    font-size: 14px;
+}
+
+#bbs table caption {
+    text-indent: -9999px;
+    height: 0;
+}
+
+#bbs table th, #t2 th{
+	width: 100px;
+    text-align: center;
+    border: 1px solid #d9e1e8;
+    padding: 8px;
+    background-color: rgba(240, 240, 240, 0.8);
+    
+}
+
+#bbs #t1 td {
+    text-align: left;
+    border: 1px solid #d9e1e8;
+    padding: 8px;
+}	
+
+#t1 tr:last-child th, #t1 tr:last-child td{
+	border-bottom: none;
+}
+
+#t2 tr:last-child{
+	background-color: rgba(240, 240, 240, 0.8);
+}
+
+#t1 td, #t2 tr:nth-child(2) td{
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+#t1 input[type=text]{
+	border: 1px solid #d9e1e8;
+	border-radius: 5px;
+	padding: 5px;
+	width: 500px;
+}
+
+#t2 tr:last-child td{
+	padding: 5px;
+	text-align: right;
+}
+
+input[type=button]{
+	font-size: 14px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #d9e1e8;
+	background-color: #2b90d9;
+	color: white;
+	font-weight: bold;
+}
+
+input[type=button]:hover{
+	background-color: #8EC0E4
+}
