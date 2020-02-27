@@ -88,7 +88,7 @@
 					</span><br>
 					<span class="writer"><%=ar_pc[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_pc[0].getB_idx()%>'">자세히보기</a>
+						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_pc[0].getB_idx()%>&category=pc'">자세히보기</a>
 					</span>
 				<%
 					}else{
@@ -114,7 +114,7 @@
 					</span><br>
 					<span class="writer"><%=ar_ps[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ps[0].getB_idx()%>'">자세히보기</a>
+						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ps[0].getB_idx()%>&category=ps'">자세히보기</a>
 					</span>
 				<%
 					}else{
@@ -140,7 +140,7 @@
 					</span><br>
 					<span class="writer"><%=ar_ns[0].getBmvo().getM_name() %></span>
 					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ns[0].getB_idx()%>'">자세히보기</a>
+						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ns[0].getB_idx()%>&category=ns'">자세히보기</a>
 					</span>
 				<%
 					}else{
@@ -165,7 +165,7 @@
 							for(BoardVO vo : ar_pc){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>'"><%=vo.getSubject() %></a></td>
+							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=pc'"><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}
@@ -184,7 +184,7 @@
 							for(BoardVO vo : ar_ps){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>'"><%=vo.getSubject() %></a></td>
+							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ps'"><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}
@@ -203,7 +203,7 @@
 							for(BoardVO vo : ar_ns){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>'"><%=vo.getSubject() %></a></td>
+							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ns'"><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}

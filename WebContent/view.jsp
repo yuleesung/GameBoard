@@ -47,22 +47,17 @@
 	.title{background:lightsteelblue}
 	
 	.odd {background:silver}
-	
-	
-	#del_win{
-		display: none;
-	}
 		
 </style>
 </head>
 <body>
 	<%
-		BoardMemberVO bvo = (BoardMemberVO)session.getAttribute("mvo");
-		String cPage = request.getParameter("cPage");
+		Object ob = session.getAttribute("mvo");
+		BoardVO vo = null;
+		List<BoardCommentVO> c_list = null;
+		String cPage = (String)request.getAttribute("cPage");
 		String category = (String)request.getAttribute("category");
 	%>
-
-
 
 	<%-- 본문  보기 영역--%>
 	<div id = "bbs">
@@ -74,8 +69,8 @@
 					Object obj = request.getAttribute("vo");
 	
 					if(obj != null){
-						BoardVO vo = (BoardVO)obj;
-					
+						vo = (BoardVO)obj;
+						c_list = vo.getBc_list();
 				%>
 				<tr>
 					<th>Title : </th>
@@ -112,141 +107,90 @@
 				<tr>
 					<td colspan="4">
 						<%
-						if(bvo != null){ //로그인했을 때
+						if(ob != null){ //로그인했을 때
+							BoardMemberVO mvo = (BoardMemberVO)ob;
+							if(mvo.getM_idx().equals(vo.getBmvo().getM_idx())){
 						%>
-						<input type="button" value="수정"
-						onclick="javascript:location.href='Controller?type=edit&b_idx=<%=vo.getB_idx()%>&cPage=<%=cPage%>&category=<%=category%>'"/>
+						<input type="button" value="수정" onclick="edit()"/>
+						<input type="button" value="삭제" onclick="del()"/>
 						<%
-						}else{
-						%>	
-						<input type="button" value="수정"
-							onclick="javascript:location.href='Controller?type=login'"/>
-						<%
+							}
 						}
 						%>	
-						<input type="button" value="삭제" 
-							id="del_btn"/>
-						<input type="button" value="목록"
-							onclick="goList()"/>
+						<input type="button" value="목록" onclick="goList()"/>
 					</td>
 				</tr>
+				<%
+					}
+				%>
 			</tbody>
 		</table>
 	</form>
+	<hr><br>
+	
+	<%-- 댓글 보여주는 영역 --%>
+	<div id=answer>
+	<%
+	if(c_list != null){
+		for(BoardCommentVO cvo : c_list){
+	%>
+			<span>
+			<hr>
+			<b>이름:</b>&nbsp;<%=cvo.getBmvo().getM_name() %>&nbsp;&nbsp;&nbsp;
+			<b>날짜:</b>&nbsp;<%=cvo.getWrite_date() %><br/>
+			<b>내용:</b>&nbsp;<%=cvo.getC_content() %><br>
+			<hr>
+			</span>
+	<%
+		}
+	}
+	%>
+	</div>
 
-
+	<hr>
 	<%-- 댓글 쓰기 영역 --%>
-	<form method="post" action="">
+	<form method="post" id="answer_form">
 		<%
-		//로그인했을 땐 로그인 아이디+readonly
-		if(bvo != null ){
+		if(ob != null){
+			BoardMemberVO mvo = (BoardMemberVO)ob;
 		%>
-			이름:<input type="text" readonly value=<%=bvo.getM_id() %>><br/> 
-		<%
-		}else{//로그아웃일 땐 로그인 화면으로
-		%>
-			이름:<input type="text" readonly onclick="javascript:location.href='Controller?type=login'"><br/>
-		<%
-		} 
-		%>
-		내용:<textarea rows="4" cols="55" name="content"></textarea><br/>
-		비밀번호:<input type="password" name="pwd"/><br/>
+		이름:&nbsp;<%=mvo.getM_name() %><br>
+		내용:<textarea rows="4" cols="55" name="comm"></textarea><br/>
 		
-		
-		<input type="hidden" name="b_idx" value="${param.b_idx }">
-		<input type="hidden" name="cPage" value="${cPage }"/>
-		<input type="hidden" name="ip" 
-			value="<%=request.getRemoteAddr()%>"/>
-		<input type="submit" value="저장하기"/> 
+		<input type="hidden" name="m_idx" value="<%=mvo.getM_idx()%>"/><br/>
+		<input type="hidden" name="b_idx" value="<%=vo.getB_idx()%>">
+		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+		<input type="hidden" name="category" value="<%=category%>"/>
+		<input type="button" value="댓글달기" onclick="sendComment()" /> 
+		<%
+		}else{
+		%>
+		내용:<textarea rows="4" cols="55" onclick="goLogin('<%=vo.getB_idx()%>', '<%=cPage%>', '<%vo.getB_category();%>')" readonly="readonly">로그인이 필요합니다...</textarea><br/>
+		<%
+		}
+		%>
 	</form>
 	
 	
-	
-	<%-- 댓글 보기 영역 --%>
-<%
-		List<BoardCommentVO> c_list = vo.getBc_list();
-		for(BoardCommentVO cvo:c_list){
-%>	
-		<hr/><hr/>
-		<div>
-			이름:  &nbsp;&nbsp; <%-- 댓글 쓴 아이디 --%>
-			날짜: <%=cvo.getWrite_date() %><br/>
-			내용: <%=cvo.getC_content() %>
-		</div>
-		<hr/><hr/>
-	
-<%
-		}
-	}else{
-		response.sendRedirect("control");
-	}
-	
-%>
 	</div>
 	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
 		<input type="hidden" name="f_name"/>
-		<input type="hidden" name="b_idx" value="${param.b_idx }">
-		<input type="hidden" id="cPage" name="cPage" value="${cPage }"/>
+		<input type="hidden" name="b_idx" value="<%=vo.getB_idx() %>">
+		<input type="hidden" name="category" value="<%=category%>"/>
+		<%
+		if(cPage != null){
+		%>
+		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+		<%
+		}
+		%>
 	</form>
-	
-	
-	<div id="del_win">
-		<form>
-			<input type="hidden" name="b_idx" id="b_idx"
-				value="${param.b_idx }"/>
-			<label for="pw">비밀번호:</label>
-			<input type="password" id="pw" name="pw"/>
-			<br/>
-			<button type="button" id="delete_bt">삭제</button>
-			<button type="button" id="close_bt">닫기</button>
-		</form>
-	</div>
-
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
-	$(function(){
-		
-		$("#del_btn").bind("click",function(){
-			$("#del_win").css("display","block");
-			$("#del_win").dialog();
-		});
-		
-		$("#close_bt").bind("click",function(){
-			
-			$("#del_win").dialog("close");
-		});
-		
-		$("#delete_bt").bind("click",function(){
-			var b_idx = $("#b_idx").val();
-			var pw = $("#pw").val();
-			
-			
-			var param = "type=del&b_idx="+encodeURIComponent(b_idx)+
-				"&pw="+encodeURIComponent(pw);
-			
-			$.ajax({
-				url: "control",
-				type: "post",
-				data: param,
-				dataType: "json"
-			}).done(function(data){
-				
-				if(data.value == "true")
-					location.href = "control?type=list&cPage=${cPage }";
-				else{						
-					alert("비밀번호가 다릅니다.");
-				}
-			}).fail(function(err){
-				
-			});
-			
-		});
-	});
 
 	function fDown(fname){
-		
 		document.frm.type.value = "down";
 		document.frm.f_name.value = fname;
 		document.frm.submit();
@@ -261,13 +205,59 @@
 		document.frm.type.value = "edit";
 		document.frm.submit();
 	}
-		
-		
 	
+	function del(){
+		document.frm.type.value = "delete";
+		document.frm.submit();
+	}
 	
+	function goLogin(b_idx, cPage, category){
+		var chk = confirm("로그인 하시겠습니까?");
+		if(chk)
+			location.href="Controller?type=login&b_idx="+b_idx+"&cPage="+cPage+"&category="+category+"&path=view";
+	}
+	
+	function sendComment(){
+		var frm = document.getElementById("answer_form");
+		var comm = frm.comm;
+		var b_idx = frm.b_idx.value;
+		var m_idx = frm.m_idx.value;
+		var cPage = frm.cPage.value;
+		var category = frm.category.value;
+		
+		if(comm.value.trim() <= 0){
+			alert("내용을 입력해주세요");
+			comm.focus();
+			return;
+		}
+		
+		var param = "type=answer_write&comm=" + encodeURIComponent(comm.value)
+		+ "&b_idx=" + encodeURIComponent(b_idx)
+		+ "&m_idx=" + encodeURIComponent(m_idx)
+		+ "&cPage=" + encodeURIComponent(cPage)
+		+ "&category=" + encodeURIComponent(category);
+		
+		$.ajax({
+			url : "Controller",
+			type : "post",
+			data : param,
+			dataType: "json"
+		}).done(function(data) {
+			var msg = "";
+			for(var i=0; i<data.length; i++){
+				msg += "<span><hr>";
+				msg += "<b>이름:</b>&nbsp;"+ data[i].bmvo.m_name +"&nbsp;&nbsp;&nbsp;";
+				msg += "<b>날짜:</b>&nbsp;"+ data[i].write_date +"<br/>";
+				msg += "<b>내용:</b>&nbsp;"+ data[i].content +"<br/></span>";
+			}
+			
+			$("#answer").html(msg);
+			comm.value = "";
+		}).fail(function(err) {
+			console.log("err");
+		});
+	}
+
 	</script>
-	
-
-
 </body>
 </html>

@@ -53,7 +53,7 @@
 		}else if(val == 1){
 			$("#right_content").load("memberUpdate.jsp");
 		}else{
-			$("#right_content").load("leave.jsp");
+			$("#right_content").load("leavePage.jsp");
 		}
 	}
 </script>
