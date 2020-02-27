@@ -49,8 +49,6 @@ public class RegistryAction implements MidAction {
 					if(!f.exists())
 						f.mkdirs();
 					
-					System.out.println("생성완료");
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
