@@ -40,7 +40,7 @@
 	
 	<resultMap type="mybatis.vo.BoardVO" id="map1">
 		<id column="b_idx" property="b_idx"/>
-		<result column="m_idx" property="m_idx"/>
+		<id column="m_idx" property="m_idx"/>
 		<association property="bmvo" javaType="mybatis.vo.BoardMemberVO" select="getMember" column="m_idx"/>
 		<collection property="bc_list" ofType="mybatis.vo.BoardCommentVO" select="commList" column="b_idx"/>
 	</resultMap>
