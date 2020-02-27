@@ -1,9 +1,15 @@
 @charset "UTF-8";
+body{
+	margin: 0;
+	padding: 0;
+}
 .footer_area{
 	margin: 0;
+	margin-top: 50px;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	background-color: #d9e1e8;
+	border-color: none;
 }
 .foot_guide{
 	width: 600px;

@@ -88,7 +88,7 @@
 	});
 	
 	
-	//이미지 서버 업로드
+	//이미지 서버 업로드//
 	function sendFile(file, editor){
 		
 		var frm = new FormData();

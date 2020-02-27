@@ -20,7 +20,7 @@
 	BoardMemberVO mvo = (BoardMemberVO) session.getAttribute("mvo");
 	Object obj = request.getAttribute("vo");
 
-	if(obj != null){
+	if(obj != null){//
 		BoardVO vo = (BoardVO)obj;
 %>
 	<div id="wrap">
