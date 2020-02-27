@@ -28,7 +28,7 @@ public class SaveImageAction implements MidAction{
 		if(f != null) {
 			fname = f.getName();
 		}
-		//System.out.println(fname); //
+		//System.out.println(fname);
 		
 		request.setAttribute("cPath", request.getContextPath());
 		request.setAttribute("fname", fname);

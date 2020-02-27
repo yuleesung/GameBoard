@@ -78,7 +78,7 @@ public class EditAction implements MidAction {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(c_type != null && c_type.startsWith("application")){
+		}else if(c_type != null && c_type.startsWith("application")){//
 			BoardVO vo = BbsDAO.viewPost(b_idx);
 			request.setAttribute("vo", vo);
 			request.setAttribute("category", category);

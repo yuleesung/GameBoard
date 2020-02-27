@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-	String cPath = (String) request.getAttribute("cPath"); //
+	String cPath = (String) request.getAttribute("cPath");
 	String fname = (String) request.getAttribute("fname");
 %>
 
