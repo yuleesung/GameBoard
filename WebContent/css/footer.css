@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.footer_area{
+	margin: 0;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #d9e1e8;
+}
+.foot_guide{
+	width: 600px;
+	margin: auto;
+	list-style: none;
+	margin-bottom: 10px;
+	padding: 0;
+	text-align: center;
+}
+.foot_guide li{
+	display: inline-block;
+}
+.foot_guide li a{
+	text-decoration: none;
+	color: #333030;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+.foot_guide li a:hover{
+	color: #2b90d9;
+}
+address{
+	width: 600px;
+	margin: auto;
+	margin-bottom: 5px;
+	font-size: 0.8em;
+	font-style: normal;
+	text-align: center;
+	color: #8b8687;
+}
+.copyright{
+	width: 600px;
+	margin: auto;
+	color: #333030;
+	font-size: 0.8em;
+	text-align: center;
+}

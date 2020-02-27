@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/menu.css"/>
 <link rel="stylesheet" href="css/main.css"/>
 <link rel="stylesheet" href="css/write.css"/>
+<link rel="stylesheet" href="css/footer.css"/>
 </head>
 <body>
 <%
