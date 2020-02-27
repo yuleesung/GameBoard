@@ -196,7 +196,7 @@
 						<tr>
 							<td><%=num %></td>
 							<td style="text-align: left">
-								<a href="Controller?type=view&cPage=<%=pvo.getNowPage()%>&b_idx=<%=vo.getB_idx()%>&category=<%=category %>>">
+								<a href="Controller?type=view&cPage=<%=pvo.getNowPage()%>&b_idx=<%=vo.getB_idx()%>&category=<%=category %>">
 									<%=vo.getSubject() %>
 									<%
 										if(vo.getBc_list().size() > 0){
