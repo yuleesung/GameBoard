@@ -19,8 +19,12 @@
 	BoardVO[] ar_ns = null;
 	
 	Object obj = session.getAttribute("mvo");
+	
+	String pc_content = null;
+	String ps_content = null;
+	String ns_content = null;
 %>
-<body bgcolor="#c6e5f3">
+<body bgcolor="#f7f7f7" onload="setImage()">
 	<div id="wrap">
 		
 		<!-- include할 메뉴영역 시작 -->
@@ -42,13 +46,14 @@
 				<%
 					if(obj1 != null){
 						ar_pc = (BoardVO[])obj1;
+						pc_content = ar_pc[0].getB_content();
 				%>
 					<span class="subject">
 						<%=ar_pc[0].getSubject() %>
 					</span><br>
 					<span class="thum_img">
-						<a href="" class="pre_src">
-							<img alt="pc첫번째게시물이미지"
+						<a href="" class="pre_src" id="pc_pre_content">
+							<img id="pc_pre_image" alt="pc첫번째게시물이미지"
 							 src=""/>
 						</a>
 					</span><br>
@@ -68,13 +73,14 @@
 				<%
 					if(obj2 != null){
 						ar_ps = (BoardVO[])obj2;
+						ps_content = ar_ps[0].getB_content();
 				%>
 					<span class="subject">
 						<%=ar_ps[0].getSubject() %>
 					</span><br>
 					<span class="thum_img">
-						<a href="" class="pre_src">
-							<img alt="ps첫번째게시물이미지"
+						<a href="" class="pre_src" id="ps_pre_content">
+							<img id="ps_pre_image" alt="ps첫번째게시물이미지"
 							 src=""/>
 						</a>
 					</span><br>
@@ -94,13 +100,14 @@
 				<%
 					if(obj3 != null){
 						ar_ns = (BoardVO[])obj3;
+						ns_content = ar_ns[0].getB_content();
 				%>
 					<span class="subject">
 						<%=ar_ns[0].getSubject() %>
 					</span><br>
 					<span class="thum_img">
-						<a href="" class="pre_src">
-							<img alt="ns첫번째게시물이미지"
+						<a href="" class="pre_src" id="ns_pre_content">
+							<img id="ns_pre_image" alt="ns첫번째게시물이미지"
 							 src=""/>
 						</a>
 					</span><br>
@@ -236,8 +243,6 @@
 				}
 			}
 			
-			console.log(i);
-			
 			if(val == 0){
 				i--;
 				if(i < 0)
@@ -254,6 +259,50 @@
 			location.href="Controller?type=login&path=main";
 		}
 		
+		function setImage(){
+			var pc_content = '<%=pc_content%>'
+			var ps_content = '<%=ps_content%>'
+			var ns_content = '<%=ns_content%>'
+			
+			var i1 = pc_content.indexOf("img");
+			if(i1 >= 0){
+				pc_content = pc_content.substring(i1, pc_content.length);
+				var i2 = pc_content.indexOf("\"");
+				pc_content = pc_content.substring(i2 + 1, pc_content.length);
+				var i3 = pc_content.indexOf("\"");
+				pc_content = pc_content.substring(0, i3);
+				
+				document.getElementById("pc_pre_image").src = pc_content;
+			}else{
+				$("#pc_pre_content").html(pc_content);
+			}
+			
+			i1 = ps_content.indexOf("img");
+			if(i1 >= 0){
+				ps_content = ps_content.substring(i1, ps_content.length);
+				i2 = ps_content.indexOf("\"");
+				ps_content = ps_content.substring(i2 + 1, ps_content.length);
+				i3 = ps_content.indexOf("\"");
+				ps_content = ps_content.substring(0, i3);
+				
+				document.getElementById("ps_pre_image").src = ps_content;
+			}else{
+				$("#ps_pre_content").html(ps_content);
+			}
+			
+			i1 = ns_content.indexOf("img");
+			if(i1 >= 0){
+				ns_content = ns_content.substring(i1, ns_content.length);
+				i2 = ns_content.indexOf("\"");
+				ns_content = ns_content.substring(i2 + 1, ns_content.length);
+				i3 = ns_content.indexOf("\"");
+				ns_content = ns_content.substring(0, i3);
+				
+				document.getElementById("ns_pre_image").src = ns_content;
+			}else{
+				$("#ns_pre_content").html(ns_content);
+			}
+		}
 	</script>
 </body>
 </html>
