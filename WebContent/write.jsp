@@ -50,8 +50,8 @@
 			
 				<tr>
 					<td colspan="2">
-						<input type="button" value="저  장" onclick="writeData()"/>
-						<input type="button" value="취  소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
+						<input type="button" value="저장" onclick="writeData()"/>
+						<input type="button" value="취소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
 					</td>
 				</tr>
 			</tbody>
@@ -62,12 +62,9 @@
 	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
-	$(document).ready(function(){
-        $("#menu_bar").load("menu.jsp");
-     });
 	//썸머 노트
 	$(function(){
-		
+		$("#menu_bar").load("menu.jsp");
 		$("#content").summernote({
 			height: 300,
 			width: 620,

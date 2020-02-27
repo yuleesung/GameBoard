@@ -58,9 +58,14 @@ padding: 0;
 
 .preview{
 	width: 180px;
+	height: 180px;
 	float: left;
 	border: 1px solid green;
 	margin: 0 21px;
+}
+
+.pre_src{
+	text-overflow: ellipsis;
 }
 
 .main_boards{

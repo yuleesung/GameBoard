@@ -23,7 +23,7 @@ if(path==null)
 	<div class="main_logo"> <!-- 로고 이미지 -->
 		<span>
 			<a href="Controller?type=main"><img alt="메인로고" 
-				src="images/linkedin_profile_image.png"/></a>
+				src="css/images/linkedin_profile_image.png"/></a>
 		</span>
 	</div>
 
@@ -33,12 +33,12 @@ if(path==null)
 				<tbody>
 					<tr>
 						<td>
-							<input type="text" id="s_id" name="s_id" placeholder="아이디"/>
+							<input type="text" id="s_id" name="s_id" placeholder="아이디" onkeypress="enterkey(this.form)"/>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="password" id="s_pw" name="s_pw" placeholder="비밀번호"/>
+							<input type="password" id="s_pw" name="s_pw" placeholder="비밀번호" onkeypress="enterkey(this.form)"/>
 						</td>
 					</tr>
 					<tr>
@@ -85,39 +85,9 @@ if(path==null)
 <script type="text/javascript">
 		$(function(){
 			$("#login_btn").click(function(){ /* 로그인 버튼 */
-				var id = $("#s_id").val();
-				var pw = $("#s_pw").val();
-				
-				/* 유효성 검사 */
-				if(id.trim().length <= 0){
-					alert("아이디를 입력하세요");
-					id.focus();
-					return;
-				}
-				if(pw.trim().length <= 0){
-					alert("비밀번호를 입력하세요");
-					pw.focus();
-					return;
-				}
-				
-				var param = "type=login&id="+id+"&pw="+pw;
-				
-				$.ajax({
-					url: "Controller",
-					type: "POST",
-					data: param,
-					dataType: "json"
-				}).done(function(data){
-					if(data.res=="ok"){
-						document.login_form.submit();
-					}else{
-						alert("로그인에 실패했습니다");
-					}
-
-				}).fail(function(err){
-					console.log(err);
-				});
+				loginlogin();
 			});
+			
 				
 			$("#main_btn").click(function(){ /* 이전으로 버튼 */
 				location.href="Controller?type=main";
@@ -127,6 +97,47 @@ if(path==null)
 				location.href="registryPage.jsp";
 			});
 		});	/* 끝 */
+		
+		function enterkey(frm) { /* 엔터버튼 눌렀을 때 진입 */
+			if(window.event.keyCode==13){
+				loginlogin();
+			}
+		}
+		
+		function loginlogin() { /* 로그인 동작하는 기능 */
+			var id = $("#s_id").val();
+			var pw = $("#s_pw").val();
+			
+			/* 유효성 검사 */
+			if(id.trim().length <= 0){
+				alert("아이디를 입력하세요");
+				id.focus();
+				return;
+			}
+			if(pw.trim().length <= 0){
+				alert("비밀번호를 입력하세요");
+				pw.focus();
+				return;
+			}
+			
+			var param = "type=login&id="+id+"&pw="+pw;
+			
+			$.ajax({
+				url: "Controller",
+				type: "POST",
+				data: param,
+				dataType: "json"
+			}).done(function(data){
+				if(data.res=="ok"){
+					document.login_form.submit();
+				}else{
+					alert("로그인에 실패했습니다");
+				}
+
+			}).fail(function(err){
+				console.log(err);
+			});
+		}
 </script>
 </body>
 </html>
