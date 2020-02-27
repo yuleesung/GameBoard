@@ -95,6 +95,7 @@
 	<div id="bbs">
 		<table>
 			<%
+				
 				String category = (String)request.getAttribute("category");
 				String s_category = (String)request.getAttribute("s_category");
 			%> 
@@ -174,7 +175,7 @@
 						}else{
 						%>
 							<input type = "button" value = "글쓰기" id="write_bt"
-							onclick = "javascript:location.href='Controller?type=login&path=write'"/>	
+							onclick = "javascript:location.href='Controller?type=login&path=write&category=<%=category%>&cPage=<%=cPage%>'"/>	
 						<%	
 						}
 						%>	
