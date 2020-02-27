@@ -96,8 +96,9 @@
 		<table>
 			<%
 				String category = (String)request.getAttribute("category");
+				String s_category = (String)request.getAttribute("s_category");
 			%>
-			<caption><%=category %> 게시판 제목</caption>
+			<caption><%=s_category %> 게시판  </caption>
 			<thead>
 				<tr class="title">
 					<th class = "no">No.</th>	

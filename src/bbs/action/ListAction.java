@@ -15,6 +15,36 @@ public class ListAction implements MidAction {
 	
 				//카테고리 받아야함
 				String category = request.getParameter("category");
+				String s_category = null; 
+				
+				switch(category) {
+				
+					case "news":
+						s_category = "뉴스";
+						break;
+					case "db": 
+						s_category = "게임정보";
+						break;
+					case "free":
+						s_category = "자유";
+						break;
+					case "qa":
+						s_category = "Q&A";
+						break;
+					case "pc":
+						s_category = "PC";
+						break;
+					case "ps":
+						s_category = "PlayStation";
+						break;
+					case "ns":
+						s_category = "Nintendo Switch";
+						break;	
+				}
+				
+				
+				
+				
 		
 				Paging page = new Paging();
 				
@@ -33,6 +63,7 @@ public class ListAction implements MidAction {
 					String.valueOf(page.getBegin()), String.valueOf(page.getEnd()), category);
 				
 				request.setAttribute("category", category);
+				request.setAttribute("s_category", s_category);
 				request.setAttribute("ar", ar);
 				request.setAttribute("cPage", cPage);
 				request.setAttribute("page", page);
