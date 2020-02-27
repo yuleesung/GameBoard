@@ -54,7 +54,7 @@
 					<span class="thum_img">
 						<a href="" class="pre_src" id="pc_pre_content">
 							<img id="pc_pre_image" alt="pc첫번째게시물이미지"
-							 src=""/>
+							 src="" class="pre_img"/>
 						</a>
 					</span><br>
 					<span class="writer"><%=ar_pc[0].getBmvo().getM_name() %></span>
@@ -81,7 +81,7 @@
 					<span class="thum_img">
 						<a href="" class="pre_src" id="ps_pre_content">
 							<img id="ps_pre_image" alt="ps첫번째게시물이미지"
-							 src=""/>
+							 src="" class="pre_img"/>
 						</a>
 					</span><br>
 					<span class="writer"><%=ar_ps[0].getBmvo().getM_name() %></span>
@@ -108,7 +108,7 @@
 					<span class="thum_img">
 						<a href="" class="pre_src" id="ns_pre_content">
 							<img id="ns_pre_image" alt="ns첫번째게시물이미지"
-							 src=""/>
+							 src="" class="pre_img"/>
 						</a>
 					</span><br>
 					<span class="writer"><%=ar_ns[0].getBmvo().getM_name() %></span>
@@ -190,31 +190,14 @@
 		
 		
 		<!-- 하단영역 시작 -->
-		<div class="footer">
-			<div class="footer_area">
-				<ul class="foot_guide">
-					<li><a href="">개인정보취급방침</a></li>
-					<li><a href="">웹회원 이용약관</a></li>
-					<li><a href="">책임한계와 법적고지</a></li>
-					<li><a href="">이메일 무단수집 거부</a></li>
-				</ul>
-				<address>
-				 서울시 중구 을지로 몇가 번지
-				 대표이사: ㅁㄴㅇㄹ 
-				 고객상담: 국번없이 114 혹은 
-				 02-1234-1234 (평일 09:00~17:00)
-				</address> 
-				<p class="copyright">
-					Copyright (c) 2020 어쩌구
-				</p>
-			</div>
-		</div>
+		<div id="footer" class="footer"></div>
 		<!-- 하단영역 끝 -->
 	</div>
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 	        $("#menu_bar").load("menu.jsp");
+	        $("#footer").load("footer.jsp");
 	     });
 		
 		function search(){

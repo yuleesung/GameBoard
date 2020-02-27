@@ -68,6 +68,11 @@ padding: 0;
 	text-overflow: ellipsis;
 }
 
+.pre_img{
+	width: 100px;
+	height: 80px;
+}
+
 .main_boards{
 	width:673px;
 	height:200px;
