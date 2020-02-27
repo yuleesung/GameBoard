@@ -61,7 +61,7 @@ public class ListAction implements MidAction {
 				request.setAttribute("category", category);
 				request.setAttribute("s_category", s_category);
 				request.setAttribute("ar", ar);
-				request.setAttribute("cPage", cPage);
+				request.setAttribute("cPage", String.valueOf(page.getNowPage()));
 				request.setAttribute("page", page);
 				
 				return "/list.jsp";
