@@ -42,10 +42,6 @@ public class ListAction implements MidAction {
 						break;	
 				}
 				
-				
-				
-				
-		
 				Paging page = new Paging();
 				
 				page.setTotalRecord(BbsDAO.getCount(category));

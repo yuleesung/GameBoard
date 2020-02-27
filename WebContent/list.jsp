@@ -97,7 +97,7 @@
 			<%
 				String category = (String)request.getAttribute("category");
 				String s_category = (String)request.getAttribute("s_category");
-			%>
+			%> 
 			<caption><%=s_category %> 게시판  </caption>
 			<thead>
 				<tr class="title">
