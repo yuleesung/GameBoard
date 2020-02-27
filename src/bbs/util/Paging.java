@@ -19,6 +19,9 @@ public class Paging {
 	}
 
 	public int getNowPage() {
+		if(nowPage >= totalPage)
+			nowPage = totalPage;
+		
 		return nowPage;
 	}
 
