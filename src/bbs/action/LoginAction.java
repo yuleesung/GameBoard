@@ -29,7 +29,7 @@ public class LoginAction implements MidAction {
 			HttpSession session = request.getSession();
 			request.getSession(); session.setAttribute("mvo", mvo);
 			 
-			viewPath = "login.jsp";
+			viewPath = "/login.jsp";
 		}
 
 		return viewPath;

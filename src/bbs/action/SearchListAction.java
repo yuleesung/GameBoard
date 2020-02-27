@@ -41,8 +41,6 @@ public class SearchListAction implements MidAction {
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("page", page);
 		
-		System.out.println(cnt);
-		
 		
 		return "/searchList.jsp";
 	}
