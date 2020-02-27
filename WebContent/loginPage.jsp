@@ -8,18 +8,23 @@
 <title>Insert title here</title>
 <style type="text/css">
 #login_div{
-	width: 300px;
-	border: 1px solid black;
+	border: 1px solid red;
+	width:673px;
+	margin:auto;
 	}
+	
 </style>
 </head>
 <body>
 <%
 String path = (String)request.getAttribute("path");
+String cPage = (String)request.getAttribute("cPage");
+String category = (String)request.getAttribute("category");
 
 if(path==null)
 	path = "main";
 %>
+<div id="wrap">
 	<div id="login_div"> <!-- 로그인 화면영역 -->
 		<form name="login_form" action="Controller" method="post">
 			<table>
@@ -41,27 +46,31 @@ if(path==null)
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<input type="button" id="login_btn" value="로그인"/>
-							<input type="button" id="main_btn" value="이전으로"/>			
+						<td colspan="2">
+							<input type="button" id="login_btn" value="로그인"/>			
 						</td>
-						<td>
-							<input type="button" id="reg_btn" value="회원가입"/>			
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a id="main_btn">이전으로</a>
+							<a id="reg_btn">회원가입</a>		
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<input type="hidden" id="type" name="type" value="<%=path %>"/> <!-- path로 변경해야 함 -->
+			<input type="hidden" name="cPage" value="<%=cPage %>"/>
+			<input type="hidden" name="category" value="<%=category %>"/>
 		</form>
 	</div>
-
+</div>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
 			$("#login_btn").click(function(){ /* 로그인 버튼 */
 				var id = $("#s_id").val();
 				var pw = $("#s_pw").val();
-				
+				var type = $("#type").val();
 				/* 유효성 검사 */
 				if(id.trim().length <= 0){
 					alert("아이디를 입력하세요");
@@ -75,7 +84,6 @@ if(path==null)
 				}
 				
 				var param = "type=login&id="+id+"&pw="+pw;
-				var type = $("#type").val();
 				
 				$.ajax({
 					url: "Controller",
@@ -95,7 +103,7 @@ if(path==null)
 			});
 				
 			$("#main_btn").click(function(){ /* 이전으로 버튼 */
-				location.href="Controller?type=main";
+				location.href="Controller?type="+type;
 			});
 					
 			$("#reg_btn").click(function(){ /* 회원가입 버튼 */

@@ -17,8 +17,16 @@ public class LoginAction implements MidAction {
 		// post방식일 땐, application or encType..
 		String viewPath = "/loginPage.jsp";
 		
+		
+		String path = request.getParameter("path");
+		String cPage = request.getParameter("cPage");
+		String category = request.getParameter("category");
+		
 		if(c_type == null) { // get방식 요청
-
+			request.setAttribute("path", path);
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("category", category);
+			
 		}else if(c_type.startsWith("application")) { // post방식 요청
 			// 로그인 액션
 			String id = request.getParameter("id");
@@ -28,10 +36,14 @@ public class LoginAction implements MidAction {
 			
 			HttpSession session = request.getSession();
 			request.getSession(); session.setAttribute("mvo", mvo);
-			 
+			
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("category", category);
+			
 			viewPath = "/login.jsp";
 		}
-
+	
+		
 		return viewPath;
 	}
 
