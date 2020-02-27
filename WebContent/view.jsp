@@ -76,7 +76,7 @@
 					<th>Title : </th>
 					<td><%=vo.getSubject() %></td>
 					<th>Date : </th>
-					<td><%=vo.getWrite_date() %></td>
+					<td><%=vo.getWrite_date().substring(0,10) %></td>
 				</tr>
 				<tr>
 					<th>Writer : </th>
@@ -137,7 +137,7 @@
 			<span>
 			<hr>
 			<b>이름:</b>&nbsp;<%=cvo.getBmvo().getM_name() %>&nbsp;&nbsp;&nbsp;
-			<b>날짜:</b>&nbsp;<%=cvo.getWrite_date() %><br/>
+			<b>날짜:</b>&nbsp;<%=cvo.getWrite_date().substring(0,19) %><br/>
 			<b>내용:</b>&nbsp;<%=cvo.getC_content() %><br>
 			<hr>
 			</span>
@@ -204,13 +204,19 @@
 	}
 	
 	function edit(){
-		document.frm.type.value = "edit";
-		document.frm.submit();
+		var chk = confirm("수정 하시겠습니까?");
+		if(chk){
+			document.frm.type.value = "edit";
+			document.frm.submit();
+		}
 	}
 	
 	function del(){
-		document.frm.type.value = "delete";
-		document.frm.submit();
+		var chk = confirm("삭제 하시겠습니까?");
+		if(chk){
+			document.frm.type.value = "delete";
+			document.frm.submit();
+		}
 	}
 	
 	function goLogin(b_idx, cPage, category){
