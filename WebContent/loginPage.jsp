@@ -16,6 +16,9 @@
 <body>
 <%
 String path = (String)request.getAttribute("path");
+
+if(path==null)
+	path = "main";
 %>
 	<div id="login_div"> <!-- 로그인 화면영역 -->
 		<form name="login_form" action="Controller" method="post">
@@ -48,7 +51,7 @@ String path = (String)request.getAttribute("path");
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" id="type" name="type" value="main"/> <!-- path로 변경해야 함 -->
+			<input type="hidden" id="type" name="type" value="<%=path %>"/> <!-- path로 변경해야 함 -->
 		</form>
 	</div>
 
