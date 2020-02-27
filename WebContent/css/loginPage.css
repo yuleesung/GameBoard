@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+
+body{
+	background: #C6E5F3;
+}
+#wrap{
+	width: 674px;
+	margin: auto;	
+}
+#login_table{
+	position: relative;
+	width: 674px;
+	margin-left: 0;
+}
+img{
+	width: 400px;
+	height: 300px;
+	margin-left: 130px;
+}
+#main_btn:hover,#reg_btn:hover {
+	color: black;
+	cursor: pointer;
+	}
+#main_btn,#reg_btn{
+	color: #9baec8;
+	text-align: center;
+	}	
+#login_btn{
+	width:405px;
+	height: 60px;
+	font-size: 15px;
+	background: #2b90d9;
+	}
+#s_id,#s_pw{
+	width:400px;
+	height: 40px;
+	font-size: 20px;
+	}
+#login_form td{
+	text-align: center;
+	height: 70px;
+	width: 400px;
+	margin-left: 0;
+	}
