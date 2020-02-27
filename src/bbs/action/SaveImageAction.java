@@ -16,6 +16,11 @@ public class SaveImageAction implements MidAction{
 		
 		ServletContext application = request.getServletContext();
 		String path = application.getRealPath("/editor_img");
+		
+		File filepath = new File(path);
+		if(!filepath.exists()) {
+			filepath.mkdirs();
+		}
 		// System.out.println(path);
 		MultipartRequest mr = null;
 		try {
