@@ -239,7 +239,7 @@ public class BbsDAO {
 	// 전체게시판 검색한 후 총 게시물 수
 	public static int getSearchAllCount(String subject) {
 		SqlSession ss = FactoryService.getFactory().openSession();
-		int total = ss.selectOne("bbs.searchAllCount", subject);
+		int total = ss.selectOne("bbs.getSearchAllCount", subject);
 		ss.close();
 		return total;
 	}
