@@ -13,6 +13,14 @@ import mybatis.vo.BoardVO;
 
 public class BbsDAO {
 	
+	// 회원 아이디만 빼오기
+	public static String getID(String m_idx) {
+		SqlSession ss = FactoryService.getFactory().openSession();
+		String id = ss.selectOne("bbs.getID", m_idx);
+		ss.close();
+		return id;
+	}
+	
 	// 회원 로그인
 	public static BoardMemberVO login(String m_id, String pw) {
 		Map<String, String> map = new HashMap<String, String>();
