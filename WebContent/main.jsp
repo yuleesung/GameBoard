@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Main</title>
 <link type="text/css" rel="stylesheet" href="css/main.css">
+
 </head>
 <%
 	Object obj1 = request.getAttribute("ar_pc"); 
@@ -19,55 +20,20 @@
 	
 	Object obj = session.getAttribute("mvo");
 %>
-<body>
+<body bgcolor="#c6e5f3">
 	<div id="wrap">
-		<!-- 메인 로고 이미지 시작 -->
-		<div class="main_logo center">
-			<span>
-				<a href="Controller?type=main"><img alt="메인로고" src=""/></a>
-			</span>
-		</div>
-		<!-- 메인 로고 끝 -->
-		
-		<!-- 상위 이미지, 로그인 메뉴 시작 -->
-		<%
-		if(obj != null){
-			BoardMemberVO mvo = (BoardMemberVO)obj;
-		%>
-		<div class="center">
-			<div class="main_bar">
-				<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
-				<a href="javascript:location.href='Controller?type=logout'">LOGOUT</a>
-				<input type="text" id="search_value"/>
-				<input type="button" value="검색" onclick="search()"/>
-			</div>
-		</div>
-		<%
-		}else{
-		%>
-		<div class="center">
-			<div class="main_bar">
-				<a href="javascript:location.href='Controller?type=login&path=main'">LOGIN</a>
-				<a href="javascript:location.href='Controller?type=registry&path=main'">Registry</a>
-				<input type="text" id="search_value"/>
-				<input type="button" value="검색" onclick="search()"/>
-			</div>
-		</div>
-		<%
-		}
-		%>
-		<div class="center">
-			<div class="main_img_box">
-				<span id="main_img"><img alt="메인이미지슬라이드" src=""/></span>
-				<span id="left_arrow" onclick="slideImg(0)"><img alt="left_arrow" src="css/images/left_arrow.png" width="50px"/></span>
-				<span id="right_arrow" onclick="slideImg(1)"><img alt="right_arrow" src="css/images/right_arrow.png" width="50px"/></span>
-			</div>
-		</div>
-		<!-- 상위 메뉴 끝 -->
 		
 		<!-- include할 메뉴영역 시작 -->
-		<div id="menu_bar"></div>
+		<div id="menu_bar" class="center"></div>
 		<!-- include할 메뉴영역 끝 -->
+		
+		<!-- 메인 이미지 슬라이드 시작 -->
+		<div class="main_img_box center">
+			<span id="main_img"><img id="main_slide_img" alt="메인이미지슬라이드" src="css/images/main_slide_image_1.png"/></span>
+			<span id="left_arrow" onclick="slideImg(0)"><img alt="left_arrow" src="css/images/left_arrow.png" width="50px"/></span>
+			<span id="right_arrow" onclick="slideImg(1)"><img alt="right_arrow" src="css/images/right_arrow.png" width="50px"/></span>
+		</div>
+		<!-- 메인 이미지 끝 -->
 		
 		<!-- 중간 콘텐츠 시작 -->
 		<div class="center_contents center">
@@ -250,12 +216,44 @@
 		}
 		
 		function slideImg(val){
-			if(val == 0){
-				alert("이미지 배열 감소");
-			}else{
-				alert("이미지 배열 증가")
+			
+			var img = document.getElementById("main_slide_img");
+			
+			var img_src = new Array();
+			img_src[0] = "css/images/main_slide_image_1.png";
+			img_src[1] = "css/images/main_slide_image_2.jpg";
+			img_src[2] = "css/images/main_slide_image_3.png";
+			
+			var i=0;
+			
+			var src = img.src.substring(img.src.indexOf("css"), img.src.length);
+			
+			for(var j=0; j<img_src.length; j++){
+				
+				if(img_src[j] == src){
+					i = j;
+					break;
+				}
 			}
+			
+			console.log(i);
+			
+			if(val == 0){
+				i--;
+				if(i < 0)
+					i = img_src.length-1;
+			}else{
+				i++;
+				if(i > img_src.length-1)
+					i = 0;
+			}
+			img.src = img_src[i];
 		}
+		
+		function goLogin(){
+			location.href="Controller?type=login&path=main";
+		}
+		
 	</script>
 </body>
 </html>

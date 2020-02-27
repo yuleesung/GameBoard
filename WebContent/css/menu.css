@@ -1,9 +1,20 @@
 @charset "UTF-8";
 
+.main_logo{
+	width: 110px;
+	display: inline-block;
+}
+
+.main_bar{
+	text-align:right;
+	width: 560px;
+	display: inline-block;
+	position: absolute;
+}
+
 .nav_menu{
 	width: 674px;
 	height: 48px;
-	margin: 20px auto;
 }
 .gnb{
 	width: 100%;

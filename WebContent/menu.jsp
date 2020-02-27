@@ -6,29 +6,69 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu Bar</title>
+<link type="text/css" rel="stylesheet" href="css/menu.css">
 </head>
 <body>
 <%
 Object o = session.getAttribute("mvo");
 %>
-<div class="nav_menu center">
-	<ul class="gnb">
-		<li><a href="javascript:location.href='Controller?type=list&category=news'"><span class="menu">뉴스</span></a></li>
-		<li><a href="javascript:location.href='Controller?type=list&category=db'"><span class="menu">게임정보</span></a></li>
-		<li><a href="javascript:location.href='Controller?type=list&category=free'"><span class="menu">자유게시판</span></a></li>
-		<li><a href="javascript:location.href='Controller?type=list&category=qa'"><span class="menu">Q&A</span></a></li>
+
+	<!-- 상위 메뉴 시작 -->
+	<div class="main_box center">
+		<!-- 메인 로고 이미지 시작 -->
+		<div class="main_logo center">
+			<span>
+				<a href="Controller?type=main"><img alt="메인로고" src="css/images/logo_transparent_1.png" width="100px"/></a>
+			</span>
+		</div>
+		<!-- 메인 로고 끝 -->
+		
+		<!-- 상위 이미지, 로그인 메뉴 시작 -->
 		<%
 		if(o != null){
+			BoardMemberVO mvo = (BoardMemberVO)o;
 		%>
-			<li><a href="javascript:location.href='Controller?type=myPage'"><span class="menu">마이페이지</span></a></li>
+		<div class="main_bar center">
+			<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
+			<a href="javascript:location.href='Controller?type=logout'">로그아웃</a>
+			<input type="text" id="search_value"/>
+			<input type="button" value="검색" onclick="search()"/>
+		</div>
 		<%
 		}else{
 		%>
-			<li><a href="javascript:goLogin()"><span class="menu">마이페이지</span></a></li>
+		<div class="main_bar center">
+			<a href="javascript:location.href='Controller?type=login&path=main'">로그인</a>
+			<a href="javascript:location.href='Controller?type=registry&path=main'">회원가입</a>
+			<input type="text" id="search_value"/>
+			<input type="button" value="검색" onclick="search()"/>
+		</div>
 		<%
 		}
 		%>
-	</ul>
-</div>
+	</div>
+	<!-- 상위 메뉴 끝 -->
+	
+	<div class="nav_menu center">
+		<!-- 메뉴바 시작 -->
+		<ul class="gnb">
+			<li><a href="javascript:location.href='Controller?type=list&category=news'"><span class="menu">뉴스</span></a></li>
+			<li><a href="javascript:location.href='Controller?type=list&category=db'"><span class="menu">게임정보</span></a></li>
+			<li><a href="javascript:location.href='Controller?type=list&category=free'"><span class="menu">자유게시판</span></a></li>
+			<li><a href="javascript:location.href='Controller?type=list&category=qa'"><span class="menu">Q&A</span></a></li>
+			<%
+			if(o != null){
+			%>
+				<li><a href="javascript:location.href='Controller?type=myPage'"><span class="menu">마이페이지</span></a></li>
+			<%
+			}else{
+			%>
+				<li><a href="javascript:goLogin()"><span class="menu">마이페이지</span></a></li>
+			<%
+			}
+			%>
+		</ul>
+		<!-- 메뉴바 끝 -->
+	</div>
 </body>
 </html>
