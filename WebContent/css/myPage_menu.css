@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+
+.myPage_menu .gnb{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: #2b90d9;
+}
+
+.myPage_menu .gnb li{
+	float: left;
+	width: 110px;
+	height: 100%;
+	margin: 20px;
+	
+}
+.myPage_menu .gnb li a:hover{
+	background: url(images/navigation-hover.png) repeat-x;
+	color: #343434;
+}
+.myPage_menu .gnb li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	text-align: center;
+	font-size: 1.0em;
+	font-weight: bold;
+	line-height: 50px;
+	color: white;
+	background: #2B90D9;
+	margin: 5px;
+	border-radius: 15px;
+}

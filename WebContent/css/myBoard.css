@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+
+.t1 {
+	position:relative;
+	left: 10px;
+	top: 50px;
+	border-collapse: collapse;
+}
+
+.t1 th,.t1 td{
+	font-size: 25px;
+	border-bottom: 1px solid green;
+	
+}

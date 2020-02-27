@@ -8,93 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	#bbs table {
-	    width:580px;
-	    margin-left:10px;
-	    border:1px solid black;
-	    border-collapse:collapse;
-	    font-size:14px;
-	}
-	
-	#bbs table caption {
-	    font-size:20px;
-	    font-weight:bold;
-	    margin-bottom:10px;
-	}
-	
-	#bbs table th,#bbs table td {
-	    text-align:center;
-	    border:1px solid black;
-	    padding:4px 10px;
-	}
-	
-	.no {width:15%}
-	.category {width:15%}
-	.subject {width:25%}
-	.writer {width:15%}
-	.reg {width:20%}
-	.hit {width:10%}
-	.title{background:lightsteelblue}
-	
-	.odd {background:silver}
-	
-	/* paging */
-	
-	table tfoot ol {
-		
-		padding-left: 200px;
-	    list-style:none;
-	}
-	
-	table tfoot ol li {
-	    float:left;
-	    
-	    border: 1px solid red;
-	    margin-right:8px;
-	}
-	
-	table tfoot ol li a {
-	    display:block;
-	    padding:3px 7px;
-	    border:1px solid #00B3DC;
-	    color:#2f313e;
-	    font-weight:bold;
-	}
-	
-	table tfoot ol li a:hover {
-	    background:#00B3DC;
-	    color:white;
-	    font-weight:bold;
-	}
-	
-	.disable {
-	    padding:3px 7px;
-	    border:1px solid silver;
-	    color:silver;
-	}
-	
-	.now {
-	   padding:3px 7px;
-	    border:1px solid #ff4aa5;
-	    background:#ff4aa5;
-	    color:white;
-	    font-weight:bold;
-	}
-	
-	.empty{
-		height: 60px;
-	}
-</style>		
+<link type="text/css" rel="stylesheet" href="css/main.css">
+<link type="text/css" rel="stylesheet" href="css/list.css">
+<link type="text/css" rel="stylesheet" href="css/searchlist.css"/>
 </head>
 <body>
-			
+<div id="wrap">	
+
+
+<div id="menu_bar" class="center"></div>
+
 	<%-- 메뉴들 와야함 --%>
 <%
 String search_val = (String)request.getAttribute("search_val");
 %>
 	<div id="bbs">
-		<table>
+		<table id="searchlist_table">
 			<caption>검색결과 : <%=search_val %></caption>
 			<thead>
 				<tr class="title">
@@ -233,9 +162,18 @@ String search_val = (String)request.getAttribute("search_val");
 					}
 				
 				%>
-							</tbody>
+			</tbody>
 		</table>
 	</div>
-	
+</div>
+<div id="footer" class="footer"></div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#menu_bar").load("menu.jsp");
+    $("#footer").load("footer.jsp");
+ });
+</script>
 </body>
 </html>
