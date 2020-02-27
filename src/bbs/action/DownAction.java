@@ -24,7 +24,7 @@ public class DownAction implements MidAction {
 		
 		String fname = request.getParameter("f_name");
 		
-		String id = BbsDAO.getID(m_idx);
+		String id = BbsDAO.getID(m_idx); 
 		
 		ServletContext application = request.getServletContext();
 		

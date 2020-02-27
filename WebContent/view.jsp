@@ -196,7 +196,7 @@
 		document.frm.f_name.value = fname;
 		document.frm.m_idx.value= m_idx;
 		document.frm.submit();
-	}
+	} 
 	
 	function goList(){
 		document.frm.type.value = "list";
