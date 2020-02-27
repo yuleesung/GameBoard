@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Main</title>
 <link type="text/css" rel="stylesheet" href="css/main.css">
-
+<link type="text/css" rel="stylesheet" href="css/footer.css">
 </head>
 <%
 	Object obj1 = request.getAttribute("ar_pc"); 
@@ -48,19 +48,18 @@
 						ar_pc = (BoardVO[])obj1;
 						pc_content = ar_pc[0].getB_content();
 				%>
-					<span class="subject">
+				<div onclick="goView('<%=ar_pc[0].getB_idx()%>', 'pc')">
+					<span class="subject text_clear">
 						<%=ar_pc[0].getSubject() %>
-					</span><br>
+					</span>
 					<span class="thum_img">
-						<a href="" class="pre_src" id="pc_pre_content">
+						<span class="pre_src" id="pc_pre_content">
 							<img id="pc_pre_image" alt="pc첫번째게시물이미지"
 							 src="" class="pre_img"/>
-						</a>
-					</span><br>
-					<span class="writer"><%=ar_pc[0].getBmvo().getM_name() %></span>
-					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_pc[0].getB_idx()%>&category=pc'">자세히보기</a>
+						</span>
 					</span>
+					<span class="writer text_clear">by <%=ar_pc[0].getBmvo().getM_name() %></span>
+				</div>
 				<%
 					}else{
 				%>
@@ -75,19 +74,18 @@
 						ar_ps = (BoardVO[])obj2;
 						ps_content = ar_ps[0].getB_content();
 				%>
+				<div onclick="goView('<%=ar_ps[0].getB_idx()%>', 'ps')">
 					<span class="subject">
 						<%=ar_ps[0].getSubject() %>
-					</span><br>
+					</span>
 					<span class="thum_img">
-						<a href="" class="pre_src" id="ps_pre_content">
+						<span class="pre_src" id="ps_pre_content">
 							<img id="ps_pre_image" alt="ps첫번째게시물이미지"
 							 src="" class="pre_img"/>
-						</a>
-					</span><br>
-					<span class="writer"><%=ar_ps[0].getBmvo().getM_name() %></span>
-					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ps[0].getB_idx()%>&category=ps'">자세히보기</a>
+						</span>
 					</span>
+					<span class="writer">by <%=ar_ps[0].getBmvo().getM_name() %></span>
+				</div>
 				<%
 					}else{
 				%>
@@ -102,19 +100,18 @@
 						ar_ns = (BoardVO[])obj3;
 						ns_content = ar_ns[0].getB_content();
 				%>
+				<div onclick="goView('<%=ar_ns[0].getB_idx()%>', 'ns')">
 					<span class="subject">
 						<%=ar_ns[0].getSubject() %>
-					</span><br>
+					</span>
 					<span class="thum_img">
-						<a href="" class="pre_src" id="ns_pre_content">
+						<span class="pre_src" id="ns_pre_content">
 							<img id="ns_pre_image" alt="ns첫번째게시물이미지"
 							 src="" class="pre_img"/>
-						</a>
-					</span><br>
-					<span class="writer"><%=ar_ns[0].getBmvo().getM_name() %></span>
-					<span class="more_view">
-						<a href="javascript:location.href='Controller?type=view&b_idx=<%=ar_ns[0].getB_idx()%>&category=ns'">자세히보기</a>
+						</span>
 					</span>
+					<span class="writer">by <%=ar_ns[0].getBmvo().getM_name() %></span>
+				</div>
 				<%
 					}else{
 				%>
@@ -240,6 +237,10 @@
 		
 		function goLogin(){
 			location.href="Controller?type=login&path=main";
+		}
+		
+		function goView(b_idx, category){
+			location.href="Controller?type=view&b_idx="+b_idx+"&category="+category;
 		}
 		
 		function setImage(){

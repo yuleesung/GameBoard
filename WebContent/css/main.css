@@ -59,23 +59,47 @@ padding: 0;
 .preview{
 	width: 190px;
 	height: 160px;
-	background-color: white;
 	float: left;
 	font-size: 14px;
 	margin: 10px 17px;
+	color: gray;
+	background-color: #beddf3;
+	text-decoration: none;
+}
+
+.preview:hover{
+	cursor:pointer;
 	box-shadow: 2px 2px 2px gray;
+	background-color: #56a6e0;
+	color: black;
+
 }
 
 .subject{
-	border:1px solid red;
+	margin: 0;
 	display: block;
 	padding: 10px;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #2b90d9;
 }
 
-.pre_src{s
+.thum_img{
+	height: 70px;
+	padding:10px;
+	display:block;
+	background-color: white;
+}
+
+.writer{
+	margin: 0;
+	height: 17px;
+	display: block;
+	padding: 5px;
+	font-size: 12px;
+	background-color: white;
+}
+
+.pre_src{
 	text-overflow: ellipsis;
 }
 
