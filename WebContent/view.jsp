@@ -91,7 +91,7 @@
 						if(vo.getFile_name() != null &&
 						vo.getFile_name().length() > 4){
 					%>
-					<a href="javascript: fDown('<%=vo.getFile_name()%>')">
+					<a href="javascript: fDown('<%=vo.getFile_name()%>','<%=vo.getBmvo().getM_idx()%>')">
 						<%=vo.getFile_name() %>
 						(<%=vo.getOri_name() %>)
 					</a>
@@ -176,6 +176,7 @@
 	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
 		<input type="hidden" name="f_name"/>
+		<input type="hidden" name="m_idx"/>
 		<input type="hidden" name="b_idx" value="<%=vo.getB_idx() %>">
 		<input type="hidden" name="category" value="<%=category%>"/>
 		<%
@@ -190,9 +191,10 @@
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
 
-	function fDown(fname){
+	function fDown(fname,m_idx){
 		document.frm.type.value = "down";
 		document.frm.f_name.value = fname;
+		document.frm.m_idx.value= m_idx;
 		document.frm.submit();
 	}
 	
