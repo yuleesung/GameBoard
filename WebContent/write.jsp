@@ -13,49 +13,52 @@
 
 </head>
 <body>
-	<div id="menu_bar" class="center"></div>
-	<div id="bbs">
-		<header>
-			<h1>게시글 쓰기</h1>
-		</header>
-		<form action="Controller?type=write" method="post" encType="multipart/form-data">
-			<input type="hidden" name="category" value="${requestScope.category }"/>
-			<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
-			<table id="t1">
-				<caption> 글 쓰기 </caption>
+	<div id="wrap">
+		<div id="menu_bar" class="center"></div>
+		<div id="bbs">
+			<header>
+				<h1>게시글 쓰기</h1>
+			</header>
+			<form action="Controller?type=write" method="post" encType="multipart/form-data">
+				<input type="hidden" name="category" value="${requestScope.category }"/>
+				<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
+				<table id="t1">
+					<caption> 글 쓰기 </caption>
+					<tbody>
+						<tr>
+							<th>제목:</th>
+							<td><input type="text" name="subject" id="subject" size="40"/></td>
+						</tr>
+						<tr>
+							<th>첨부파일:</th>
+							<td><input type="file" name="file" id="file"/></td>
+						</tr>	
+					</tbody>
+				</table>
+				<input type="hidden" name="content" id="str"/>
+			</form>
+		
+			<table id="t2">
 				<tbody>
 					<tr>
-						<th>제목:</th>
-						<td><input type="text" name="subject" id="subject" size="40"/></td>
+						<th colspan="2">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 					</tr>
 					<tr>
-						<th>첨부파일:</th>
-						<td><input type="file" name="file" id="file"/></td>
-					</tr>	
+						<td colspan="2"><textarea name="content" cols="50" 
+								rows="8" id="content"></textarea>
+						</td>
+					</tr>
+				
+					<tr>
+						<td colspan="2">
+							<input type="button" value="저장" onclick="writeData()"/>
+							<input type="button" value="취소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
+						</td>
+					</tr>
 				</tbody>
-			</table>
-			<input type="hidden" name="content" id="str"/>
-		</form>
-	
-		<table id="t2">
-			<tbody>
-				<tr>
-					<th colspan="2">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</th>
-				</tr>
-				<tr>
-					<td colspan="2"><textarea name="content" cols="50" 
-							rows="8" id="content"></textarea>
-					</td>
-				</tr>
-			
-				<tr>
-					<td colspan="2">
-						<input type="button" value="저장" onclick="writeData()"/>
-						<input type="button" value="취소" onclick="cancelWrite('${requestScope.category}', '${requestScope.cPage }')"/>
-					</td>
-				</tr>
-			</tbody>
-		</table>	
+			</table>	
+		</div>
+		<div id="footer" class="footer"></div>
 	</div>
 	
 	<script src="js/jquery-3.4.1.min.js"></script>
@@ -65,6 +68,8 @@
 	//썸머 노트
 	$(function(){
 		$("#menu_bar").load("menu.jsp");
+		$("#footer").load("footer.jsp");
+		
 		$("#content").summernote({
 			height: 300,
 			width: 620,
