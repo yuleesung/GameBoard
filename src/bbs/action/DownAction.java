@@ -9,27 +9,38 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import mybatis.dao.BbsDAO;
+import mybatis.vo.BoardMemberVO;
 
 public class DownAction implements MidAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-	
-
+		
+		String m_idx = request.getParameter("m_idx");
 		String fname = request.getParameter("f_name");
+		
+		String id = BbsDAO.getID(m_idx);
 		
 		ServletContext application = request.getServletContext();
 		
 		
 		String path = application.getRealPath(
-			"/upload/"+fname);
+			"/upload/"+id+"/"+fname);
+		System.out.println(path);
 		
 		File f = new File(path);
+		System.out.println(f);
+		
 		
 		if(f.exists()){
 			
-			byte[] buf = new byte[2048]; //바구니
+			System.out.println("으아아앙");
+			
+			byte[] buf = new byte[2048];
 			int len = -1;
 			
 			BufferedInputStream bis = null;
@@ -49,6 +60,7 @@ public class DownAction implements MidAction {
 					new String(fname.getBytes(), "8859_1"));
 				
 				fis = new FileInputStream(f);
+				System.out.println(fis);
 				bis = new BufferedInputStream(fis);
 				
 				
