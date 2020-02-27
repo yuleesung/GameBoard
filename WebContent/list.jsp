@@ -8,84 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/list.css">	
 <style type="text/css">
-	#bbs table {
-	    width:580px;
-	    margin-left:10px;
-	    border:1px solid black;
-	    border-collapse:collapse;
-	    font-size:14px;
-	    
-	    
-	}
+
+
 	
-	#bbs table caption {
-	    font-size:20px;
-	    font-weight:bold;
-	    margin-bottom:10px;
-	}
 	
-	#bbs table th,#bbs table td {
-	    text-align:center;
-	    border:1px solid black;
-	    padding:4px 10px;
-	}
-	
-	.no {width:15%}
-	.subject {width:30%}
-	.writer {width:20%}
-	.reg {width:20%}
-	.hit {width:15%}
-	.title{background:lightsteelblue}
-	
-	.odd {background:silver}
-	
-	/* paging */
-	
-	table tfoot ol {
-		
-		padding-left: 200px;
-	    list-style:none;
-	}
-	
-	table tfoot ol li {
-	    float:left;
-	    
-	    border: 1px solid red;
-	    margin-right:8px;
-	}
-	
-	table tfoot ol li a {
-	    display:block;
-	    padding:3px 7px;
-	    border:1px solid #00B3DC;
-	    color:#2f313e;
-	    font-weight:bold;
-	}
-	
-	table tfoot ol li a:hover {
-	    background:#00B3DC;
-	    color:white;
-	    font-weight:bold;
-	}
-	
-	.disable {
-	    padding:3px 7px;
-	    border:1px solid silver;
-	    color:silver;
-	}
-	
-	.now {
-	   padding:3px 7px;
-	    border:1px solid #ff4aa5;
-	    background:#ff4aa5;
-	    color:white;
-	    font-weight:bold;
-	}
-	
-	.empty{
-		height: 60px;
-	}
 </style>		
 </head>
 <body>
@@ -166,6 +94,7 @@
 						String cPage = (String)request.getAttribute("cPage");
 						
 						
+						
 						if(bvo != null){
 						%>
 							<input type = "button" value = "글쓰기" id="write_bt"
@@ -238,6 +167,10 @@
 							</tbody>
 		</table>
 	</div>
+	<script>
+	
+	
+	</script>
 	
 </body>
 </html>

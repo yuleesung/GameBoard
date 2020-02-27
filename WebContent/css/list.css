@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+	@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,700);
+
+	#bbs table {
+	    width:580px;
+	   	margin: auto;
+	    
+	    border-collapse:collapse;
+	    font-size:14px;
+	}
+	
+	tbody tr:hover{ 
+		background-color:#fdf7df;
+
+	}
+	
+	#bbs table caption {
+		margin: auto;
+		width:580px;
+	    font-size:20px;
+	    font-weight:bold;
+	    margin-bottom:10px;
+	}
+	
+	#bbs table th,#bbs table td {
+	    text-align:center;
+	    border:1px solid #eeeeee;
+	    padding:4px 10px;
+	}
+	
+	.no {width:15%}
+	.subject {width:30%}
+	.writer {width:20%}
+	.reg {width:20%}
+	.hit {width:15%}
+	
+	
+	input#write_bt{
+		width:100px;
+	    background-color: #2b90d9;
+	    border: none;
+	    color:#fff;
+	    padding: 15px 0;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 15px;
+	    margin: 4px;
+	    cursor: pointer;
+		border-radius:10px;
+	}
+	
+	input#write_bt:hover{
+		background-color: #8EC0E4;
+	}
+	
+
+	body{
+		background-color: #C6E5F3;
+	}
+	
+	tbody tr, tbody td{
+		background-color: white;
+	}
+	
+	
+	
+	th{
+		height: 40px;
+		color: #353866;
+		font-family: ‘Roboto’, ‘Spoqa Han Sans’, ‘Spoqa Han Sans JP’, ‘Sans-serif’; 
+		font-size: 18px;
+		font-weight: 700;
+		background-color: #7f9eb2;
+		
+	}
+		
+	/* paging */
+	
+	table tfoot td{
+		background: white;
+	}
+	
+	
+	table tfoot ol {
+		
+		padding-left: 200px;
+	    list-style:none;
+	}
+	
+	table tfoot ol li {
+	    float:left;
+	   	margin-bottom:10px;
+	    margin-right:8px;
+	}
+	
+	table tfoot ol li a {
+	    display:block;
+	    padding:3px 7px;
+	    border:1px solid #00B3DC;
+	    color:#2f313e;
+	    font-weight:bold;
+	}
+	
+	table tfoot ol li a:hover {
+	    background:#00B3DC;
+	    color:white;
+	    font-weight:bold;
+	}
+	
+	.disable {
+	    padding:3px 7px;
+	    border:1px solid silver;
+	    color:silver;
+	}
+	
+	.now {
+	   padding:3px 7px;
+	    border:1px solid #ff4aa5;
+	    background:#ff4aa5;
+	    color:white;
+	    font-weight:bold;
+	}
+	
+	.empty{
+		height: 60px;
+	}
+	
