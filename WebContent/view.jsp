@@ -246,7 +246,7 @@
 			var msg = "";
 			for(var i=0; i<data.length; i++){
 				msg += "<span><hr>";
-				msg += "<b>이름:</b>&nbsp;"+ data[i].bmvo.m_name +"&nbsp;&nbsp;&nbsp;";
+				msg += "<b>이름:</b>&nbsp;"+ data[i].m_name +"&nbsp;&nbsp;&nbsp;";
 				msg += "<b>날짜:</b>&nbsp;"+ data[i].write_date +"<br/>";
 				msg += "<b>내용:</b>&nbsp;"+ data[i].content +"<br/></span>";
 			}
@@ -254,7 +254,7 @@
 			$("#answer").html(msg);
 			comm.value = "";
 		}).fail(function(err) {
-			console.log("err");
+			console.log(err);
 		});
 	}
 
