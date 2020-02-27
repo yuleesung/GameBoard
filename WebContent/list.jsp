@@ -174,7 +174,7 @@
 						}else{
 						%>
 							<input type = "button" value = "글쓰기" id="write_bt"
-							onclick = "javascript:location.href='Controller?type=login'"/>	
+							onclick = "javascript:location.href='Controller?type=login&path=write'"/>	
 						<%	
 						}
 						%>	
