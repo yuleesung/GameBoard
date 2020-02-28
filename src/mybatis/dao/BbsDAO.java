@@ -217,7 +217,21 @@ public class BbsDAO {
 		return chk;
 	}
 	
-	
+	// 댓글 수정
+	public static boolean updateComment(BoardMemberVO vo) {
+		boolean chk = false;
+		SqlSession ss = FactoryService.getFactory().openSession();
+		int cnt = ss.update("bbs.updateComment", vo);
+		if(cnt > 0) {
+			ss.commit();
+			chk = true;
+		}else {
+			ss.rollback();
+		}
+		ss.close();
+		
+		return chk;
+	}
 	
 	// 조회 수 올리는 기능 - 인자로 받은 b_idx의 게시물 hit를 증가하는 기능
 	public static boolean hit(String b_idx) {

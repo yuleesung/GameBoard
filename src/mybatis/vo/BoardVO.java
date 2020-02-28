@@ -1,8 +1,9 @@
 package mybatis.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BoardVO {
+public class BoardVO implements Serializable {
 
 	private String b_idx, subject, b_content, file_name, ori_name, write_date, ip, hit, status, b_category, m_idx;
 	
