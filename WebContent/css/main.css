@@ -124,17 +124,38 @@ padding: 0;
 .main_boards{
 	width:673px;
 	height:200px;
-	border: 1px solid red;
+	background-color: #f0f5f9;
+}
+
+.board *{
+	text-decoration: none;
 }
 
 .board{
-	width: 180px;
+	width: 190px;
 	float: left;
-	border:1px solid red;
-	margin: 0 21px;
+	margin: 10px 17px;
+	font-size: 14px;
 }
 
-.fclear{
+.board thead a{
+	font-weight: bold;
+}
+.board a:link{
+	color: #124265;
+}
+.board a:visited{
+	color: #124265;
+}
+.board a:hover{
+	text-decoration: underline;
 }
 
-
+.board td{
+	background-color: white;
+	margin-bottom: 2px;
+	padding: 8px 5px 8px 5px;
+}
+.board td:hover{
+	background-color: #f0f5f9;
+}

@@ -24,7 +24,7 @@
 	String ps_content = null;
 	String ns_content = null;
 %>
-<body bgcolor="#f7f7f7" onload="setImage()">
+<body onload="setImage()">
 	<div id="wrap">
 		
 		<!-- include할 메뉴영역 시작 -->
@@ -129,8 +129,7 @@
 				<!-- 공지사항 -->
 				<table class="board">
 					<thead>
-						<th>PC</th>
-						<td><a href="javascript:location.href='Controller?type=list&category=pc'">더보기</a></td>
+						<td><a href="javascript:location.href='Controller?type=list&category=pc'">PC 게시판 ▶</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -138,7 +137,7 @@
 							for(BoardVO vo : ar_pc){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=pc'"><%=vo.getSubject() %></a></td>
+							<td><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=pc'"><b>· </b><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}
@@ -148,8 +147,7 @@
 				</table>
 				<table class="board">
 					<thead>
-						<th>PlayStation</th>
-						<td><a href="javascript:location.href='Controller?type=list&category=ps'">더보기</a></td>
+						<td><a href="javascript:location.href='Controller?type=list&category=ps'">PlayStation 게시판 ▶</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -157,7 +155,7 @@
 							for(BoardVO vo : ar_ps){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ps'"><%=vo.getSubject() %></a></td>
+							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ps'"><b>· </b><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}
@@ -167,8 +165,7 @@
 				</table>
 				<table class="board">
 					<thead>
-						<th>NintendoSwitch</th>
-						<td><a href="javascript:location.href='Controller?type=list&category=ns'">더보기</a></td>
+						<td><a href="javascript:location.href='Controller?type=list&category=ns'">NintendoSwitch 게시판 ▶</a></td>
 					</thead>
 					<tbody>
 						<%
@@ -176,7 +173,7 @@
 							for(BoardVO vo : ar_ns){
 						%>
 						<tr>
-							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ns'"><%=vo.getSubject() %></a></td>
+							<td colspan="2"><a href="javascript:location.href='Controller?type=view&b_idx=<%=vo.getB_idx()%>&category=ns'"><b>· </b><%=vo.getSubject() %></a></td>
 						</tr>
 						<%
 							}
