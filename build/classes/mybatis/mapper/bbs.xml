@@ -154,6 +154,13 @@
 		update board_comment_t set status = 1 where c_idx = #{c_idx}
 	</update>
 	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="mybatis.vo.BoardMemberVO">
+		update board_comment_t 
+		set c_content = #{c_content}, write_date = sysdate, ip = #{ip}
+		where c_idx = #{c_idx} 
+	</update>
+	
 	<!-- 조회수를 올려주는 기능 -->
 	<update id="hit" parameterType="String">
 		update board_t set hit = hit+1 where b_idx = #{b_idx}
