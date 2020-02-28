@@ -75,7 +75,7 @@
 	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
 	<script>
-	//썸머 노트
+	//썸머 노트//
 	$(function(){
 		$("#menu_bar").load("menu.jsp");
 		$("#footer").load("footer.jsp");

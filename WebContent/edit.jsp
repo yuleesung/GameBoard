@@ -89,7 +89,7 @@
 		
 		</div>
 		<div>
-			<form action="frm" method="post">
+			<form name="frm" method="post" action="Controller">
 				<input type="hidden" name="type" value="logout"/>
 				<input type="hidden" name="path" value="view"/>
 				<input type="hidden" name="b_idx" value="${param.b_idx }"/>
