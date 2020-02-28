@@ -8,9 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="css/main.css">
-<link type="text/css" rel="stylesheet" href="css/list.css">
-<link type="text/css" rel="stylesheet" href="css/searchlist.css"/>
+<link type="text/css" rel="stylesheet" href="css/list.css"/>
+<link type="text/css" rel="stylesheet" href="css/footer.css"/>
 </head>
 <body>
 <div id="wrap">	
@@ -27,12 +26,12 @@ String search_val = (String)request.getAttribute("search_val");
 			<caption>검색결과 : <%=search_val %></caption>
 			<thead>
 				<tr class="title">
-					<th class = "no">No.</th>
-					<th class = "category">Category</th>	
-					<th class = "title">title</th>
-					<th class = "writer">writer</th>
-					<th class = "reg">date</th>
-					<th class = "hit">hit</th>
+					<th class = "no">번호</th>
+					<th class = "category">카테고리</th>	
+					<th class = "title">제목</th>
+					<th class = "writer1">글쓴이</th>
+					<th class = "reg">날짜</th>
+					<th class = "hit">조회수</th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -62,7 +61,7 @@ String search_val = (String)request.getAttribute("search_val");
 <%			
 								}else{
 %>
-							<li><a href="Controller?type=searchlist&cPage=<%=i%>"><%=i %></a></li>
+							<li><a href="Controller?type=searchlist&cPage=<%=i%>&search_val=<%=search_val %>"><%=i %></a></li>
 <%		
 								}
 						}
@@ -121,7 +120,7 @@ String search_val = (String)request.getAttribute("search_val");
 						break;	
 				}
 						%>
-						<tr>
+						<tr id="search_tr">
 							<td><%=num %></td>
 							<td><%=s_category %></td>
 							<td style="text-align: left">

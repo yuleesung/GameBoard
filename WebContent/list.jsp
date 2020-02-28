@@ -170,8 +170,12 @@
         $("#footer").load("footer.jsp");
      });
 	
-	
-	
+	function goLogin(){
+		location.href="Controller?type=login&path=list";
+	}
+	function goLogout(){
+		location.href="Controller?type=logout&path=list";
+	}
 	
 	</script>
 	

@@ -13,7 +13,7 @@ public class SearchListAction implements MidAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		// 검색어 값 가져와서,
-		String search_val = "주제";
+		String search_val = request.getParameter("search_val");
 		
 		// 맵퍼 호출하고, (게시물 숫자)
 		int cnt = BbsDAO.getSearchAllCount(search_val);
