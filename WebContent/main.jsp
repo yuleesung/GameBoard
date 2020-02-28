@@ -44,9 +44,9 @@
 			<!-- 프리뷰 게시물 시작 -->
 			<div class="preview_contents">
 				<div class="preview_menu">
-					<div class="preview_menu_title">PC</div>
-					<div class="preview_menu_title">PlayStation</div>
-					<div class="preview_menu_title">NintendoSwitch</div>
+					<div class="preview_menu_title">PC 최신글</div>
+					<div class="preview_menu_title">PlayStation 최신글</div>
+					<div class="preview_menu_title">NS 최신글</div>
 				</div>
 				<div class="preview">
 				<%
