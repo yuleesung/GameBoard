@@ -1,6 +1,13 @@
 @charset "UTF-8";
 body{
+	background-color: none;
+}
+#wrap_1{
+	padding-top: 50px;
 	background-color: #C6E5F3;
+	width: 674px;
+	margin: auto;
+	padding-bottom: 30px;
 }
 
 #bbs{
@@ -10,7 +17,7 @@ body{
 
 #bbs header{/**/
 	width: 250px;
-	margin-top: 50px;
+	margin-top: 0px;
 	margin-left: 10px;
 	margin-bottom: 0;
 	text-align: center;
@@ -76,7 +83,7 @@ body{
 	text-align: right;
 }
 
-input[type=button]{
+#bbs input[type=button]{
 	font-size: 14px;
 	padding: 10px;
 	border-radius: 5px;
@@ -86,6 +93,6 @@ input[type=button]{
 	font-weight: bold;
 }
 
-input[type=button]:hover{
+#bbs input[type=button]:hover{
 	background-color: #8EC0E4
 }

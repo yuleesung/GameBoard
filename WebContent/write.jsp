@@ -14,8 +14,8 @@
 
 </head>
 <body>
-	<div id="wrap">
-		<div id="menu_bar" class="center"></div>
+	<div id="menu_bar" class="center"></div>
+	<div id="wrap_1">
 		<div id="bbs">
 			<header>
 				<h2>게시글 쓰기</h2>
@@ -59,9 +59,9 @@
 				</tbody>
 			</table>	
 		</div>
-		<div id="footer" class="footer"></div>
+		
 	</div>
-	
+	<div id="footer" class="footer"></div>
 	<div>
 		<form action="Controller" method="post" name="frm">
 			<input type="hidden" name="type" value="logout"/>

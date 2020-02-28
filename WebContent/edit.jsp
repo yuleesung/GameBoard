@@ -23,8 +23,8 @@
 	if(obj != null){//
 		BoardVO vo = (BoardVO)obj;
 %>
-	<div id="wrap">
-		<div id="menu_bar" class="center"></div>
+	<div id="menu_bar" class="center"></div>
+	<div id="wrap_1">	
 		<div id="bbs">
 			<header>
 				<h2>게시글 수정</h2>
@@ -97,8 +97,8 @@
 				<input type="hidden" name="category" value="${requestScope.category }"/>
 			</form>
 		</div>
-		<div id="footer" class="footer"></div>
 	</div>
+	<div id="footer" class="footer"></div>
 <%
 	}
 %>	
