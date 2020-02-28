@@ -18,7 +18,7 @@
 		<div id="menu_bar" class="center"></div>
 		<div id="bbs">
 			<header>
-				<h1>게시글 쓰기</h1>
+				<h2>게시글 쓰기</h2>
 			</header>
 			<form action="Controller?type=write" method="post" encType="multipart/form-data">
 				<input type="hidden" name="category" value="${requestScope.category }"/>

@@ -27,7 +27,7 @@
 		<div id="menu_bar" class="center"></div>
 		<div id="bbs">
 			<header>
-				<h1>게시글 수정</h1>
+				<h2>게시글 수정</h2>
 			</header>
 			<form action="Controller?type=edit" method="post" 
 			encType="multipart/form-data">
