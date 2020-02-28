@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+#logout{
+	display: inline-block;
+	margin-bottom: 30px;
+}
+
+#logo_txt{
+	
+}
+
+#welcome>b{
+	position: absolute;
+	left: 340px;
+	top: 100px;
+}
 .main_logo{
 	padding: 10px;
 	width: 110px;
