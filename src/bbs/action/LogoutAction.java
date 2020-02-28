@@ -11,7 +11,7 @@ public class LogoutAction implements MidAction {
 		HttpSession session = request.getSession();
 		session.removeAttribute("mvo");
 		
-		String path = request.getParameter("path");
+		String path = request.getParameter("path"); //
 		String cPage = request.getParameter("cPage");
 		String category = request.getParameter("category");
 		String b_idx = request.getParameter("b_idx");

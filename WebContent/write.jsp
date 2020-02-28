@@ -150,7 +150,7 @@
 		}
 	}
 	
-	// 취소 버튼
+	// 취소 버튼 //
 	function cancelWrite(category, cPage) {
 		location.href = "Controller?type=list&category="+category+"&cPage="+cPage;
 	}
