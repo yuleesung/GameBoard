@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/leavePage.css">
 </head>
 <body>
-<div> <!-- 회원탈퇴 영역 -->
+<div id="wrap3"> <!-- 회원탈퇴 영역 -->
 	<form name="leave_form" id="leave_form" action="Controller" method="post">
 		<table>
 			<caption>회원탈퇴 테이블</caption>
@@ -18,7 +19,7 @@
 						<label for="pw">비밀번호:</label>
 					</th>
 					<td>
-						<input type="text" id="pw" name="pw"/>
+						<input type="password" id="pw" name="pw"/>
 						<div id="box"></div>
 					</td>
 				</tr>

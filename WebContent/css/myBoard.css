@@ -4,12 +4,14 @@
 .t1 {
 	position:relative;
 	left: 10px;
-	top: 50px;
+	top: 20px;
 	border-collapse: collapse;
+	margin-left: 30px;
+	width: 450px;
 }
 
 .t1 th,.t1 td{
 	font-size: 25px;
-	border-bottom: 1px solid green;
-	
+	border-bottom: 2px solid #2b90d9;
+	height: 50px;
 }

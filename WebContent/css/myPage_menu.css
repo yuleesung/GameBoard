@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-
-
-.myPage_menu .gnb{
+.myPage_menu .gnb2{
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -11,24 +9,24 @@
 	background-color: #2b90d9;
 }
 
-.myPage_menu .gnb li{
+.myPage_menu .gnb2 li{
 	float: left;
 	width: 110px;
 	height: 100%;
 	margin: 20px;
-	
 }
-.myPage_menu .gnb li a:hover{
+
+.myPage_menu .gnb2 li a:hover{
 	background: url(images/navigation-hover.png) repeat-x;
 	color: #343434;
 }
-.myPage_menu .gnb li a{
+.myPage_menu .gnb2 li a{
 	display: block;
-	width: 100%;
-	height: 100%;
+	width: 100px;
+	height: 50px;
 	text-decoration: none;
 	text-align: center;
-	font-size: 1.0em;
+	font-size: 16px;
 	font-weight: bold;
 	line-height: 50px;
 	color: white;

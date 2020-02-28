@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
-body,#menu_bar{
-	background: #C6E5F3;
+#left_menu {
+	display: inline-block;
+	float: left;
+	width: 150px; 
 }
+
+#right_content {
+	display: inline-block;
+	float: left;
+	width: 400px;
+
+}
+
+
+#wrap2 #right_content{
+	background: #C6E5F3;
+	width: 522px;
+	height: 600px;
+}
+
+#wrap2{
+	margin-bottom: 600px;
+}
+

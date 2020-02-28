@@ -24,7 +24,7 @@ if(path==null)
 	<div class="main_logo"> <!-- 로고 이미지 -->
 		<span>
 			<a href="Controller?type=main"><img alt="메인로고" 
-				src="css/images/linkedin_profile_image.png"/></a>
+				src="css/images/linkedin_profile_image.png" width="410px"/></a>
 		</span>
 	</div>
 

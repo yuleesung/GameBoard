@@ -6,11 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.t1 th, .t1 td{
-	border: 1px solid blue;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="css/myBoard.css">
 </head>
 <body>
 <%
