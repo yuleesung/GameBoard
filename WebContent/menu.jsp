@@ -31,17 +31,17 @@ Object o = session.getAttribute("mvo");
 		<div class="main_bar center">
 			<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
 			<a href="javascript:goLogout()">로그아웃</a>
-			<input type="text" id="search_value"/>
 			<input type="button" value="검색" onclick="search()"/>
+			<input type="text" id="search_value"/>
 		</div>
 		<%
 		}else{
 		%>
 		<div class="main_bar center">
-			<a href="javascript:goLogin()">로그인</a>
-			<a href="javascript:location.href='Controller?type=registry&path=main'">회원가입</a>
+			<a href="javascript:goLogin()">로그인</a>&nbsp;
+			<a href="javascript:location.href='Controller?type=registry&path=main'">회원가입</a>&nbsp;&nbsp;&nbsp;
+			<input type="button" id="search_button" value="검색" onclick="search()"/>
 			<input type="text" id="search_value"/>
-			<input type="button" value="검색" onclick="search()"/>
 		</div>
 		<%
 		}
