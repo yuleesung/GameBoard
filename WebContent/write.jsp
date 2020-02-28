@@ -62,6 +62,15 @@
 		<div id="footer" class="footer"></div>
 	</div>
 	
+	<div>
+		<form action="Controller" method="post" name="frm">
+			<input type="hidden" name="type" value="logout"/>
+			<input type="hidden" name="path" value="list"/>
+			<input type="hidden" name="cPage" value="${requestScope.cPage }"/>
+			<input type="hidden" name="category" value="${requestScope.category }"/>
+		</form>
+	</div>
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/summernote-lite.min.js"></script>
 	<script src="js/lang/summernote-ko-KR.min.js"></script>
@@ -140,6 +149,10 @@
 	// 취소 버튼
 	function cancelWrite(category, cPage) {
 		location.href = "Controller?type=list&category="+category+"&cPage="+cPage;
+	}
+	
+	function goLogout() {
+		document.frm.submit();
 	}
 	
 	

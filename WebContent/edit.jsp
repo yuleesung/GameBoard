@@ -88,6 +88,15 @@
 			</table>	
 		
 		</div>
+		<div>
+			<form action="frm" method="post">
+				<input type="hidden" name="type" value="logout"/>
+				<input type="hidden" name="path" value="view"/>
+				<input type="hidden" name="b_idx" value="${param.b_idx }"/>
+				<input type="hidden" name="cPage" value="${param.cPage }"/>
+				<input type="hidden" name="category" value="${requestScope.category }"/>
+			</form>
+		</div>
 		<div id="footer" class="footer"></div>
 	</div>
 <%
@@ -159,6 +168,10 @@
 		
 		function goView(cPage, b_idx, category){
 			location.href="Controller?type=view&cPage="+cPage+"&b_idx="+b_idx+"&category="+category;
+		}
+		
+		function goLogout() {
+			document.frm.submit();
 		}
 	</script>
 </body>

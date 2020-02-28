@@ -1,6 +1,8 @@
 package mybatis.vo;
 
-public class BoardCommentVO {
+import java.io.Serializable;
+
+public class BoardCommentVO implements Serializable{
 	
 	private String c_idx, c_content, write_date, ip, status, b_idx, m_idx;
 	
