@@ -193,8 +193,10 @@
 		%>
 		<input type="hidden" name="cPage" value="<%=cPage%>"/>
 		<%
-		}
+		}else{
 		%>
+		<input type="hidden" name="cPage" value="1"/>
+		<%} %>
 	</form>
 
 	
