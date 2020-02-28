@@ -100,32 +100,35 @@
 	
 	<%-- 댓글 보여주는 영역 --%>
 	<div id=answer>
+	<table id=answer_table>
+		<tbody>
 	<%
 	if(c_list != null){
+		int i=0;
 		for(BoardCommentVO cvo : c_list){
 	%>
-		<table id=answer_table>
-			<tr>
-				<td style="width:125px;">
-					<input type="hidden" name="c_idx" id="c_idx" value="<%=cvo.getC_idx()%>">
-					<%=cvo.getBmvo().getM_name() %><br>
-					<font size="2" color="lightgray">
-					<%=cvo.getWrite_date().substring(0,19) %>
-					</font>
-				</td>
-				<td style="width:400px;">
-					<%=cvo.getC_content() %>
-				</td>	
-				<td>
-					<a href="javascript:cEdit()">[수정]</a>
-					<a href="javascript:cDel()">[삭제]</a>
-				</td>
-			</tr>
-			
+				<tr>
+					<td style="width:125px;">
+						<input type="hidden" name="c_idx" id="c_idx<%=i %>" value="<%=cvo.getC_idx()%>">
+						<%=cvo.getBmvo().getM_name() %><br>
+						<font size="2" color="lightgray">
+						<%=cvo.getWrite_date().substring(0,19) %>
+						</font>
+					</td>
+					<td style="width:400px;">
+						<%=cvo.getC_content() %>
+					</td>	
+					<td>
+						<a href="javascript:cEdit(<%=i %>)">[수정]</a>
+						<a href="javascript:cDel(<%=i %>)">[삭제]</a>
+					</td>
+				</tr>
 	<%
+			i++;
 		}
 	}
 	%>
+			</tbody>
 		</table>
 	</div>
 
@@ -177,8 +180,7 @@
 
 	
 	</div>
-	<div id="footer" class="footer"></div>	
-	 
+	<div id="footer" class="footer"></div> 
 	
 	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
@@ -199,8 +201,14 @@
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
-
+	var b_idx = frm.b_idx.value;
+	var m_idx = frm.m_idx.value;
+	var cPage = frm.cPage.value;
+	var category = frm.category.value;
+	var td = "";
+	
 	$("#footer").load("footer.jsp");
+	
 	
 	function fDown(fname,m_idx){
 		document.frm.type.value = "down";
@@ -243,10 +251,10 @@
 	function sendComment(){
 		var frm = document.getElementById("answer_form");
 		var comm = frm.comm;
-		var b_idx = frm.b_idx.value;
-		var m_idx = frm.m_idx.value;
-		var cPage = frm.cPage.value;
-		var category = frm.category.value;
+		b_idx = frm.b_idx.value;
+		m_idx = frm.m_idx.value;
+		cPage = frm.cPage.value;
+		category = frm.category.value;
 		
 		if(comm.value.trim() <= 0){
 			alert("내용을 입력해주세요");
@@ -266,15 +274,22 @@
 			data : param,
 			dataType: "json"
 		}).done(function(data) {
-			var msg = "";
-			for(var i=0; i<data.length; i++){
-				msg += "<span><hr>";
-				msg += "<b>이름:</b>&nbsp;"+ data[i].m_name +"&nbsp;&nbsp;&nbsp;";
-				msg += "<b>날짜:</b>&nbsp;"+ data[i].write_date +"<br/>";
-				msg += "<b>내용:</b>&nbsp;"+ data[i].content +"<br/></span>";
-			}
 			
-			$("#answer").html(msg);
+			var msg = "";
+			
+			
+			for(var i=0; i<data.length; i++){
+				msg += "<tr>";
+				msg += "<td style='width:125px;'>";
+				msg += "<input type='hidden' name='c_idx' id='c_idx"+i+"' value='"+data[i].c_idx+"'/>"+ data[i].m_name +"<br/>";
+				msg += "<font size='2' color='lightgray'>"+ data[i].write_date.substring(0,19) +"</font></td>";
+				msg += "<td style ='width:400px;'>"+data[i].content +"</td>";
+				msg += "<td><a href='javascript:cEdit("+i+")'>[수정]</a> <a href='javascript:cDel("+i+")'>[삭제]</a></td>"
+				msg += "</tr>";
+				
+			}
+			$("#answer_table>tbody").html(msg);
+			
 			comm.value = "";
 		}).fail(function(err) {
 			console.log(err);
@@ -291,26 +306,108 @@
 		
 	});
 	
-	function cEdit(){
-		var chk = confirm("수정 하시겠습니까?");
+
+	function cEdit(cnt){
+		//var chk = confirm("수정 하시겠습니까?");
 		
-		var c_idx = $("#c_idx").val();
-		var comm = $("#comm").val();
-		var param = "type=edit_answer_write"
+        var tr = document.getElementById("answer_table").children[0].children[cnt].children[1];
+        var tr1 = document.getElementById("answer_table").children[0].children[cnt].children[2];
+        
+        td = tr.innerText;
+        tr.innerHTML = "<textarea id='c_comm"+cnt+"' cols='55'></textarea>";
+        tr1.innerHTML = "<a href='javascript:cEdit_save("+cnt+")'>[저장]</a> <a href='javascript:cEdit_cancel("+cnt+")'>[취소]</a>";
+	}
+	
+	function cEdit_save(cnt, td) {
+		var chk = confirm("수정하시겠습니까?");
 		
-		if(chk){	
+		if(chk){
+			var c_content = $("#c_comm"+cnt).val().trim();
+			var c_idx = $("#c_idx"+cnt).val();
+			
+			var param = "type=edit_answer_write&c_content=" + encodeURIComponent(c_content)
+			+ "&b_idx=" + encodeURIComponent(b_idx)
+			+ "&m_idx=" + encodeURIComponent(m_idx)
+			+ "&cPage=" + encodeURIComponent(cPage)
+			+ "&category=" + encodeURIComponent(category)
+			+ "&c_idx="+ encodeURIComponent(c_idx);
+			
 			$.ajax({
-				url:
+				url : "Controller",
+				type : "post",
+				data : param,
+				dataType: "json"
+			}).done(function(data) {
 				
-			}).done(function(res) {
+				var msg = "";
+				
+				for(var i=0; i<data.length; i++){
+					msg += "<tr>";
+					msg += "<td style='width:125px;'>";
+					msg += "<input type='hidden' name='c_idx' id='c_idx"+i+"' value='"+data[i].c_idx+"'/>"+ data[i].m_name +"<br/>";
+					msg += "<font size='2' color='lightgray'>"+ data[i].write_date.substring(0,19) +"</font></td>";
+					msg += "<td style ='width:400px;'>"+data[i].content +"</td>";
+					msg += "<td><a href='javascript:cEdit("+i+")'>[수정]</a> <a href='javascript:cDel("+i+")'>[삭제]</a></td>"
+					msg += "</tr>";
+					
+				}
+				$("#answer_table>tbody").html(msg);
 				
 			}).fail(function(err) {
 				console.log(err);
 			});
-			
 		}
 	}
 	
+	function cEdit_cancel(cnt) {
+		document.getElementById("answer_table").children[0].children[cnt].children[1].innerText = td;
+		document.getElementById("answer_table").children[0].children[cnt].children[2].innerHTML = 
+			"<a href='javascript:cEdit("+cnt+")'>[수정]</a> <a href='javascript:cDel("+cnt+")'>[삭제]</a></td>";
+	}
+	
+	function cDel(cnt){
+		
+		var chk = confirm("삭제하시겠습니까?");
+		
+		if(chk){
+			var c_idx = $("#c_idx"+cnt).val();
+			
+			var param = "type=del_answer_write&c_idx="+ encodeURIComponent(c_idx)+"&b_idx="+encodeURIComponent(b_idx);
+			
+			$.ajax({
+				url : "Controller",
+				type : "post",
+				data : param,
+				dataType: "json"
+			}).done(function(data) {
+				
+				var msg = "";
+				
+				for(var i=0; i<data.length; i++){
+					msg += "<tr>";
+					msg += "<td style='width:125px;'>";
+					msg += "<input type='hidden' name='c_idx' id='c_idx"+i+"' value='"+data[i].c_idx+"'/>"+ data[i].m_name +"<br/>";
+					msg += "<font size='2' color='lightgray'>"+ data[i].write_date.substring(0,19) +"</font></td>";
+					msg += "<td style ='width:400px;'>"+data[i].content +"</td>";
+					msg += "<td><a href='javascript:cEdit("+i+")'>[수정]</a> <a href='javascript:cDel()'>[삭제]</a></td>"
+					msg += "</tr>";
+					
+				}
+				$("#answer_table>tbody").html(msg);
+				
+			}).fail(function(err) {
+				console.log(err);
+			});
+		}
+		
+	}
+	
+	function goLogin(){
+		location.href="Controller?type=login&path=view&cPage="+cPage+"&b_idx="+b_idx+"&category="+category;
+	}
+	function goLogout(){
+		location.href="Controller?type=logout&path=view&cPage="+cPage+"&b_idx="+b_idx+"&category="+category;
+	}
 	
 	</script>
 </body>

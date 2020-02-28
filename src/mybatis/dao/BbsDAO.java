@@ -218,7 +218,7 @@ public class BbsDAO {
 	}
 	
 	// 댓글 수정
-	public static boolean updateComment(BoardMemberVO vo) {
+	public static boolean updateComment(BoardCommentVO vo) {
 		boolean chk = false;
 		SqlSession ss = FactoryService.getFactory().openSession();
 		int cnt = ss.update("bbs.updateComment", vo);

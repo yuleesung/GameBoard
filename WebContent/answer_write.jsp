@@ -10,6 +10,7 @@
 		for(int i=0; i<bc_list.length; i++){
 %>
 	{
+	"c_idx"	: "<%=bc_list[i].getC_idx() %>",
 	"m_name" : "<%=bc_list[i].getBmvo().getM_name() %>", 
 	"write_date" : "<%=bc_list[i].getWrite_date() %>",
 	"content" : "<%=bc_list[i].getC_content() %>"

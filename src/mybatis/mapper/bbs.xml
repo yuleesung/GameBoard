@@ -67,7 +67,7 @@
 	
 	<!-- 하나의 게시물에 대한 댓글 모음 -->
 	<select id="commList" resultMap="map2" parameterType="String">
-		select * from board_comment_t where b_idx = #{b_idx} order by c_idx asc
+		select * from board_comment_t where b_idx = #{b_idx} and status = 0 order by c_idx asc
 	</select>
 	
 	<!-- 전체보기 -->
