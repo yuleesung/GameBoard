@@ -6,7 +6,10 @@
 }
 
 #logo_txt{
-	
+	position: absolute;
+	left: 720px;
+	width: 200px;
+	top: 20px;
 }
 
 #welcome>b{
@@ -41,6 +44,7 @@
 #search_button{
 	float: right;
 	margin: 0;
+	margin-left:2px;
 	border: 0;
 	font-weight: bold;
 	color: white;

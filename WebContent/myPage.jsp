@@ -39,6 +39,13 @@
 			$("#right_content").load("leavePage.jsp");
 		}
 	}
+	
+	function goLogin(){
+		location.href="Controller?type=login&path=myPage";
+	}
+	function goLogout(){
+		location.href="Controller?type=logout&path=myPage";
+	}
 </script>
 </body>
 </html>

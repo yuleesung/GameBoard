@@ -18,7 +18,10 @@ Object o = session.getAttribute("mvo");
 		<!-- 메인 로고 이미지 시작 -->
 		<div class="main_logo center">
 			<span>
-				<a href="Controller?type=main"><img alt="메인로고" src="css/images/logo_transparent_1.png" width="100px"/></a>
+				<a href="Controller?type=main">
+					<img alt="메인로고" src="css/images/logo_transparent_1.png" width="90px"/>
+					<img id="logo_txt" alt="로고텍스트" src="css/images/logo_text.png" width="250px"/>
+				</a>
 			</span>
 		</div>
 		<!-- 메인 로고 끝 -->
@@ -29,10 +32,13 @@ Object o = session.getAttribute("mvo");
 			BoardMemberVO mvo = (BoardMemberVO)o;
 		%>
 		<div class="main_bar center">
-			<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
-			<a href="javascript:goLogout()">로그아웃</a>
-			<input type="button" value="검색" onclick="search()"/>
+			<a href="javascript:goLogout()" id="logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
+			<input type="button" id="search_button" value="검색" onclick="search()"/>	
 			<input type="text" id="search_value"/>
+			<div id="welcome">
+				<b><%=mvo.getM_name() %>님 환영합니다!</b>
+				<img alt="welcome" src="css/images/welcome.png" width="50px"/>
+			</div>
 		</div>
 		<%
 		}else{
