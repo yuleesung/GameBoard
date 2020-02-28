@@ -142,8 +142,12 @@
 		var str = $("#content").val();
 		
 		$("#str").val(str);
- 
-		document.forms[0].submit();
+		
+		var conf = confirm("저장하시겠습니까?");
+ 		
+		if(conf){
+			document.forms[0].submit();
+		}
 	}
 	
 	// 취소 버튼
