@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/registryPage.css"/>
+<link type="text/css" rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 <div id="wrap">
@@ -153,7 +154,7 @@ $(function(){
 	
 	
 	$("#close_btn").click(function(){ /* 취소버튼 */
-		location.href="Controller?type=main";
+		history.back();
 	});
 });
 

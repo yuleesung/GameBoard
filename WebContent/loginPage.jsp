@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/loginPage.css">
+<link type="text/css" rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 <%
@@ -49,7 +50,7 @@ if(path==null)
 					<tr>
 						<td>
 							<a id="main_btn">이전으로</a>		
-							&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a id="reg_btn">회원가입</a>
 						</td>	
 					</tr>
@@ -58,11 +59,11 @@ if(path==null)
 			<input type="hidden" id="type" name="type" value="<%=path %>"/> <!-- path로 변경해야 함 -->
 			<input type="hidden" name="cPage" value="<%=cPage %>"/>
 			<input type="hidden" name="category" value="<%=category %>"/>
+			<input type="hidden" name="b_idx" value="<%=b_idx %>"/>
 		</form>
 	</div>
-</div>	
+</div>
 	<div id="footer" class="footer"></div>
-
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 		$(function(){
@@ -72,7 +73,7 @@ if(path==null)
 			
 				
 			$("#main_btn").click(function(){ /* 이전으로 버튼 */
-				location.href="Controller?type=main";
+				history.back();
 			});
 					
 			$("#reg_btn").click(function(){ /* 회원가입 버튼 */

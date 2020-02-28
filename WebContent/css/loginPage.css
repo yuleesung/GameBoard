@@ -6,31 +6,40 @@ body{
 }
 #wrap{
 	width: 674px;
-	margin: auto;	
+	margin: auto;
 }
+
 #login_table{
 	position: relative;
 	width: 674px;
 	margin-left: 0;
+	margin-bottom: 175px;
 }
 img{
 	width: 400px;
 	height: 300px;
 	margin-left: 130px;
+	margin-bottom: 10px;
 }
 #main_btn:hover,#reg_btn:hover {
 	color: black;
 	cursor: pointer;
 	}
 #main_btn,#reg_btn{
-	color: #9baec8;
+	color: #AB7DE8;
 	text-align: center;
+	font-weight: bold;
 	}	
 #login_btn{
 	width:405px;
 	height: 60px;
-	font-size: 15px;
-	background: #2b90d9;
+	font-size: 25px;
+	font-style: inherit;
+	border: none;
+    color:#fff;
+	background-color: #2b90d9;
+	cursor: pointer;
+	border-radius:10px;
 	}
 #s_id,#s_pw{
 	width:400px;
