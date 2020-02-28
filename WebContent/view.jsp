@@ -177,7 +177,7 @@
 	
 	</div>
 	<div id="footer" class="footer"></div>	
-	
+	 
 	
 	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
