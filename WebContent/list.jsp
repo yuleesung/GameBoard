@@ -11,6 +11,7 @@
 <link type="text/css" rel="stylesheet" href="css/list.css">	
 <link type="text/css" rel="stylesheet" href="css/main.css">
 <link type="text/css" rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/footer.css"/>
 
 <style type="text/css">
 
@@ -33,14 +34,11 @@
 			<caption><%=s_category %> 게시판  </caption>
 			<thead>
 				<tr class="title">
-					<th class = "no">No.</th>	
-					<th class = "title">title</th>
-					<%
-						  
-					%>
-					<th class = "writer">writer</th>
-					<th class = "reg">date</th>
-					<th class = "hit">hit</th>
+					<th class = "no">번호</th>	
+					<th class = "title">제목</th>
+					<th class = "writer1">글쓴이</th>
+					<th class = "reg">날짜</th>
+					<th class = "hit">조회수</th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -167,14 +165,20 @@
 					}
 				
 				%>
-							</tbody>
+			</tbody>
 		</table>
+		<div id="footer" class="footer"></div>
 	</div>
+	
+	 
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
 	$(document).ready(function(){
         $("#menu_bar").load("menu.jsp");
      });
+	
+	$("#footer").load("footer.jsp");
 	
 	
 	</script>

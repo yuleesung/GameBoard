@@ -11,143 +11,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/view.css">
 <link type="text/css" rel="stylesheet" href="css/main.css">
 <link type="text/css" rel="stylesheet" href="css/menu.css">
-<style type="text/css">
+<link rel="stylesheet" href="css/footer.css"/>
 
 
-	body{
-		background-color: #C6E5F3;
-	}
-
-	#bbs table {
-	    width:580px;
-	    margin-left:10px;
-	    border:1px solid black;
-	    border-collapse:collapse;
-	    font-size:14px;
-	   
-	}
-	
-	#bbs table caption {
-	    font-size:20px;
-	    font-weight:bold;
-	    margin-bottom:10px;
-	}
-	
-	#bbs table th {
-	    text-align:center;
-	    border:1px solid black;
-	    padding:4px 10px;
-	}
-	
-	#bbs table td {
-	    text-align:left;
-	    border:1px solid black;
-	    padding:4px 10px;
-	    background-color: white;
-	}
-	
-	th{
-		height: 40px;
-		color: #353866;
-		font-family: ‘Roboto’, ‘Spoqa Han Sans’, ‘Spoqa Han Sans JP’, ‘Sans-serif’; 
-		font-size: 18px;
-		font-weight: 700;
-		background-color: #d9e1e8;
-	}
-	
-	
-	
-	#goList1, #del1, #edit1{
-		width:50px;
-	    background-color: #2b90d9;
-	    border: none;
-	    color:#fff;
-	    padding: 6px 0;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 15px;
-	    margin: 4px;
-	    cursor: pointer;
-		border-radius:10px;
-		
-	}
-	
-	
-	form#answer_form table{
-		border: 1px solid #dddddd;
-		border-collapse:collapse;
-	}
-	
-	
-	
-		#bbs table {
-	    width:640px;
-	   	margin: auto;
-	    
-	    border-collapse:collapse;
-	    font-size:14px;
-	}
-	
-	#answer{
-		width: 640px;
-		margin: auto;
-		background-color: #ffffff;
-		
-	}	
-	
-	
-	#answer_write{
-		width: 640px;
-		margin: auto;
-		padding: 0;
-		background-color: #ffffff;
-		 border-collapse:collapse;
-	}	
-		
-	##bbs td{
-		border:1px solid #dddddd;
-		background-color: #ffffff;
-	}
-		
-	#write_form{
-		margin-top: 70px;
-	}	
-	#com_wr_bt{
-	width:70px;
-	    background-color: #2b90d9;
-	    border: none;
-	    color:#fff;
-	    padding: 6px 0;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 15px;
-	    margin: 4px;
-	    cursor: pointer;
-		border-radius:10px;
-	}
-	
-	#answer_write tr{
-		border:1px solid #eeeeee;
-		
-	
-	}
-	
-	#answer_form{
-		margin: 0;
-		padding: 0;
-	}
-	#t1{
-		margin: 0;
-		padding: 0;
-	}
-	
-
-	
-</style>
 </head>
 <body>
 	<%
@@ -173,15 +42,15 @@
 						c_list = vo.getBc_list();
 				%>
 				<tr>
-					<th>Title : </th>
+					<th>제목 : </th>
 					<td><%=vo.getSubject() %></td>
-					<th>Date : </th>
+					<th>날짜 : </th>
 					<td><%=vo.getWrite_date().substring(0,10) %></td>
 				</tr>
 				<tr>
-					<th>Writer : </th>
+					<th>글쓴이  :  </th>
 					<td><%=vo.getBmvo().getM_name() %></td> 
-					<th>Hit : </th>
+					<th>조회수 : </th>
 					<td><%=vo.getHit() %></td>
 				</tr>
 				<tr>
@@ -201,7 +70,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th> 내용 : </th>
+					<th>내용 : </th>
 					<td colspan="3"><pre><%=vo.getB_content() %></pre></td>	
 				</tr>
 				<tr>
@@ -235,7 +104,7 @@
 	if(c_list != null){
 		for(BoardCommentVO cvo : c_list){
 	%>
-		<table>
+		<table id=answer_table>
 			<tr>
 				<td style="width:125px;">
 					<%=cvo.getBmvo().getM_name() %><br>
@@ -243,9 +112,13 @@
 					<%=cvo.getWrite_date().substring(0,19) %>
 					</font>
 				</td>
-				<td>
+				<td style="width:400px;">
 					<%=cvo.getC_content() %>
 				</td>	
+				<td>
+					<a href="#">[수정]</a>
+					<a href="#">[삭제]</a>
+				</td>
 			</tr>
 			
 	<%
@@ -274,10 +147,10 @@
 					<td style="width:125px;">
 						&nbsp;<%=mvo.getM_name() %>
 					</td>
-					<td>	
-						<textarea rows="4" cols="60" name="comm"></textarea><br/>
+					<td style="width:411px;">	
+						<textarea rows="4" cols="57" name="comm"></textarea><br/>
 					</td>
-					<td>
+					<td style="width:85px;">
 						<input type="button" value="댓글달기" id="com_wr_bt" onclick="sendComment()" /> 
 					</td>
 				</tr>
@@ -287,13 +160,24 @@
 		<% 
 		}else{
 		%>
-		내용:<textarea rows="4" cols="45" onclick="goLogin('<%=vo.getB_idx()%>', '<%=cPage%>', '<%vo.getB_category();%>')" readonly="readonly">로그인이 필요합니다...</textarea><br/>
-		<%
+		<table>
+			<tr>
+				<td style="width:125px;">
+				</td>			
+				<td>
+					<textarea rows="4" cols="48" onclick="goLogin('<%=vo.getB_idx()%>', '<%=cPage%>', '<%vo.getB_category();%>')" readonly="readonly">로그인이 필요합니다...</textarea><br/>
+				</td>
+			</tr>	
+		</table>
+				<%
 		}
 		%>
 	
-	</div>
+
 	
+	</div>
+	<div id="footer" class="footer"></div>	
+	 
 	
 	<form action="Controller" name="frm" method="post">		
 		<input type="hidden" name="type"/>
@@ -308,11 +192,16 @@
 		<%
 		}
 		%>
+		
+		
+		
 	</form>
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
 
+	$("#footer").load("footer.jsp");
+	
 	function fDown(fname,m_idx){
 		document.frm.type.value = "down";
 		document.frm.f_name.value = fname;
@@ -346,6 +235,10 @@
 		if(chk)
 			location.href="Controller?type=login&b_idx="+b_idx+"&cPage="+cPage+"&category="+category+"&path=view";
 	}
+	
+	function goLogin(){
+        location.href="Controller?type=login&path=main";
+     }
 	
 	function sendComment(){
 		var frm = document.getElementById("answer_form");
