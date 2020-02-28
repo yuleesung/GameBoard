@@ -67,7 +67,7 @@
 	
 	
 	
-	th{  
+	th.title, th.writer1, th.no, th.date, th.reg, th.hit{  
 		height: 40px;
 		color: #353866;
 		font-family: ‘Roboto’, ‘Spoqa Han Sans’, ‘Spoqa Han Sans JP’, ‘Sans-serif’; 
