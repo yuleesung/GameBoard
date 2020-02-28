@@ -30,7 +30,7 @@ Object o = session.getAttribute("mvo");
 		%>
 		<div class="main_bar center">
 			<b><%=mvo.getM_name() %>님 환영합니다!</b>&nbsp;&nbsp;
-			<a href="javascript:location.href='Controller?type=logout'">로그아웃</a>
+			<a href="javascript:goLogout()">로그아웃</a>
 			<input type="text" id="search_value"/>
 			<input type="button" value="검색" onclick="search()"/>
 		</div>
@@ -38,7 +38,7 @@ Object o = session.getAttribute("mvo");
 		}else{
 		%>
 		<div class="main_bar center">
-			<a href="javascript:location.href='Controller?type=login&path=main'">로그인</a>
+			<a href="javascript:goLogin()">로그인</a>
 			<a href="javascript:location.href='Controller?type=registry&path=main'">회원가입</a>
 			<input type="text" id="search_value"/>
 			<input type="button" value="검색" onclick="search()"/>
@@ -70,5 +70,11 @@ Object o = session.getAttribute("mvo");
 		</ul>
 		<!-- 메뉴바 끝 -->
 	</div>
+	<script type="text/javascript">
+	function search(){
+		var search_val = document.getElementById("search_value").value;
+		location.href="Controller?type=searchlist&search_val="+search_val;
+	}
+	</script>
 </body>
 </html>

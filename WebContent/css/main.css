@@ -52,8 +52,19 @@ padding: 0;
 
 .preview_contents{
 	width:673px;
-	height:200px;
+	height:230px;
 	background-color: #f0f5f9;
+}
+
+.preview_menu_title{
+	width: 190px;
+	height: 25px;
+	float: left;
+	font-size: 16px;
+	font-weight: bold;
+	color: #124265;
+	margin: 10px 17px 0px 17px;
+	border-bottom: 2px solid #56a6e0;
 }
 
 .preview{
@@ -72,7 +83,10 @@ padding: 0;
 	box-shadow: 2px 2px 2px gray;
 	background-color: #56a6e0;
 	color: black;
+}
 
+.preview:active{
+	background-color:#d4d4d4;
 }
 
 .subject{

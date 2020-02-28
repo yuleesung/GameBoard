@@ -41,7 +41,13 @@
 		
 		<!-- 중간 콘텐츠 시작 -->
 		<div class="center_contents center">
+			<!-- 프리뷰 게시물 시작 -->
 			<div class="preview_contents">
+				<div class="preview_menu">
+					<div class="preview_menu_title">PC</div>
+					<div class="preview_menu_title">PlayStation</div>
+					<div class="preview_menu_title">NintendoSwitch</div>
+				</div>
 				<div class="preview">
 				<%
 					if(obj1 != null){
@@ -116,6 +122,9 @@
 				</div>
 				<div class="fclear"></div>
 			</div>
+			<!-- 프리뷰 게시물 끝 -->
+			
+			<!-- 프리뷰 게시판리스트 시작 -->
 			<div class="main_boards">
 				<!-- 공지사항 -->
 				<table class="board">
@@ -176,6 +185,7 @@
 					</tbody>
 				</table>
 			</div>
+			<!-- 프리뷰 게시판리스트 끝 -->
 		</div>
 		<!-- 중간 콘텐츠 끝 -->
 		
@@ -190,11 +200,6 @@
 	        $("#menu_bar").load("menu.jsp");
 	        $("#footer").load("footer.jsp");
 	     });
-		
-		function search(){
-			var search_value = document.getElementById("search_value").value;
-			alert("확인용메세지, 값 : " + search_value);
-		}
 		
 		function slideImg(val){
 			
@@ -231,6 +236,9 @@
 		
 		function goLogin(){
 			location.href="Controller?type=login&path=main";
+		}
+		function goLogout(){
+			location.href="Controller?type=logout&path=main";
 		}
 		
 		function goView(b_idx, category){
