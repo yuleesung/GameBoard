@@ -88,6 +88,9 @@ padding: 0;
 	padding:10px;
 	display:block;
 	background-color: white;
+	overflow: hidden;
+	white-space: pre-line;
+	text-overflow: ellipsis;
 }
 
 .writer{
@@ -99,14 +102,9 @@ padding: 0;
 	background-color: white;
 }
 
-.pre_src{
-	text-overflow: ellipsis;
-}
-
 .pre_img{
-	width: 100px;
-	height: 80px;
-	margin: auto;
+	width: 100%;
+	height: 100%;
 }
 
 .main_boards{

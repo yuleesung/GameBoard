@@ -52,11 +52,9 @@
 					<span class="subject text_clear">
 						<%=ar_pc[0].getSubject() %>
 					</span>
-					<span class="thum_img">
-						<span class="pre_src" id="pc_pre_content">
-							<img id="pc_pre_image" alt="pc첫번째게시물이미지"
-							 src="" class="pre_img"/>
-						</span>
+					<span class="thum_img" id="pc_pre_content">
+						<img id="pc_pre_image" alt="pc첫번째게시물이미지"
+						src="" class="pre_img"/>
 					</span>
 					<span class="writer text_clear">by <%=ar_pc[0].getBmvo().getM_name() %></span>
 				</div>
@@ -78,11 +76,9 @@
 					<span class="subject">
 						<%=ar_ps[0].getSubject() %>
 					</span>
-					<span class="thum_img">
-						<span class="pre_src" id="ps_pre_content">
-							<img id="ps_pre_image" alt="ps첫번째게시물이미지"
-							 src="" class="pre_img"/>
-						</span>
+					<span class="thum_img" id="ps_pre_content">
+						<img id="ps_pre_image" alt="ps첫번째게시물이미지"
+						src="" class="pre_img"/>
 					</span>
 					<span class="writer">by <%=ar_ps[0].getBmvo().getM_name() %></span>
 				</div>
@@ -104,11 +100,9 @@
 					<span class="subject">
 						<%=ar_ns[0].getSubject() %>
 					</span>
-					<span class="thum_img">
-						<span class="pre_src" id="ns_pre_content">
-							<img id="ns_pre_image" alt="ns첫번째게시물이미지"
-							 src="" class="pre_img"/>
-						</span>
+					<span class="thum_img" id="ns_pre_content">
+						<img id="ns_pre_image" alt="ns첫번째게시물이미지"
+						src="" class="pre_img"/>
 					</span>
 					<span class="writer">by <%=ar_ns[0].getBmvo().getM_name() %></span>
 				</div>
