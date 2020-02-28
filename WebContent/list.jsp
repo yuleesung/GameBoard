@@ -9,21 +9,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/list.css">	
-<link type="text/css" rel="stylesheet" href="css/main.css">
-<link type="text/css" rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/footer.css"/>
-
-<style type="text/css">
-
-
-	
-	
-</style>		
+<link type="text/css" rel="stylesheet" href="css/footer.css"/>
 </head>
 <body>
-			
 	
-	<div id="menu_bar" class="center"></div>	
+<div id="wrap">
+	
+	<div id="menu_bar" class="center"></div>
 	<div id="bbs">
 		<table>
 			<%
@@ -167,18 +159,18 @@
 				%>
 			</tbody>
 		</table>
-		<div id="footer" class="footer"></div>
 	</div>
-	
-	 
+</div>
+	<div id="footer" class="footer"></div>
 	
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
 	$(document).ready(function(){
         $("#menu_bar").load("menu.jsp");
+        $("#footer").load("footer.jsp");
      });
 	
-	$("#footer").load("footer.jsp");
+	
 	
 	
 	</script>

@@ -1,19 +1,24 @@
 @charset "UTF-8";
 
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+	@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 	@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,700);
 
-	#bbs table {
-	    width:660px;
-	   	margin: auto;
-	    margin-top: 40px;
-	    border-collapse:collapse;
-	    font-size:14px;
+	#wrap{
+	width: 690px;
+	margin: auto;	
+	margin-bottom: 0;
 	}
 	
-	tbody tr:hover{ 
-		background-color:#fdf7df;
-
+	#bbs{
+	background-color: #C6E5F3;
+	width: 674px;
+	}
+	
+	#bbs table {
+	    width:650px;
+	   	margin: auto;
+	    border-collapse:collapse;
+	    font-size:14px;
 	}
 	
 	#bbs table caption {
@@ -24,7 +29,7 @@
 	    margin-bottom:10px;
 	}
 	
-	#bbs table th,#bbs table td {
+	#bbs table tbody th,#bbs table tbody td {
 	    text-align:center;
 	    border:1px solid #eeeeee;
 	    padding:4px 10px;
@@ -57,17 +62,12 @@
 	}
 	
 
-	body{
-		background-color: #C6E5F3;
-	}
-	
 	tbody tr, tbody td{
 		background-color: white;
 	}
 	
 	
-	
-	th.title, th.writer1, th.no, th.date, th.reg, th.hit{  
+	th.title, th.writer1, th.no, th.date, th.reg, th.hit, th.category{  
 		height: 40px;
 		color: #353866;
 		font-family: ‘Roboto’, ‘Spoqa Han Sans’, ‘Spoqa Han Sans JP’, ‘Sans-serif’; 
@@ -79,13 +79,8 @@
 		
 	/* paging */
 	
-	table tfoot td{
-		background: white;
-	}
 	
-	
-	table tfoot ol {
-		
+	table tfoot ol {	
 		padding-left: 200px;
 	    list-style:none;
 	}
@@ -102,12 +97,7 @@
 	    border:1px solid #00B3DC;
 	    color:#2f313e;
 	    font-weight:bold;
-	}
-	
-	table tfoot ol li a:hover {
-	    background:#00B3DC;
-	    color:white;
-	    font-weight:bold;
+	    background:white;
 	}
 	
 	.disable {
@@ -118,8 +108,8 @@
 	
 	.now {
 	   padding:3px 7px;
-	    border:1px solid #ff4aa5;
-	    background:#ff4aa5;
+	    border:1px solid white;
+	    background:#2b90d9;
 	    color:white;
 	    font-weight:bold;
 	}
@@ -127,4 +117,3 @@
 	.empty{
 		height: 60px;
 	}
-	
