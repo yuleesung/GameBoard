@@ -107,6 +107,7 @@
 		<table id=answer_table>
 			<tr>
 				<td style="width:125px;">
+					<input type="hidden" name="c_idx" id="c_idx" value="<%=cvo.getC_idx()%>">
 					<%=cvo.getBmvo().getM_name() %><br>
 					<font size="2" color="lightgray">
 					<%=cvo.getWrite_date().substring(0,19) %>
@@ -116,8 +117,8 @@
 					<%=cvo.getC_content() %>
 				</td>	
 				<td>
-					<a href="#">[수정]</a>
-					<a href="#">[삭제]</a>
+					<a href="javascript:cEdit()">[수정]</a>
+					<a href="javascript:cDel()">[삭제]</a>
 				</td>
 			</tr>
 			
@@ -148,7 +149,7 @@
 						&nbsp;<%=mvo.getM_name() %>
 					</td>
 					<td style="width:411px;">	
-						<textarea rows="4" cols="57" name="comm"></textarea><br/>
+						<textarea id="comm" rows="4" cols="57" name="comm"></textarea><br/>
 					</td>
 					<td style="width:85px;">
 						<input type="button" value="댓글달기" id="com_wr_bt" onclick="sendComment()" /> 
@@ -192,10 +193,9 @@
 		<%
 		}
 		%>
-		
-		
-		
 	</form>
+
+	
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
@@ -284,6 +284,32 @@
 	$(document).ready(function(){
         $("#menu_bar").load("menu.jsp");
      });
+	
+	
+	$("#cDel").bind("click", function() {
+			location.href="Controller?";	
+		
+	});
+	
+	function cEdit(){
+		var chk = confirm("수정 하시겠습니까?");
+		
+		var c_idx = $("#c_idx").val();
+		var comm = $("#comm").val();
+		var param = "type=edit_answer_write"
+		
+		if(chk){	
+			$.ajax({
+				url:
+				
+			}).done(function(res) {
+				
+			}).fail(function(err) {
+				console.log(err);
+			});
+			
+		}
+	}
 	
 	
 	</script>
