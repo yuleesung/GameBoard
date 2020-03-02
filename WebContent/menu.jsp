@@ -19,8 +19,7 @@ Object o = session.getAttribute("mvo");
 		<div class="main_logo center">
 			<span>
 				<a href="Controller?type=main">
-					<img alt="메인로고" src="css/images/logo_transparent_1.png" width="90px"/>
-					<img id="logo_txt" alt="로고텍스트" src="css/images/logo_text.png" width="250px"/>
+					<img alt="메인로고" src="css/images/logo_main.png" width="300px"/>
 				</a>
 			</span>
 		</div>
