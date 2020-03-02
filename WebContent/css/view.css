@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
-	body{
+	#wrap{
+		width: 673px;
 		background-color: #C6E5F3;
+		margin: auto;
+		padding-bottom: 50px;
 	}
 
 	#bbs table caption {
@@ -89,7 +92,7 @@
 	}
 		
 	#write_form{
-		margin-top: 70px;
+		margin-top: 45px;
 	}	
 	#com_wr_bt{
 	width:70px;

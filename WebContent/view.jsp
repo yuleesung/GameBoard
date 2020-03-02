@@ -27,6 +27,8 @@
 		String category = (String)request.getAttribute("category");
 	%>
 	
+	<div id="wrap">
+	
 	<div id="menu_bar" class="center"></div>	
 
 	<%-- 본문  보기 영역--%>
@@ -186,6 +188,8 @@
 
 	
 	</div>
+	
+</div>
 	<div id="footer" class="footer"></div> 
 	
 	<form action="Controller" name="frm" method="post">		
@@ -204,6 +208,7 @@
 		<input type="hidden" name="cPage" value="1"/>
 		<%} %>
 	</form>
+
 
 	
 
