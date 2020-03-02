@@ -119,8 +119,14 @@
 						<%=cvo.getC_content() %>
 					</td>	
 					<td>
+					<%if(ob != null){ 
+						BoardMemberVO mvo = (BoardMemberVO)ob;
+						if(mvo.getM_idx().equals(cvo.getM_idx())){
+					%>
 						<a href="javascript:cEdit(<%=i %>)">[수정]</a>
 						<a href="javascript:cDel(<%=i %>)">[삭제]</a>
+					<%	}
+					} %>
 					</td>
 				</tr>
 	<%
@@ -316,7 +322,8 @@
         var tr1 = document.getElementById("answer_table").children[0].children[cnt].children[2];
         
         td = tr.innerText;
-        tr.innerHTML = "<textarea id='c_comm"+cnt+"' cols='55'></textarea>";
+        tr.innerHTML = "<textarea id='c_comm"+cnt+"' cols='53'>"+td+"</textarea>";
+        document.getElementById("c_comm"+cnt).select();
         tr1.innerHTML = "<a href='javascript:cEdit_save("+cnt+")'>[저장]</a> <a href='javascript:cEdit_cancel("+cnt+")'>[취소]</a>";
 	}
 	

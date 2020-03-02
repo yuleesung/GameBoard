@@ -126,3 +126,11 @@
 		border:1px solid #eeeeee;
 	}
 	
+
+	#answer_table tbody tr td:last-child{
+		font-size: 0.9em;
+		text-align: center;
+	}
+	
+	textarea{ resize: none; }
+	
