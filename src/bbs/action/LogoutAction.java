@@ -15,6 +15,7 @@ public class LogoutAction implements MidAction {
 		String cPage = request.getParameter("cPage");
 		String category = request.getParameter("category");
 		String b_idx = request.getParameter("b_idx");
+		String search_val = request.getParameter("search_val");
 		
 		String c_type = request.getContentType();
 		
@@ -23,11 +24,13 @@ public class LogoutAction implements MidAction {
 			request.setAttribute("cPage", cPage);
 			request.setAttribute("category", category);
 			request.setAttribute("b_idx", b_idx);
+			request.setAttribute("search_val", search_val);
 		}else if(c_type != null && c_type.startsWith("application")){
 			request.setAttribute("path", path);
 			request.setAttribute("cPage", cPage);
 			request.setAttribute("category", category);
 			request.setAttribute("b_idx", b_idx);
+			request.setAttribute("search_val", search_val);
 		}
 		
 		return "/Controller?type="+path;

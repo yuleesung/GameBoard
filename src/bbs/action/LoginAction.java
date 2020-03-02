@@ -22,12 +22,14 @@ public class LoginAction implements MidAction {
 		String cPage = request.getParameter("cPage");
 		String category = request.getParameter("category");
 		String b_idx = request.getParameter("b_idx");
+		String search_val = request.getParameter("search_val");
 		
 		if(c_type == null) { // get방식 요청
 			request.setAttribute("path", path);
 			request.setAttribute("cPage", cPage);
 			request.setAttribute("category", category);
 			request.setAttribute("b_idx", b_idx);
+			request.setAttribute("search_val", search_val);
 			
 		}else if(c_type.startsWith("application")) { // post방식 요청
 			// 로그인 액션
@@ -43,6 +45,7 @@ public class LoginAction implements MidAction {
 			request.setAttribute("cPage", cPage);
 			request.setAttribute("category", category);
 			request.setAttribute("b_idx", b_idx);
+			request.setAttribute("search_val", search_val);
 			
 			viewPath = "/login.jsp";
 		}

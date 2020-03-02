@@ -15,6 +15,7 @@ String path = (String)request.getAttribute("path");
 String cPage = (String)request.getAttribute("cPage");
 String category = (String)request.getAttribute("category");
 String b_idx = (String)request.getAttribute("b_idx");
+String search_val = (String)request.getAttribute("search_val");
 
 if(path==null)
 	path = "main";
@@ -60,6 +61,7 @@ if(path==null)
 			<input type="hidden" name="cPage" value="<%=cPage %>"/>
 			<input type="hidden" name="category" value="<%=category %>"/>
 			<input type="hidden" name="b_idx" value="<%=b_idx %>"/>
+			<input type="hidden" name="search_val" value="<%=search_val %>"/>
 		</form>
 	</div>
 </div>
