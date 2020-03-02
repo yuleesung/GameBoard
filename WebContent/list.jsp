@@ -171,10 +171,10 @@
      });
 	
 	function goLogin(){
-		location.href="Controller?type=login&path=list";
+		location.href="Controller?type=login&path=list&cPage=${requestScope.cPage}&category=${requestScope.category}";
 	}
 	function goLogout(){
-		location.href="Controller?type=logout&path=list";
+		location.href="Controller?type=logout&path=list&cPage=${requestScope.cPage}&category=${requestScope.category}";
 	}
 	
 	</script>

@@ -48,6 +48,7 @@ public class ListAction implements MidAction {
 				
 				String cPage = request.getParameter("cPage");
 				
+				
 				if(cPage != null){
 					int p = Integer.parseInt(cPage);
 					page.setNowPage(p); 
