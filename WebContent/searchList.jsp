@@ -169,6 +169,14 @@ String search_val = (String)request.getAttribute("search_val");
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+function goLogin(){
+	location.href="Controller?type=login&path=searchlist&cPage=${requestScope.cPage}&search_val=${requestScope.search_val}";
+}
+function goLogout(){
+	location.href="Controller?type=logout&path=searchlist&cPage=${requestScope.cPage}&search_val=${requestScope.search_val}";
+}
+
 $(document).ready(function(){
     $("#menu_bar").load("menu.jsp");
     $("#footer").load("footer.jsp");
